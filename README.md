@@ -68,6 +68,24 @@ Supported commands:
 - `daily-run`: fetch sources, ingest articles, extract people, and write the daily discovery
 - `weekly-run`: build weekly co-mention connections and write the weekly report
 
+## CI/CD
+
+GitHub Actions workflows now live in `.github/workflows/`:
+
+- `ci.yml`: runs the unit test suite on pushes to `main` and on pull requests
+- `daily-pipeline.yml`: runs the daily Hood pipeline on a schedule and commits generated `data/` outputs back to `main`
+- `weekly-pipeline.yml`: runs the weekly connections report on a schedule and commits generated `data/` outputs back to `main`
+
+Current schedules:
+
+- daily pipeline: `13:05 UTC` every day
+- weekly connections: `13:35 UTC` every Sunday
+
+In `America/New_York`, those map to:
+
+- daily pipeline: `9:05 AM EDT` or `8:05 AM EST`
+- weekly connections: `9:35 AM EDT` or `8:35 AM EST`
+
 ## Runtime Paths
 
 By default the pipeline writes to:
@@ -119,4 +137,4 @@ Current limitations:
 - extraction is still heuristic and intentionally conservative
 - person canonicalization is still basic
 - weekly connections are currently co-mention based, not richer relationship inference
-- GitHub Actions automation is planned but not implemented yet
+- GitHub Actions automation is implemented, but the scheduled data outputs still depend on the current heuristic extractor quality

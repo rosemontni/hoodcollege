@@ -68,13 +68,27 @@ The current quality approach favors traceable plausibility over aggressive recal
 - preserve article-scoped mention context
 - avoid strong connection claims beyond co-mentions
 
+## GitHub Actions
+
+The repository now includes:
+
+- `ci.yml` for push and pull-request validation
+- `daily-pipeline.yml` for scheduled daily collection
+- `weekly-pipeline.yml` for scheduled weekly connection reporting
+
+Current schedule details:
+
+- daily run: 13:05 UTC every day
+- weekly connections run: 13:35 UTC every Sunday
+
+The scheduled workflows install dependencies, run the CLI, and commit generated `data/` outputs back to `main`.
+
 ## Known Limitations
 
 - person extraction is heuristic and still produces some false positives
 - person role assignment is best-effort rather than canonical
 - weekly connections are shallow and based on co-mention counts
 - reprocessing versioning is not implemented yet
-- GitHub Actions scheduling is not implemented yet
 
 ## Recommended Development Order
 

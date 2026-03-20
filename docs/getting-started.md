@@ -75,6 +75,16 @@ The weekly run currently derives co-mention connections from the last 7 days of 
 python -m unittest discover -s tests
 ```
 
+## GitHub Actions
+
+The repository now includes these workflows:
+
+- `.github/workflows/ci.yml`
+- `.github/workflows/daily-pipeline.yml`
+- `.github/workflows/weekly-pipeline.yml`
+
+You can run the scheduled workflows manually from the GitHub Actions tab using `workflow_dispatch`.
+
 ## Configuration
 
 The current source registry is stored in:
