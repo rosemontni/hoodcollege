@@ -1,6 +1,6 @@
 # Hood College Signal Atlas
 
-Hood College Signal Atlas is a planning-first repository for a daily intelligence pipeline focused on **Hood College in Frederick, Maryland**.
+Hood College Signal Atlas is a Python pipeline for **Hood College in Frederick, Maryland** that fetches official source coverage, extracts plausible people mentions, stores article-level evidence, and writes markdown discovery outputs.
 
 The project goal is to:
 
@@ -10,7 +10,14 @@ The project goal is to:
 4. publish a short markdown discovery story each day
 5. publish a weekly relationship report describing meaningful connections between the people observed
 
-This repository is intentionally starting with planning and documentation before implementation.
+The first coding slice is now in place:
+
+- a runnable CLI
+- source readers for `hood.edu/news` and the Hood athletics RSS feed
+- SQLite storage
+- conservative Hood-specific disambiguation
+- a heuristic people extractor designed for easy replacement later
+- markdown daily and weekly output writers
 
 ## Why This Shape
 
@@ -28,7 +35,7 @@ This repository is only about **Hood College at 401 Rosemont Ave., Frederick, MD
 
 It must explicitly avoid false matches from similarly named institutions, places, organizations, or people.
 
-## Planned Outputs
+## Outputs
 
 - daily article intake records
 - daily person mention records
@@ -36,11 +43,31 @@ It must explicitly avoid false matches from similarly named institutions, places
 - weekly connection summaries
 - a local database that preserves article-level evidence
 
+## Quick Start
+
+```powershell
+python -m pip install -r requirements.txt -e .
+python -m hood_pipeline init-db
+python -m hood_pipeline daily-run
+python -m hood_pipeline weekly-run
+```
+
+The default source configuration lives in `sources/hood_sources.json`.
+
+## Repository Layout
+
+- `src/hood_pipeline/`: application, domain, ports, and infrastructure code
+- `tests/`: unit tests for the first implementation slice
+- `sources/`: source configuration
+- `research/`: source notes and collection research
+- `docs/`: planning and architecture documents
+
 ## Planning Docs
 
 - [docs/project-plan.md](docs/project-plan.md)
 - [docs/source-strategy.md](docs/source-strategy.md)
 - [docs/data-model.md](docs/data-model.md)
+- [docs/architecture.md](docs/architecture.md)
 
 ## Repository Metadata
 
@@ -51,4 +78,4 @@ It must explicitly avoid false matches from similarly named institutions, places
 ## Current Status
 
 Planning baseline complete.
-Implementation work will begin in the next phase.
+First coding slice implemented and runnable.

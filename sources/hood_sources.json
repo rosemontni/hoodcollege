@@ -1,0 +1,24 @@
+[
+  {
+    "source_id": "hood_news",
+    "name": "Hood College News",
+    "reader": "hood_news_html",
+    "url": "https://www.hood.edu/news",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.hood.edu",
+      "category": "news"
+    }
+  },
+  {
+    "source_id": "hood_athletics_general",
+    "name": "Hood Athletics General RSS",
+    "reader": "rss",
+    "url": "https://hoodathletics.com/rss.aspx?path=general",
+    "enabled": true,
+    "metadata": {
+      "domain": "hoodathletics.com",
+      "category": "athletics"
+    }
+  }
+]

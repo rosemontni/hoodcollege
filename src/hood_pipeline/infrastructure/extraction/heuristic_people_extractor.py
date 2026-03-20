@@ -1,0 +1,213 @@
+from __future__ import annotations
+
+import re
+from collections import OrderedDict
+
+from hood_pipeline.domain.models import PersonMention
+
+
+class HeuristicPeopleExtractor:
+    NAME_PATTERN = re.compile(
+        r"\b([A-Z][a-z]+(?:[-'][A-Z][a-z]+)?(?:\s+[A-Z][a-z]+(?:[-'][A-Z][a-z]+)?){1,2})\b"
+    )
+    BLOCKED_TOKENS = {
+        "Academic",
+        "Affairs",
+        "All-District",
+        "All-America",
+        "America",
+        "Annex",
+        "Arena",
+        "Atlantic",
+        "Athletics",
+        "Award",
+        "Awards",
+        "Basketball",
+        "Beneficial-Hodson",
+        "Blue",
+        "Box",
+        "Campus",
+        "Career",
+        "Center",
+        "Centre",
+        "Championship",
+        "Hood",
+        "College",
+        "Conference",
+        "Contact",
+        "County",
+        "Cupboard",
+        "Day",
+        "Department",
+        "Director",
+        "Division",
+        "Earth",
+        "Education",
+        "Faculty",
+        "Field",
+        "Final",
+        "First",
+        "Food",
+        "Frederick",
+        "General",
+        "Golf",
+        "Grant",
+        "Health",
+        "Honor",
+        "Inside",
+        "Links",
+        "Manager",
+        "Maryland",
+        "Community",
+        "Middle",
+        "Miss",
+        "NCAA",
+        "Network",
+        "Program",
+        "Programs",
+        "Office",
+        "News",
+        "Open",
+        "Partnership",
+        "Phone",
+        "Phoenix",
+        "Play",
+        "Players",
+        "Position",
+        "President",
+        "Print",
+        "Registration",
+        "Related",
+        "Representative",
+        "Round",
+        "River",
+        "Security",
+        "Senior",
+        "Senator",
+        "Set",
+        "Speaker",
+        "Spartans",
+        "Stories",
+        "Story",
+        "Summary",
+        "System",
+        "Team",
+        "Teen",
+        "Technology",
+        "The",
+        "Tickets",
+        "Tournament",
+        "Version",
+        "Video",
+        "Videos",
+        "Vice",
+        "Varsity",
+        "Washington",
+        "Wilson",
+        "Woodsboro",
+        "Blazers",
+        "Brewers",
+        "Hawks",
+    }
+    BLOCKED_PHRASES = (
+        "By Mason Cavalier",
+        "Media Contact Mason",
+        "Cavalier Media Manager",
+        "Middle Atlantic Conference",
+        "Play Video",
+        "Related Stories",
+        "Players Mentioned",
+        "Print Friendly Version",
+        "First Round",
+    )
+
+    def extract(self, article) -> list[PersonMention]:
+        sentences = re.split(r"(?<=[.!?])\s+", article.body)
+        mentions: "OrderedDict[str, PersonMention]" = OrderedDict()
+
+        for sentence in sentences:
+            clean_sentence = " ".join(sentence.split())
+            if len(clean_sentence) < 20:
+                continue
+            for match in self.NAME_PATTERN.finditer(clean_sentence):
+                name = match.group(1).strip()
+                if self._blocked(name):
+                    continue
+                local_context = clean_sentence[max(0, match.start() - 80) : match.end() + 80]
+                if not self._has_context_evidence(name, local_context, article.source_id):
+                    continue
+                role_category, role_text = self._classify(name, local_context, article.source_id)
+                confidence = self._confidence(local_context, role_category)
+                if confidence < 0.52:
+                    continue
+                if name not in mentions:
+                    mentions[name] = PersonMention(
+                        article_url=article.url,
+                        name=name,
+                        role_category=role_category,
+                        role_text=role_text,
+                        context=clean_sentence[:500],
+                        confidence=confidence,
+                        inclusion_note=f"Matched a plausible full name with nearby role context in {article.source_id}.",
+                    )
+        return list(mentions.values())
+
+    def _blocked(self, name: str) -> bool:
+        if any(phrase in name for phrase in self.BLOCKED_PHRASES):
+            return True
+        tokens = set(name.split())
+        if any(token in self.BLOCKED_TOKENS for token in tokens):
+            return True
+        if name.endswith(" College") or name.endswith(" County"):
+            return True
+        if len(name.split()) != 2:
+            return True
+        return False
+
+    def _has_context_evidence(self, name: str, context: str, source_id: str) -> bool:
+        escaped_name = re.escape(name)
+        patterns = (
+            rf"(president|dean|provost|representative|senator|director|manager|coordinator|coach|professor)\s+{escaped_name}",
+            rf"{escaped_name},\s*(Ph\.D\.|M\.S\.|MBA|DMA|Ed\.D\.|executive director|assistant director|graduate assistant)",
+            rf"(said|according to)\s+{escaped_name}",
+            rf"{escaped_name}\s*\([^)]+/[^)]+\)",
+            rf"{escaped_name}\s+[’']\d{{2}}",
+            rf"{escaped_name}.*\b(freshman|junior|senior|student|guard|forward|setter|outside hitter|kills|assists|digs)\b",
+        )
+        lowered_context = context.lower()
+        if source_id.startswith("hood_athletics") and re.search(rf"{escaped_name}\s*\([^)]+\)", context):
+            return True
+        return any(re.search(pattern, lowered_context, re.IGNORECASE) for pattern in patterns)
+
+    def _classify(self, name: str, context: str, source_id: str) -> tuple[str, str]:
+        lowered = context.lower()
+        lowered_name = name.lower()
+        if f"head coach {lowered_name}" in lowered or f"coach {lowered_name}" in lowered:
+            return "coach", "Coach context found near the name."
+        if any(f"{title} {lowered_name}" in lowered for title in ("president", "dean", "vice president")):
+            return "administrator", "Senior academic or administrative title found near the name."
+        if any(f"{title} {lowered_name}" in lowered for title in ("professor", "lecturer", "chair")):
+            return "faculty", "Academic title found near the name."
+        if any(
+            f"{title} {lowered_name}" in lowered
+            for title in ("executive director", "director", "manager", "coordinator")
+        ):
+            return "staff", "Operational staff title found near the name."
+        if any(keyword in lowered for keyword in ("alumn", "'12", "'13", "'14", "'15", "'16", "'17", "'18")):
+            return "alumni", "Alumni marker found near the name."
+        if any(keyword in lowered for keyword in ("freshman", "senior", "junior", "major", "student", "guard", "forward", "setter", "outside hitter")):
+            return "student", "Student context found near the name."
+        if source_id.startswith("hood_athletics"):
+            return "student-athlete", "Athletics source implies student-athlete context."
+        return "person", "General person mention."
+
+    def _confidence(self, context: str, role_category: str) -> float:
+        score = 0.52
+        lowered = context.lower()
+        if any(keyword in lowered for keyword in ("said", "quote", "according to", "scored", "recorded")):
+            score += 0.08
+        if role_category != "person":
+            score += 0.1
+        if len(context) > 60:
+            score += 0.05
+        return min(score, 0.92)

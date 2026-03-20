@@ -100,6 +100,7 @@ If extraction rules or source selection changes, recent articles should be repro
 - SQLite schema and migrations
 - markdown output writers
 - scheduled GitHub Actions workflow
+- modular ports-and-adapters architecture with replaceable storage, extraction, and publishing modules
 
 ## Success Criteria
 
