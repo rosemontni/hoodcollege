@@ -1,0 +1,7 @@
+.network-ref/
+.remote-check/
+.venv/
+__pycache__/
+*.pyc
+*.sqlite3
+*.db
