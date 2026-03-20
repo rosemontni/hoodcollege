@@ -42,6 +42,12 @@ It must explicitly avoid false matches from similarly named institutions, places
 - [docs/source-strategy.md](docs/source-strategy.md)
 - [docs/data-model.md](docs/data-model.md)
 
+## Repository Metadata
+
+- [CONTRIBUTING.md](CONTRIBUTING.md)
+- [SECURITY.md](SECURITY.md)
+- [CODEOWNERS](CODEOWNERS)
+
 ## Current Status
 
 Planning baseline complete.
