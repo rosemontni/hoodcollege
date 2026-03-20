@@ -31,30 +31,21 @@ def build_services() -> Services:
     config.ensure_directories()
     sqlite = SQLiteStore(config.database_path)
     sqlite.initialize()
+    fetcher = RequestsArticleFetcher(
+        user_agent=config.user_agent,
+        timeout_seconds=config.request_timeout_seconds,
+    )
     return Services(
         config=config,
         clock=LocalClock(),
-        fetcher=RequestsArticleFetcher(
-            user_agent=config.user_agent,
-            timeout_seconds=config.request_timeout_seconds,
-        ),
+        fetcher=fetcher,
         disambiguator=HoodDisambiguator(),
         extractor=HeuristicPeopleExtractor(),
         sqlite=sqlite,
         discovery_writer=MarkdownDiscoveryWriter(config.discoveries_dir),
         connection_writer=MarkdownConnectionWriter(config.connections_dir),
         source_readers={
-            "hood_news_html": HoodNewsReader(
-                RequestsArticleFetcher(
-                    user_agent=config.user_agent,
-                    timeout_seconds=config.request_timeout_seconds,
-                )
-            ),
-            "rss": HoodAthleticsRssReader(
-                RequestsArticleFetcher(
-                    user_agent=config.user_agent,
-                    timeout_seconds=config.request_timeout_seconds,
-                )
-            ),
+            "hood_news_html": HoodNewsReader(fetcher),
+            "rss": HoodAthleticsRssReader(fetcher),
         },
     )

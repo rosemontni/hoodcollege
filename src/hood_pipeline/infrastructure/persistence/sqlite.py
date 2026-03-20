@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import sqlite3
-from dataclasses import asdict
+from contextlib import contextmanager
 from datetime import date, datetime
 from pathlib import Path
 
@@ -17,8 +17,17 @@ class SQLiteStore:
         connection.row_factory = sqlite3.Row
         return connection
 
+    @contextmanager
+    def session(self):
+        connection = self.connect()
+        try:
+            yield connection
+            connection.commit()
+        finally:
+            connection.close()
+
     def initialize(self) -> None:
-        with self.connect() as connection:
+        with self.session() as connection:
             connection.executescript(
                 """
                 CREATE TABLE IF NOT EXISTS articles (
@@ -69,7 +78,7 @@ class SQLiteStore:
             )
 
     def has_article(self, url: str, content_hash: str | None = None) -> bool:
-        with self.connect() as connection:
+        with self.session() as connection:
             if content_hash is None:
                 row = connection.execute("SELECT 1 FROM articles WHERE url = ?", (url,)).fetchone()
             else:
@@ -80,7 +89,7 @@ class SQLiteStore:
         return row is not None
 
     def upsert_article(self, article: FetchedArticle) -> int:
-        with self.connect() as connection:
+        with self.session() as connection:
             connection.execute(
                 """
                 INSERT INTO articles (
@@ -114,7 +123,7 @@ class SQLiteStore:
             return int(row["id"])
 
     def replace_article_mentions(self, article_id: int, mentions: list[PersonMention], seen_at: date) -> None:
-        with self.connect() as connection:
+        with self.session() as connection:
             article_url_row = connection.execute(
                 "SELECT url FROM articles WHERE id = ?",
                 (article_id,),
@@ -146,20 +155,33 @@ class SQLiteStore:
                     """
                     INSERT INTO people (name, role_category, first_seen, last_seen)
                     VALUES (?, ?, ?, ?)
-                    ON CONFLICT(name) DO UPDATE SET
-                        role_category=excluded.role_category,
-                        last_seen=excluded.last_seen
+                    ON CONFLICT(name) DO NOTHING
+                    """,
+                    (mention.name, mention.role_category, seen_at.isoformat(), seen_at.isoformat()),
+                )
+                existing = connection.execute(
+                    "SELECT role_category, first_seen FROM people WHERE name = ?",
+                    (mention.name,),
+                ).fetchone()
+                if existing is None:
+                    continue
+                preferred_role = _preferred_role(existing["role_category"], mention.role_category)
+                connection.execute(
+                    """
+                    UPDATE people
+                    SET role_category = ?, first_seen = ?, last_seen = ?
+                    WHERE name = ?
                     """,
                     (
+                        preferred_role,
+                        existing["first_seen"],
+                        seen_at.isoformat(),
                         mention.name,
-                        mention.role_category,
-                        seen_at.isoformat(),
-                        seen_at.isoformat(),
                     ),
                 )
 
     def mentions_for_date(self, run_date: date) -> list[PersonMention]:
-        with self.connect() as connection:
+        with self.session() as connection:
             rows = connection.execute(
                 """
                 SELECT article_url, name, role_category, role_text, context, confidence, inclusion_note
@@ -172,7 +194,7 @@ class SQLiteStore:
         return [PersonMention(**dict(row)) for row in rows]
 
     def weekly_mentions(self, week_start: date, week_end: date) -> list[sqlite3.Row]:
-        with self.connect() as connection:
+        with self.session() as connection:
             return connection.execute(
                 """
                 SELECT article_url, name
@@ -184,7 +206,7 @@ class SQLiteStore:
             ).fetchall()
 
     def replace_weekly_connections(self, week_start: date, connections: list[WeeklyConnection]) -> None:
-        with self.connect() as connection:
+        with self.session() as connection:
             connection.execute(
                 "DELETE FROM weekly_connections WHERE week_start = ?",
                 (week_start.isoformat(),),
@@ -207,7 +229,7 @@ class SQLiteStore:
                 )
 
     def relevant_articles_for_date(self, run_date: date) -> list[FetchedArticle]:
-        with self.connect() as connection:
+        with self.session() as connection:
             rows = connection.execute(
                 """
                 SELECT source_id, url, title, published_at, fetched_at, body, content_hash, is_relevant, relevance_reason
@@ -243,3 +265,23 @@ def _parse_datetime(value: str | None) -> datetime | None:
     if not value:
         return None
     return datetime.fromisoformat(value)
+
+
+ROLE_PRIORITY = {
+    "person": 0,
+    "student": 1,
+    "student-athlete": 2,
+    "alumni": 2,
+    "staff": 3,
+    "faculty": 4,
+    "coach": 4,
+    "administrator": 5,
+}
+
+
+def _preferred_role(current_role: str, new_role: str) -> str:
+    current_priority = ROLE_PRIORITY.get(current_role, 0)
+    new_priority = ROLE_PRIORITY.get(new_role, 0)
+    if new_priority >= current_priority:
+        return new_role
+    return current_role

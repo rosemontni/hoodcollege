@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-from datetime import date, timedelta
+from datetime import date
 
 from hood_pipeline.application.daily_run import DailyRunService
 from hood_pipeline.application.weekly_run import WeeklyRunService

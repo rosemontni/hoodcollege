@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import sys
 from datetime import date
 from hashlib import sha256
 
@@ -11,7 +12,7 @@ class DailyRunService:
         self.services = services
 
     def run(self, run_date: date) -> DailyRunResult:
-        source_items = []
+        source_items_by_url = {}
         for item in self.services.config.load_source_definitions():
             definition = SourceDefinition(
                 source_id=str(item["source_id"]),
@@ -23,15 +24,29 @@ class DailyRunService:
             )
             if not definition.enabled:
                 continue
-            reader = self.services.source_readers[definition.reader]
-            source_items.extend(reader.read(definition))
+            reader = self.services.source_readers.get(definition.reader)
+            if reader is None:
+                raise ValueError(f"Unknown source reader '{definition.reader}' for source '{definition.source_id}'.")
+            try:
+                for source_item in reader.read(definition):
+                    source_items_by_url[source_item.url] = source_item
+            except Exception as exc:
+                print(
+                    f"Skipping source '{definition.source_id}' because reader failed: {exc}",
+                    file=sys.stderr,
+                )
+
+        source_items = list(source_items_by_url.values())
 
         seen = len(source_items)
         stored_articles: list[FetchedArticle] = []
-        mentions: list[PersonMention] = []
 
         for source_item in source_items:
-            body = self.services.fetcher.fetch_clean_article_text(source_item.url)
+            try:
+                body = self.services.fetcher.fetch_clean_article_text(source_item.url)
+            except Exception as exc:
+                print(f"Skipping article '{source_item.url}' because fetch failed: {exc}", file=sys.stderr)
+                continue
             fetched_at = self.services.clock.now()
             content_hash = sha256(body.encode("utf-8")).hexdigest()
             if self.services.sqlite.has_article(source_item.url, content_hash):
@@ -64,10 +79,16 @@ class DailyRunService:
                 self.services.sqlite.replace_article_mentions(article_id, [], run_date)
                 continue
 
-            extracted = self.services.extractor.extract(article)
+            try:
+                extracted = self.services.extractor.extract(article)
+            except Exception as exc:
+                print(
+                    f"Continuing without mentions for '{source_item.url}' because extraction failed: {exc}",
+                    file=sys.stderr,
+                )
+                extracted = []
             self.services.sqlite.replace_article_mentions(article_id, extracted, run_date)
             stored_articles.append(article)
-            mentions.extend(extracted)
 
         discovery_path = self.services.discovery_writer.write_daily_story(
             run_date,

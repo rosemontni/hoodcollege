@@ -8,3 +8,4 @@ __pycache__/
 *.egg-info/
 data/
 data_verification*/
+data_release_verify/
