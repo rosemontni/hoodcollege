@@ -1,16 +1,15 @@
 # Hood College Signal Atlas
 
-Hood College Signal Atlas is a Python pipeline for **Hood College in Frederick, Maryland** that fetches official source coverage, extracts plausible people mentions, stores article-level evidence, and writes markdown discovery outputs.
+Hood College Signal Atlas is a Python pipeline for **Hood College in Frederick, Maryland**. It collects official source coverage, filters for Hood-specific relevance, extracts plausible person mentions, stores article-level evidence in SQLite, and writes markdown discovery outputs.
 
-The project goal is to:
+The project is designed around four repeatable jobs:
 
-1. collect new Hood College coverage each day from carefully chosen sources
-2. extract the people mentioned in that coverage
-3. store role-aware person records with article evidence and traceable provenance
-4. publish a short markdown discovery story each day
-5. publish a weekly relationship report describing meaningful connections between the people observed
+1. collect Hood College coverage from trusted sources
+2. extract people and preserve evidence from each article
+3. write a daily discovery summary in markdown
+4. derive weekly co-mention connections from stored evidence
 
-The first coding slice is now in place:
+The current codebase already includes:
 
 - a runnable CLI
 - source readers for `hood.edu/news` and the Hood athletics RSS feed
@@ -18,6 +17,7 @@ The first coding slice is now in place:
 - conservative Hood-specific disambiguation
 - a heuristic people extractor designed for easy replacement later
 - markdown daily and weekly output writers
+- unit tests for key first-slice behavior
 
 ## Why This Shape
 
@@ -37,11 +37,11 @@ It must explicitly avoid false matches from similarly named institutions, places
 
 ## Outputs
 
-- daily article intake records
-- daily person mention records
+- article records with normalized body text and relevance decisions
+- article-scoped person mention records
 - daily markdown discovery stories
-- weekly connection summaries
-- a local database that preserves article-level evidence
+- weekly markdown connection reports
+- a local SQLite database that preserves article-level evidence
 
 ## Quick Start
 
@@ -54,6 +54,38 @@ python -m hood_pipeline weekly-run
 
 The default source configuration lives in `sources/hood_sources.json`.
 
+## CLI
+
+```powershell
+python -m hood_pipeline init-db
+python -m hood_pipeline daily-run --date 2026-03-20
+python -m hood_pipeline weekly-run --date 2026-03-20
+```
+
+Supported commands:
+
+- `init-db`: create the SQLite schema
+- `daily-run`: fetch sources, ingest articles, extract people, and write the daily discovery
+- `weekly-run`: build weekly co-mention connections and write the weekly report
+
+## Runtime Paths
+
+By default the pipeline writes to:
+
+- `data/hood_people.db`
+- `data/discoveries/YYYY-MM-DD.md`
+- `data/connections/YYYY-MM-DD.md`
+
+These can be overridden with environment variables:
+
+- `HOOD_PIPELINE_DATA_DIR`
+- `HOOD_PIPELINE_DATABASE_PATH`
+- `HOOD_PIPELINE_DISCOVERIES_DIR`
+- `HOOD_PIPELINE_CONNECTIONS_DIR`
+- `HOOD_PIPELINE_SOURCES_PATH`
+- `HOOD_PIPELINE_USER_AGENT`
+- `HOOD_PIPELINE_REQUEST_TIMEOUT`
+
 ## Repository Layout
 
 - `src/hood_pipeline/`: application, domain, ports, and infrastructure code
@@ -62,8 +94,10 @@ The default source configuration lives in `sources/hood_sources.json`.
 - `research/`: source notes and collection research
 - `docs/`: planning and architecture documents
 
-## Planning Docs
+## Documentation
 
+- [docs/getting-started.md](docs/getting-started.md)
+- [docs/operations.md](docs/operations.md)
 - [docs/project-plan.md](docs/project-plan.md)
 - [docs/source-strategy.md](docs/source-strategy.md)
 - [docs/data-model.md](docs/data-model.md)
@@ -79,3 +113,10 @@ The default source configuration lives in `sources/hood_sources.json`.
 
 Planning baseline complete.
 First coding slice implemented and runnable.
+
+Current limitations:
+
+- extraction is still heuristic and intentionally conservative
+- person canonicalization is still basic
+- weekly connections are currently co-mention based, not richer relationship inference
+- GitHub Actions automation is planned but not implemented yet

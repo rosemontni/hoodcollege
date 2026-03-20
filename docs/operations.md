@@ -1,0 +1,102 @@
+# Operations Guide
+
+## Pipeline Overview
+
+The current implementation has two primary workflows.
+
+### Daily workflow
+
+`daily-run` performs:
+
+1. source loading
+2. source item collection
+3. article fetch and cleanup
+4. Hood relevance filtering
+5. person mention extraction
+6. SQLite persistence
+7. markdown discovery writing
+
+### Weekly workflow
+
+`weekly-run` performs:
+
+1. loading article-scoped mentions from the prior 7 days
+2. building pairwise co-mention connections
+3. storing weekly connection rows
+4. writing a markdown weekly report
+
+## Source Registry
+
+The source configuration file is:
+
+- `sources/hood_sources.json`
+
+Current source adapters:
+
+- `hood_news_html`: parse `hood.edu/news`
+- `rss`: parse the Hood athletics RSS feed
+
+The architecture is designed so new source readers can be added without changing the workflow layer.
+
+## Output Paths
+
+Default outputs:
+
+- database: `data/hood_people.db`
+- daily discovery: `data/discoveries/YYYY-MM-DD.md`
+- weekly report: `data/connections/YYYY-MM-DD.md`
+
+Generated runtime data is intentionally ignored by Git.
+
+## Database Tables
+
+Current tables:
+
+- `articles`
+- `people`
+- `article_people`
+- `weekly_connections`
+
+The implementation is intentionally simple for the first slice. See [data-model.md](data-model.md) for the fuller planned model.
+
+## Current Quality Strategy
+
+The current quality approach favors traceable plausibility over aggressive recall:
+
+- prefer official sources
+- keep Hood disambiguation strict
+- preserve article-scoped mention context
+- avoid strong connection claims beyond co-mentions
+
+## Known Limitations
+
+- person extraction is heuristic and still produces some false positives
+- person role assignment is best-effort rather than canonical
+- weekly connections are shallow and based on co-mention counts
+- reprocessing versioning is not implemented yet
+- GitHub Actions scheduling is not implemented yet
+
+## Recommended Development Order
+
+The next implementation priorities should be:
+
+1. improve person-role attribution and canonicalization
+2. reduce remaining extractor false positives
+3. add richer article metadata and source timestamps
+4. improve weekly connection scoring
+5. add scheduled automation through GitHub Actions
+
+## Debugging Tips
+
+If a run looks noisy:
+
+- inspect the daily markdown file in `data/discoveries`
+- inspect recent rows in `article_people`
+- review the article cleaning logic in `src/hood_pipeline/infrastructure/fetching/http_fetcher.py`
+- review the extraction filters in `src/hood_pipeline/infrastructure/extraction/heuristic_people_extractor.py`
+
+If a valid article is missing:
+
+- confirm the source appears in `sources/hood_sources.json`
+- check whether the disambiguator rejected it
+- review the source reader adapter for that site
