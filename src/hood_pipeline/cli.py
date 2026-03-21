@@ -45,7 +45,8 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"Daily run complete for {result.run_date}: "
             f"{result.articles_stored} stored / {result.articles_seen} seen, "
-            f"{len(result.mentions)} mentions, discovery {result.discovery_path}"
+            f"{len(result.mentions)} mentions, discovery {result.discovery_path}, "
+            f"summary {result.summary_path}"
         )
         return 0
 

@@ -45,6 +45,8 @@ Default outputs:
 - database: `data/hood_people.db`
 - daily discovery: `data/discoveries/YYYY-MM-DD.md`
 - weekly report: `data/connections/YYYY-MM-DD.md`
+- cumulative summary table: `data/summary/discovery-summary.md`
+- cumulative discovery graph: `data/summary/discovery-growth.svg`
 
 Generated runtime data is intentionally ignored by Git.
 
@@ -67,6 +69,7 @@ The current quality approach favors traceable plausibility over aggressive recal
 - keep Hood disambiguation strict
 - preserve article-scoped mention context
 - avoid strong connection claims beyond co-mentions
+- keep cumulative summary counts based on canonical `people.first_seen`
 
 ## GitHub Actions
 

@@ -57,6 +57,8 @@ class DailyRunResult:
     relevant_articles: list[FetchedArticle]
     mentions: list[PersonMention]
     discovery_path: str
+    summary_path: str
+    summary_graph_path: str
 
 
 @dataclass(frozen=True)
@@ -73,3 +75,10 @@ class WeeklyRunResult:
     run_date: date
     connections: list[WeeklyConnection]
     report_path: str
+
+
+@dataclass(frozen=True)
+class SummaryPoint:
+    run_date: date
+    counts_by_role: dict[str, int]
+    total: int

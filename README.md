@@ -41,6 +41,7 @@ It must explicitly avoid false matches from similarly named institutions, places
 - article-scoped person mention records
 - daily markdown discovery stories
 - weekly markdown connection reports
+- cumulative summary table and discovery-growth graph
 - a local SQLite database that preserves article-level evidence
 
 ## Quick Start
@@ -67,6 +68,11 @@ Supported commands:
 - `init-db`: create the SQLite schema
 - `daily-run`: fetch sources, ingest articles, extract people, and write the daily discovery
 - `weekly-run`: build weekly co-mention connections and write the weekly report
+
+The daily run also refreshes:
+
+- `data/summary/discovery-summary.md`
+- `data/summary/discovery-growth.svg`
 
 ## CI/CD
 
@@ -100,6 +106,7 @@ These can be overridden with environment variables:
 - `HOOD_PIPELINE_DATABASE_PATH`
 - `HOOD_PIPELINE_DISCOVERIES_DIR`
 - `HOOD_PIPELINE_CONNECTIONS_DIR`
+- `HOOD_PIPELINE_SUMMARY_DIR`
 - `HOOD_PIPELINE_SOURCES_PATH`
 - `HOOD_PIPELINE_USER_AGENT`
 - `HOOD_PIPELINE_REQUEST_TIMEOUT`

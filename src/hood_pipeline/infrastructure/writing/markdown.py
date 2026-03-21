@@ -19,7 +19,10 @@ class MarkdownDiscoveryWriter:
     ) -> str:
         self.discoveries_dir.mkdir(parents=True, exist_ok=True)
         path = self.discoveries_dir / f"{run_date.isoformat()}.md"
-        top_names = Counter(mention.name for mention in mentions).most_common(6)
+        merged_mentions = self._merge_mentions(mentions)
+        top_names = Counter(
+            {name: item["article_count"] for name, item in merged_mentions.items()}
+        ).most_common(6)
         name_list = ", ".join(name for name, _ in top_names)
         if articles:
             opening = (
@@ -48,16 +51,41 @@ class MarkdownDiscoveryWriter:
             lines.append("- No new relevant sources were stored.")
 
         lines.extend(["", "## People Observed", ""])
-        if mentions:
-            for mention in mentions:
+        if merged_mentions:
+            for name, item in merged_mentions.items():
+                article_label = "article" if item["article_count"] == 1 else "articles"
                 lines.append(
-                    f"- **{mention.name}** ({mention.role_category}) - {mention.context[:180]}"
+                    f"- **{name}** ({item['role_category']}, {item['article_count']} {article_label}) - "
+                    f"{item['context'][:220]}"
                 )
         else:
             lines.append("- No people were extracted for this day.")
 
         path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         return str(path)
+
+    def _merge_mentions(self, mentions: list[PersonMention]) -> dict[str, dict[str, object]]:
+        merged: dict[str, dict[str, object]] = {}
+        for mention in sorted(mentions, key=lambda item: (item.name.lower(), -item.confidence)):
+            current = merged.get(mention.name)
+            if current is None:
+                merged[mention.name] = {
+                    "role_category": mention.role_category,
+                    "context": mention.context,
+                    "article_urls": {mention.article_url},
+                    "best_confidence": mention.confidence,
+                }
+                continue
+
+            current["article_urls"].add(mention.article_url)
+            if mention.confidence > current["best_confidence"]:
+                current["best_confidence"] = mention.confidence
+                current["context"] = mention.context
+                current["role_category"] = mention.role_category
+
+        for item in merged.values():
+            item["article_count"] = len(item["article_urls"])
+        return merged
 
 
 class MarkdownConnectionWriter:

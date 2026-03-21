@@ -54,6 +54,7 @@ The daily run:
 5. extracts person mentions
 6. stores article and mention records in SQLite
 7. writes a daily markdown story
+8. updates the cumulative discovery summary table and graph
 
 ## Run The Weekly Report
 
@@ -97,6 +98,7 @@ Supported environment variables:
 - `HOOD_PIPELINE_DATABASE_PATH`
 - `HOOD_PIPELINE_DISCOVERIES_DIR`
 - `HOOD_PIPELINE_CONNECTIONS_DIR`
+- `HOOD_PIPELINE_SUMMARY_DIR`
 - `HOOD_PIPELINE_SOURCES_PATH`
 - `HOOD_PIPELINE_USER_AGENT`
 - `HOOD_PIPELINE_REQUEST_TIMEOUT`

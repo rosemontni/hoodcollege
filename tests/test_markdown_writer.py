@@ -11,7 +11,7 @@ from hood_pipeline.infrastructure.writing.markdown import (
 
 
 class MarkdownWriterTest(unittest.TestCase):
-    def test_daily_writer_creates_file(self) -> None:
+    def test_daily_writer_merges_duplicate_people(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
             writer = MarkdownDiscoveryWriter(Path(tmpdir))
             path = writer.write_daily_story(
@@ -28,6 +28,18 @@ class MarkdownWriterTest(unittest.TestCase):
                         is_relevant=True,
                         relevance_reason="accepted",
                     )
+                    ,
+                    FetchedArticle(
+                        source_id="hood_news",
+                        url="https://www.hood.edu/news/example-2",
+                        title="Example story 2",
+                        published_at=None,
+                        fetched_at=datetime.now(),
+                        body="Body",
+                        content_hash="hash-2",
+                        is_relevant=True,
+                        relevance_reason="accepted",
+                    )
                 ],
                 mentions=[
                     PersonMention(
@@ -38,11 +50,21 @@ class MarkdownWriterTest(unittest.TestCase):
                         context="Debbie Ricker spoke about the partnership.",
                         confidence=0.9,
                         inclusion_note="Named in article context.",
+                    ),
+                    PersonMention(
+                        article_url="https://www.hood.edu/news/example-2",
+                        name="Debbie Ricker",
+                        role_category="person",
+                        role_text="",
+                        context="Debbie Ricker later discussed the grant award.",
+                        confidence=0.7,
+                        inclusion_note="Named in article context.",
                     )
                 ],
             )
             text = Path(path).read_text(encoding="utf-8")
-            self.assertIn("Debbie Ricker", text)
+            self.assertEqual(text.count("**Debbie Ricker**"), 1)
+            self.assertIn("(administrator, 2 articles)", text)
             self.assertIn("Example story", text)
 
     def test_weekly_writer_creates_file(self) -> None:

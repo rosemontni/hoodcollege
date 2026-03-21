@@ -4,6 +4,7 @@ from datetime import date
 from typing import Protocol
 
 from hood_pipeline.domain.models import FetchedArticle, PersonMention, WeeklyConnection
+from hood_pipeline.domain.models import SummaryPoint
 
 
 class ArticleRepository(Protocol):
@@ -27,4 +28,9 @@ class PersonRepository(Protocol):
 
 class ConnectionRepository(Protocol):
     def replace_weekly_connections(self, week_start: date, connections: list[WeeklyConnection]) -> None:
+        ...
+
+
+class SummaryRepository(Protocol):
+    def cumulative_people_summary(self) -> list[SummaryPoint]:
         ...

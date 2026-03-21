@@ -93,6 +93,19 @@ class _FakeWriter:
         return str(path)
 
 
+class _FakeSummaryWriter:
+    def __init__(self, summary_dir: Path) -> None:
+        self.summary_dir = summary_dir
+
+    def write_summary(self, points):
+        self.summary_dir.mkdir(parents=True, exist_ok=True)
+        markdown_path = self.summary_dir / "discovery-summary.md"
+        graph_path = self.summary_dir / "discovery-growth.svg"
+        markdown_path.write_text("# summary\n", encoding="utf-8")
+        graph_path.write_text("<svg></svg>\n", encoding="utf-8")
+        return str(markdown_path), str(graph_path)
+
+
 class _FakeServices:
     def __init__(self, db_path: Path, discoveries_dir: Path) -> None:
         self.config = _FakeConfig(db_path, discoveries_dir)
@@ -103,6 +116,7 @@ class _FakeServices:
         self.sqlite = SQLiteStore(db_path)
         self.sqlite.initialize()
         self.discovery_writer = _FakeWriter(discoveries_dir)
+        self.summary_writer = _FakeSummaryWriter(discoveries_dir.parent / "summary")
         self.source_readers = {"fake": _FakeReader()}
 
 
@@ -115,6 +129,7 @@ class DailyRunTest(unittest.TestCase):
             self.assertEqual(result.articles_seen, 2)
             self.assertEqual(result.articles_stored, 1)
             self.assertEqual(len(result.mentions), 1)
+            self.assertTrue(result.summary_path.endswith("discovery-summary.md"))
 
 
 if __name__ == "__main__":

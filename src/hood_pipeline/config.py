@@ -17,6 +17,7 @@ class AppConfig:
     data_dir: Path
     discoveries_dir: Path
     connections_dir: Path
+    summary_dir: Path
     database_path: Path
     user_agent: str
     request_timeout_seconds: int
@@ -27,6 +28,7 @@ class AppConfig:
         data_dir = repo_root / "data"
         discoveries_dir = data_dir / "discoveries"
         connections_dir = data_dir / "connections"
+        summary_dir = data_dir / "summary"
         database_path = data_dir / "hood_people.db"
         sources_path = repo_root / "sources" / "hood_sources.json"
         user_agent = os.getenv(
@@ -40,6 +42,7 @@ class AppConfig:
             data_dir=Path(os.getenv("HOOD_PIPELINE_DATA_DIR", data_dir)),
             discoveries_dir=Path(os.getenv("HOOD_PIPELINE_DISCOVERIES_DIR", discoveries_dir)),
             connections_dir=Path(os.getenv("HOOD_PIPELINE_CONNECTIONS_DIR", connections_dir)),
+            summary_dir=Path(os.getenv("HOOD_PIPELINE_SUMMARY_DIR", summary_dir)),
             database_path=Path(os.getenv("HOOD_PIPELINE_DATABASE_PATH", database_path)),
             user_agent=user_agent,
             request_timeout_seconds=timeout,
@@ -49,6 +52,7 @@ class AppConfig:
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.discoveries_dir.mkdir(parents=True, exist_ok=True)
         self.connections_dir.mkdir(parents=True, exist_ok=True)
+        self.summary_dir.mkdir(parents=True, exist_ok=True)
         self.database_path.parent.mkdir(parents=True, exist_ok=True)
 
     def load_source_definitions(self) -> list[dict[str, object]]:

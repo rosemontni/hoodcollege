@@ -11,6 +11,7 @@ from hood_pipeline.infrastructure.runtime.local_clock import LocalClock
 from hood_pipeline.infrastructure.sources.hood_athletics import HoodAthleticsRssReader
 from hood_pipeline.infrastructure.sources.hood_news import HoodNewsReader
 from hood_pipeline.infrastructure.writing.markdown import MarkdownConnectionWriter, MarkdownDiscoveryWriter
+from hood_pipeline.infrastructure.writing.summary import SummaryArtifactsWriter
 
 
 @dataclass(frozen=True)
@@ -23,6 +24,7 @@ class Services:
     sqlite: SQLiteStore
     discovery_writer: MarkdownDiscoveryWriter
     connection_writer: MarkdownConnectionWriter
+    summary_writer: SummaryArtifactsWriter
     source_readers: dict[str, object]
 
 
@@ -44,6 +46,7 @@ def build_services() -> Services:
         sqlite=sqlite,
         discovery_writer=MarkdownDiscoveryWriter(config.discoveries_dir),
         connection_writer=MarkdownConnectionWriter(config.connections_dir),
+        summary_writer=SummaryArtifactsWriter(config.summary_dir),
         source_readers={
             "hood_news_html": HoodNewsReader(fetcher),
             "rss": HoodAthleticsRssReader(fetcher),

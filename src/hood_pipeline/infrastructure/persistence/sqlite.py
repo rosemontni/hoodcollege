@@ -5,7 +5,7 @@ from contextlib import contextmanager
 from datetime import date, datetime
 from pathlib import Path
 
-from hood_pipeline.domain.models import FetchedArticle, PersonMention, WeeklyConnection
+from hood_pipeline.domain.models import FetchedArticle, PersonMention, SummaryPoint, WeeklyConnection
 
 
 class SQLiteStore:
@@ -253,6 +253,37 @@ class SQLiteStore:
             )
             for row in rows
         ]
+
+    def cumulative_people_summary(self) -> list[SummaryPoint]:
+        with self.session() as connection:
+            rows = connection.execute(
+                """
+                SELECT first_seen, role_category, COUNT(*) AS discovered_count
+                FROM people
+                GROUP BY first_seen, role_category
+                ORDER BY first_seen, role_category
+                """
+            ).fetchall()
+        by_date: dict[date, dict[str, int]] = {}
+        for row in rows:
+            run_date = date.fromisoformat(row["first_seen"])
+            role_category = str(row["role_category"])
+            count = int(row["discovered_count"])
+            by_date.setdefault(run_date, {})[role_category] = count
+
+        cumulative: dict[str, int] = {}
+        points: list[SummaryPoint] = []
+        for run_date in sorted(by_date):
+            for role_category, count in by_date[run_date].items():
+                cumulative[role_category] = cumulative.get(role_category, 0) + count
+            points.append(
+                SummaryPoint(
+                    run_date=run_date,
+                    counts_by_role=dict(sorted(cumulative.items())),
+                    total=sum(cumulative.values()),
+                )
+            )
+        return points
 
 
 def _iso(value: datetime | None) -> str | None:

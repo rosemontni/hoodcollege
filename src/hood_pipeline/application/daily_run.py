@@ -95,6 +95,9 @@ class DailyRunService:
             stored_articles,
             self.services.sqlite.mentions_for_date(run_date),
         )
+        summary_path, summary_graph_path = self.services.summary_writer.write_summary(
+            self.services.sqlite.cumulative_people_summary()
+        )
         return DailyRunResult(
             run_date=run_date,
             articles_seen=seen,
@@ -102,4 +105,6 @@ class DailyRunService:
             relevant_articles=stored_articles,
             mentions=self.services.sqlite.mentions_for_date(run_date),
             discovery_path=discovery_path,
+            summary_path=summary_path,
+            summary_graph_path=summary_graph_path,
         )

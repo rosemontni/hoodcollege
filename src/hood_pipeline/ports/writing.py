@@ -4,6 +4,7 @@ from datetime import date
 from typing import Protocol
 
 from hood_pipeline.domain.models import FetchedArticle, PersonMention, WeeklyConnection
+from hood_pipeline.domain.models import SummaryPoint
 
 
 class DiscoveryWriter(Protocol):
@@ -22,4 +23,12 @@ class ConnectionWriter(Protocol):
         run_date: date,
         connections: list[WeeklyConnection],
     ) -> str:
+        ...
+
+
+class SummaryWriter(Protocol):
+    def write_summary(
+        self,
+        points: list[SummaryPoint],
+    ) -> tuple[str, str]:
         ...
