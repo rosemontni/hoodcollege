@@ -18,6 +18,7 @@ The strongest positive disambiguation signals are:
 ### Tier 1: official institutional sources
 
 - `https://www.hood.edu/news`
+- `https://www.hood.edu/discover/stories`
 - `https://www.hood.edu/campus-events`
 - official Hood pages for named campus programs, talks, theatre, and academic initiatives when they publish person-rich updates
 
@@ -28,7 +29,31 @@ The strongest positive disambiguation signals are:
 
 ### Tier 3: selective local media
 
-This tier should wait until the official-source pipeline is stable. Candidate local sources can be added later if they regularly mention Hood College in Frederick with article-level clarity.
+This tier is now appropriate because the official-source pipeline is in place. Prefer direct site feeds or site-search feeds over broad scraping.
+
+Current local-media candidates:
+
+- Frederick News-Post search results for `hood college`
+- WFMD
+- WFRE
+- Key 103 / WAFY
+
+### Tier 4: social and community discussion
+
+Use only sources that expose stable public item URLs.
+
+Current active social candidate:
+
+- Reddit search feeds for Hood College and Hood Blazers queries
+
+Current deferred social candidates:
+
+- Facebook public pages
+- Instagram public profiles
+
+These Meta surfaces should remain deferred until we have a platform-specific adapter or API-backed access path that yields stable post URLs and reliable post text.
+
+Google News is useful for monitoring discovery gaps, but it should not become a primary ingestion source until publisher URLs can be resolved reliably from Google News wrapper links.
 
 ## Negative Disambiguation Signals
 

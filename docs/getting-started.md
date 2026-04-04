@@ -105,7 +105,10 @@ Supported environment variables:
 
 ## Current Behavior Notes
 
-- `hood.edu/news` is read from the HTML news index
+- `hood.edu/news` is read from the HTML news index and follows pagination
+- `hood.edu/discover/stories` is read from the official stories index and follows pagination
 - Hood athletics uses an RSS feed reader
+- Reddit uses public Atom search feeds, filtered down to actual post URLs
+- Frederick-area media can be added through direct RSS/search feeds, with optional title-summary keyword gates before article fetch
 - article extraction is intentionally conservative and still heuristic
 - the database is the source of truth; markdown files are rendered outputs

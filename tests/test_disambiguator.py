@@ -41,6 +41,22 @@ class HoodDisambiguatorTest(unittest.TestCase):
         self.assertFalse(accepted)
         self.assertIn("negative marker", reason)
 
+    def test_accepts_official_hood_story(self) -> None:
+        article = FetchedArticle(
+            source_id="hood_stories",
+            url="https://www.hood.edu/discover/stories/student-spotlight",
+            title="Student Spotlight",
+            published_at=None,
+            fetched_at=datetime.now(),
+            body="A closer look at a Hood student's academic path.",
+            content_hash="abc",
+            is_relevant=False,
+            relevance_reason="",
+        )
+        accepted, reason = self.disambiguator.evaluate(article)
+        self.assertTrue(accepted)
+        self.assertIn("official Hood College Stories", reason)
+
 
 if __name__ == "__main__":
     unittest.main()

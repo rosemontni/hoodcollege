@@ -12,7 +12,7 @@ The project is designed around four repeatable jobs:
 The current codebase already includes:
 
 - a runnable CLI
-- source readers for `hood.edu/news` and the Hood athletics RSS feed
+- source readers for paginated `hood.edu/news`, paginated `hood.edu/discover/stories`, RSS/Atom feeds, selected Frederick-area media feeds, and Reddit search feeds
 - SQLite storage
 - conservative Hood-specific disambiguation
 - a heuristic people extractor designed for easy replacement later

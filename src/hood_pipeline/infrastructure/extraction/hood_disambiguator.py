@@ -33,8 +33,11 @@ class HoodDisambiguator:
                 return False, "Rejected athletics item because it resembled ticket or entertainment copy."
             return True, "Accepted because the article came from Hood Athletics."
 
-        if domain == "www.hood.edu" and "/news/" in parsed.path:
-            return True, "Accepted because the article came from Hood College News."
+        if domain == "www.hood.edu":
+            if parsed.path.startswith("/news/"):
+                return True, "Accepted because the article came from Hood College News."
+            if parsed.path.startswith("/discover/stories/"):
+                return True, "Accepted because the article came from official Hood College Stories."
 
         if any(marker in combined for marker in self.POSITIVE_MARKERS):
             return True, "Accepted because the article contained Hood/Frederick campus markers."

@@ -2,12 +2,31 @@
   {
     "source_id": "hood_news",
     "name": "Hood College News",
-    "reader": "hood_news_html",
+    "reader": "hood_site_listing",
     "url": "https://www.hood.edu/news",
     "enabled": true,
     "metadata": {
       "domain": "www.hood.edu",
-      "category": "news"
+      "category": "news",
+      "article_path_prefixes": [
+        "/news/"
+      ],
+      "max_listing_pages": 12
+    }
+  },
+  {
+    "source_id": "hood_stories",
+    "name": "Hood College Stories",
+    "reader": "hood_site_listing",
+    "url": "https://www.hood.edu/discover/stories",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.hood.edu",
+      "category": "stories",
+      "article_path_prefixes": [
+        "/discover/stories/"
+      ],
+      "max_listing_pages": 12
     }
   },
   {
@@ -19,6 +38,121 @@
     "metadata": {
       "domain": "hoodathletics.com",
       "category": "athletics"
+    }
+  },
+  {
+    "source_id": "frederick_news_post_search",
+    "name": "Frederick News-Post search for Hood College",
+    "reader": "hood_site_listing",
+    "url": "https://www.fredericknewspost.com/search/?k=hood+college&t=article&f=html",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.fredericknewspost.com",
+      "category": "local-media",
+      "article_path_prefixes": [
+        "/"
+      ],
+      "article_path_substrings_any": [
+        "/article_"
+      ],
+      "max_listing_pages": 1
+    }
+  },
+  {
+    "source_id": "wfmd_main_feed",
+    "name": "WFMD main RSS feed",
+    "reader": "rss",
+    "url": "https://www.wfmd.com/feed/",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.wfmd.com",
+      "category": "local-media",
+      "prefetch_keywords_any": [
+        "hood college",
+        "hood blazers"
+      ]
+    }
+  },
+  {
+    "source_id": "wfre_main_feed",
+    "name": "WFRE main RSS feed",
+    "reader": "rss",
+    "url": "https://www.wfre.com/feed/",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.wfre.com",
+      "category": "local-media",
+      "prefetch_keywords_any": [
+        "hood college",
+        "hood blazers"
+      ]
+    }
+  },
+  {
+    "source_id": "wafy_main_feed",
+    "name": "Key 103 / WAFY main RSS feed",
+    "reader": "rss",
+    "url": "https://www.key103radio.com/feed/",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.key103radio.com",
+      "category": "local-media",
+      "prefetch_keywords_any": [
+        "hood college",
+        "hood blazers"
+      ]
+    }
+  },
+  {
+    "source_id": "reddit_search_hood_college_frederick",
+    "name": "Reddit search for Hood College Frederick Maryland",
+    "reader": "feed",
+    "url": "https://www.reddit.com/search.rss?q=%22Hood+College%22+Frederick+Maryland&sort=new",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.reddit.com",
+      "category": "social-media",
+      "item_url_contains_any": [
+        "/comments/"
+      ]
+    }
+  },
+  {
+    "source_id": "reddit_search_hood_blazers_frederick",
+    "name": "Reddit search for Hood Blazers Frederick",
+    "reader": "feed",
+    "url": "https://www.reddit.com/search.rss?q=%22Hood+Blazers%22+Frederick&sort=new",
+    "enabled": true,
+    "metadata": {
+      "domain": "www.reddit.com",
+      "category": "social-media",
+      "item_url_contains_any": [
+        "/comments/"
+      ]
+    }
+  },
+  {
+    "source_id": "facebook_hood_college_public_page",
+    "name": "Hood College Facebook page",
+    "reader": "unsupported_public_social",
+    "url": "https://www.facebook.com/HoodCollege",
+    "enabled": false,
+    "metadata": {
+      "domain": "www.facebook.com",
+      "category": "social-media",
+      "disabled_reason": "Public page HTML does not expose stable post URLs without platform-specific access."
+    }
+  },
+  {
+    "source_id": "instagram_hood_college_public_page",
+    "name": "Hood College Instagram page",
+    "reader": "unsupported_public_social",
+    "url": "https://www.instagram.com/hoodcollege/",
+    "enabled": false,
+    "metadata": {
+      "domain": "www.instagram.com",
+      "category": "social-media",
+      "disabled_reason": "Public profile HTML does not expose stable post URLs without platform-specific access."
     }
   }
 ]

@@ -11,9 +11,10 @@ from hood_pipeline.infrastructure.persistence.sqlite import SQLiteStore
 
 
 class _FakeConfig:
-    def __init__(self, db_path: Path, discoveries_dir: Path) -> None:
+    def __init__(self, db_path: Path, discoveries_dir: Path, metadata: dict | None = None) -> None:
         self.database_path = db_path
         self.discoveries_dir = discoveries_dir
+        self.metadata = metadata or {}
 
     def load_source_definitions(self):
         return [
@@ -23,7 +24,7 @@ class _FakeConfig:
                 "reader": "fake",
                 "url": "https://www.hood.edu/news",
                 "enabled": True,
-                "metadata": {},
+                "metadata": self.metadata,
             }
         ]
 
@@ -43,7 +44,7 @@ class _FakeReader:
                 source_id="hood_news",
                 source_name="Hood College News",
                 url="https://www.hood.edu/news/working",
-                title="Working article",
+                title="Hood College Working article",
                 published_at=None,
                 summary="",
             ),
@@ -107,8 +108,8 @@ class _FakeSummaryWriter:
 
 
 class _FakeServices:
-    def __init__(self, db_path: Path, discoveries_dir: Path) -> None:
-        self.config = _FakeConfig(db_path, discoveries_dir)
+    def __init__(self, db_path: Path, discoveries_dir: Path, metadata: dict | None = None) -> None:
+        self.config = _FakeConfig(db_path, discoveries_dir, metadata=metadata)
         self.clock = _FakeClock()
         self.fetcher = _FakeFetcher()
         self.disambiguator = _FakeDisambiguator()
@@ -130,6 +131,19 @@ class DailyRunTest(unittest.TestCase):
             self.assertEqual(result.articles_stored, 1)
             self.assertEqual(len(result.mentions), 1)
             self.assertTrue(result.summary_path.endswith("discovery-summary.md"))
+
+    def test_daily_run_prefetch_keywords_skip_unmatched_items(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            services = _FakeServices(
+                root / "test.db",
+                root / "discoveries",
+                metadata={"prefetch_keywords_any": ["hood college"]},
+            )
+            result = DailyRunService(services).run(date(2026, 3, 20))
+            self.assertEqual(result.articles_seen, 2)
+            self.assertEqual(result.articles_stored, 1)
+            self.assertEqual(len(result.mentions), 1)
 
 
 if __name__ == "__main__":

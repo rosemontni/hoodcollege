@@ -33,8 +33,16 @@ The source configuration file is:
 
 Current source adapters:
 
-- `hood_news_html`: parse `hood.edu/news`
-- `rss`: parse the Hood athletics RSS feed
+- `hood_site_listing`: parse official Hood College listing pages such as `hood.edu/news` and `hood.edu/discover/stories`, including pagination
+- `rss` and `feed`: parse RSS, Atom, and search-result feeds such as Hood athletics, Reddit, Frederick News-Post search, and selected local media feeds
+
+Current active source registry includes:
+
+- official Hood College news and stories pages
+- Hood athletics RSS
+- Frederick News-Post HTML search results for `hood college`
+- WFMD, WFRE, and Key 103 / WAFY main RSS feeds, gated by Hood-specific prefetch keywords before article fetch
+- Reddit search Atom feeds, filtered to comment-thread URLs
 
 The architecture is designed so new source readers can be added without changing the workflow layer.
 

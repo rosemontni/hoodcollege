@@ -13,6 +13,7 @@ class DailyRunService:
 
     def run(self, run_date: date) -> DailyRunResult:
         source_items_by_url = {}
+        definitions_by_source_id = {}
         for item in self.services.config.load_source_definitions():
             definition = SourceDefinition(
                 source_id=str(item["source_id"]),
@@ -22,6 +23,7 @@ class DailyRunService:
                 enabled=bool(item.get("enabled", True)),
                 metadata=dict(item.get("metadata", {})),
             )
+            definitions_by_source_id[definition.source_id] = definition
             if not definition.enabled:
                 continue
             reader = self.services.source_readers.get(definition.reader)
@@ -42,6 +44,9 @@ class DailyRunService:
         stored_articles: list[FetchedArticle] = []
 
         for source_item in source_items:
+            definition = definitions_by_source_id.get(source_item.source_id)
+            if definition is not None and not self._should_fetch_source_item(source_item, definition):
+                continue
             try:
                 body = self.services.fetcher.fetch_clean_article_text(source_item.url)
             except Exception as exc:
@@ -108,3 +113,11 @@ class DailyRunService:
             summary_path=summary_path,
             summary_graph_path=summary_graph_path,
         )
+
+    @staticmethod
+    def _should_fetch_source_item(source_item, definition: SourceDefinition) -> bool:
+        keywords = definition.metadata.get("prefetch_keywords_any", [])
+        if not keywords:
+            return True
+        combined = f"{source_item.title}\n{source_item.summary}".lower()
+        return any(str(keyword).lower() in combined for keyword in keywords)

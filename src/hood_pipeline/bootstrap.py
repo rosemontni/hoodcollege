@@ -8,8 +8,8 @@ from hood_pipeline.infrastructure.extraction.hood_disambiguator import HoodDisam
 from hood_pipeline.infrastructure.fetching.http_fetcher import RequestsArticleFetcher
 from hood_pipeline.infrastructure.persistence.sqlite import SQLiteStore
 from hood_pipeline.infrastructure.runtime.local_clock import LocalClock
-from hood_pipeline.infrastructure.sources.hood_athletics import HoodAthleticsRssReader
-from hood_pipeline.infrastructure.sources.hood_news import HoodNewsReader
+from hood_pipeline.infrastructure.sources.hood_athletics import FeedReader
+from hood_pipeline.infrastructure.sources.hood_news import HoodSiteListingReader
 from hood_pipeline.infrastructure.writing.markdown import MarkdownConnectionWriter, MarkdownDiscoveryWriter
 from hood_pipeline.infrastructure.writing.summary import SummaryArtifactsWriter
 
@@ -37,6 +37,8 @@ def build_services() -> Services:
         user_agent=config.user_agent,
         timeout_seconds=config.request_timeout_seconds,
     )
+    hood_site_reader = HoodSiteListingReader(fetcher)
+    feed_reader = FeedReader(fetcher)
     return Services(
         config=config,
         clock=LocalClock(),
@@ -48,7 +50,9 @@ def build_services() -> Services:
         connection_writer=MarkdownConnectionWriter(config.connections_dir),
         summary_writer=SummaryArtifactsWriter(config.summary_dir),
         source_readers={
-            "hood_news_html": HoodNewsReader(fetcher),
-            "rss": HoodAthleticsRssReader(fetcher),
+            "hood_news_html": hood_site_reader,
+            "hood_site_listing": hood_site_reader,
+            "rss": feed_reader,
+            "feed": feed_reader,
         },
     )

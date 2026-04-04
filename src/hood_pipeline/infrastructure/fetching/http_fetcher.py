@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import time
 from datetime import datetime, timezone
 from urllib.parse import urlparse
 
@@ -9,15 +10,25 @@ from bs4 import BeautifulSoup
 
 
 class RequestsArticleFetcher:
+    RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
+
     def __init__(self, user_agent: str, timeout_seconds: int) -> None:
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": user_agent})
         self.timeout_seconds = timeout_seconds
 
     def fetch_text(self, url: str) -> str:
-        response = self.session.get(url, timeout=self.timeout_seconds)
-        response.raise_for_status()
-        return response.text
+        delay_seconds = 1.0
+        for attempt in range(3):
+            response = self.session.get(url, timeout=self.timeout_seconds)
+            if response.status_code in self.RETRYABLE_STATUS_CODES and attempt < 2:
+                response.close()
+                time.sleep(delay_seconds)
+                delay_seconds *= 2
+                continue
+            response.raise_for_status()
+            return response.text
+        raise RuntimeError(f"Failed to fetch '{url}'.")
 
     def fetch_clean_article_text(self, url: str) -> str:
         html = self.fetch_text(url)
@@ -26,6 +37,8 @@ class RequestsArticleFetcher:
             return self._clean_hood_news(html)
         if parsed.netloc == "hoodathletics.com":
             return self._clean_hood_athletics(html)
+        if parsed.netloc in {"www.reddit.com", "reddit.com", "old.reddit.com"}:
+            return self._clean_reddit(html)
         return self._clean_generic(html)
 
     def _clean_generic(self, html: str) -> str:
@@ -89,6 +102,21 @@ class RequestsArticleFetcher:
                 continue
             lines.append(line)
         text = "\n".join(lines)
+        text = re.sub(r"\n{2,}", "\n\n", text)
+        return text
+
+    def _clean_reddit(self, html: str) -> str:
+        soup = BeautifulSoup(html, "html.parser")
+        for tag in soup(["script", "style", "noscript", "svg", "nav", "footer", "shreddit-consent-banner"]):
+            tag.decompose()
+        main = (
+            soup.select_one("shreddit-post")
+            or soup.select_one("article")
+            or soup.find("main")
+            or soup.body
+            or soup
+        )
+        text = main.get_text("\n", strip=True)
         text = re.sub(r"\n{2,}", "\n\n", text)
         return text
 
