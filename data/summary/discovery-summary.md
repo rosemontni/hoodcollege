@@ -4,6 +4,14 @@ This table shows cumulative distinct people discovered by first-seen date.
 
 ![Discovery growth](discovery-growth.svg)
 
+## Connection Network
+
+This graph shows the top 25 people with the highest cumulative connection degree.
+
+![Connection network](connection-network.svg)
+
+Interactive file: `connection-network.html`
+
 | Date | Students | Student-Athletes | Faculty | Staff | Administrators | Alumni | Coaches | Unclassified People | Total |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 2026-03-20 | 5 | 3 | 0 | 0 | 1 | 2 | 2 | 11 | 24 |

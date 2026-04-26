@@ -74,6 +74,16 @@ class SQLiteStore:
                     supporting_article_count INTEGER NOT NULL,
                     shared_context TEXT NOT NULL
                 );
+
+                CREATE TABLE IF NOT EXISTS connection_snapshots (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    snapshot_date TEXT NOT NULL,
+                    left_name TEXT NOT NULL,
+                    right_name TEXT NOT NULL,
+                    connection_type TEXT NOT NULL,
+                    supporting_article_count INTEGER NOT NULL,
+                    shared_context TEXT NOT NULL
+                );
                 """
             )
 
@@ -205,6 +215,18 @@ class SQLiteStore:
                 (week_start.isoformat(), week_end.isoformat()),
             ).fetchall()
 
+    def mentions_through_date(self, run_date: date) -> list[sqlite3.Row]:
+        with self.session() as connection:
+            return connection.execute(
+                """
+                SELECT article_url, name
+                FROM article_people
+                WHERE seen_date <= ?
+                ORDER BY article_url, name
+                """,
+                (run_date.isoformat(),),
+            ).fetchall()
+
     def replace_weekly_connections(self, week_start: date, connections: list[WeeklyConnection]) -> None:
         with self.session() as connection:
             connection.execute(
@@ -220,6 +242,29 @@ class SQLiteStore:
                     """,
                     (
                         week_start.isoformat(),
+                        connection_row.left_name,
+                        connection_row.right_name,
+                        connection_row.connection_type,
+                        connection_row.supporting_article_count,
+                        connection_row.shared_context,
+                    ),
+                )
+
+    def replace_connection_snapshot(self, snapshot_date: date, connections: list[WeeklyConnection]) -> None:
+        with self.session() as connection:
+            connection.execute(
+                "DELETE FROM connection_snapshots WHERE snapshot_date = ?",
+                (snapshot_date.isoformat(),),
+            )
+            for connection_row in connections:
+                connection.execute(
+                    """
+                    INSERT INTO connection_snapshots (
+                        snapshot_date, left_name, right_name, connection_type, supporting_article_count, shared_context
+                    ) VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        snapshot_date.isoformat(),
                         connection_row.left_name,
                         connection_row.right_name,
                         connection_row.connection_type,

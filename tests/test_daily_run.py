@@ -98,13 +98,25 @@ class _FakeSummaryWriter:
     def __init__(self, summary_dir: Path) -> None:
         self.summary_dir = summary_dir
 
-    def write_summary(self, points):
+    def write_summary(self, points, connection_graph_name=None, connection_graph_html_name=None):
         self.summary_dir.mkdir(parents=True, exist_ok=True)
         markdown_path = self.summary_dir / "discovery-summary.md"
         graph_path = self.summary_dir / "discovery-growth.svg"
         markdown_path.write_text("# summary\n", encoding="utf-8")
         graph_path.write_text("<svg></svg>\n", encoding="utf-8")
         return str(markdown_path), str(graph_path)
+
+    def write_connection_network_graph(self, run_date, connections, max_people=25):
+        self.summary_dir.mkdir(parents=True, exist_ok=True)
+        graph_path = self.summary_dir / "connection-network.svg"
+        graph_path.write_text("<svg></svg>\n", encoding="utf-8")
+        return str(graph_path)
+
+    def write_connection_network_html(self, run_date, connections, max_people=25):
+        self.summary_dir.mkdir(parents=True, exist_ok=True)
+        html_path = self.summary_dir / "connection-network.html"
+        html_path.write_text("<!DOCTYPE html>\n", encoding="utf-8")
+        return str(html_path)
 
 
 class _FakeServices:
@@ -131,6 +143,8 @@ class DailyRunTest(unittest.TestCase):
             self.assertEqual(result.articles_stored, 1)
             self.assertEqual(len(result.mentions), 1)
             self.assertTrue(result.summary_path.endswith("discovery-summary.md"))
+            self.assertTrue(result.connection_graph_path.endswith("connection-network.svg"))
+            self.assertTrue(result.connection_graph_html_path.endswith("connection-network.html"))
 
     def test_daily_run_prefetch_keywords_skip_unmatched_items(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

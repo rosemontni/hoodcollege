@@ -40,8 +40,8 @@ It must explicitly avoid false matches from similarly named institutions, places
 - article records with normalized body text and relevance decisions
 - article-scoped person mention records
 - daily markdown discovery stories
-- weekly markdown connection reports
-- cumulative summary table and discovery-growth graph
+- weekly markdown cumulative connection reports
+- cumulative summary table, discovery-growth graph, top-25 connection network graph, and a draggable HTML network view
 - a local SQLite database that preserves article-level evidence
 
 ## Quick Start
@@ -51,6 +51,7 @@ python -m pip install -r requirements.txt -e .
 python -m hood_pipeline init-db
 python -m hood_pipeline daily-run
 python -m hood_pipeline weekly-run
+python -m hood_pipeline build-pages
 ```
 
 The default source configuration lives in `sources/hood_sources.json`.
@@ -61,18 +62,24 @@ The default source configuration lives in `sources/hood_sources.json`.
 python -m hood_pipeline init-db
 python -m hood_pipeline daily-run --date 2026-03-20
 python -m hood_pipeline weekly-run --date 2026-03-20
+python -m hood_pipeline build-pages --output-dir _site
 ```
 
 Supported commands:
 
 - `init-db`: create the SQLite schema
 - `daily-run`: fetch sources, ingest articles, extract people, and write the daily discovery
-- `weekly-run`: build weekly co-mention connections and write the weekly report
+- `weekly-run`: build a cumulative co-mention network snapshot and write the weekly report
+- `build-pages`: build a static GitHub Pages site from the generated summary artifacts
 
 The daily run also refreshes:
 
 - `data/summary/discovery-summary.md`
 - `data/summary/discovery-growth.svg`
+- `data/summary/connection-network.svg`
+- `data/summary/connection-network.html`
+
+The Pages build writes a publishable static site to `_site/` by default, wrapping the interactive network, discovery graph, and cumulative discovery table into one browser-friendly landing page.
 
 ## CI/CD
 
@@ -81,6 +88,7 @@ GitHub Actions workflows now live in `.github/workflows/`:
 - `ci.yml`: runs the unit test suite on pushes to `main` and on pull requests
 - `daily-pipeline.yml`: runs the daily Hood pipeline on a schedule and commits generated `data/` outputs back to `main`
 - `weekly-pipeline.yml`: runs the weekly connections report on a schedule and commits generated `data/` outputs back to `main`
+- `pages.yml`: builds and deploys the GitHub Pages site from the current summary artifacts on `main`
 
 Current schedules:
 
@@ -145,3 +153,4 @@ Current limitations:
 - person canonicalization is still basic
 - weekly connections are currently co-mention based, not richer relationship inference
 - GitHub Actions automation is implemented, but the scheduled data outputs still depend on the current heuristic extractor quality
+- the GitHub Pages site is only as fresh as the latest committed `data/summary/` artifacts

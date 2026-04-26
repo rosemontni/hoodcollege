@@ -3,7 +3,9 @@ from __future__ import annotations
 import sys
 from datetime import date
 from hashlib import sha256
+from pathlib import Path
 
+from hood_pipeline.application.connection_network import build_cumulative_connections
 from hood_pipeline.domain.models import DailyRunResult, FetchedArticle, PersonMention, SourceDefinition
 
 
@@ -100,8 +102,24 @@ class DailyRunService:
             stored_articles,
             self.services.sqlite.mentions_for_date(run_date),
         )
+        cumulative_connections = build_cumulative_connections(
+            self.services.sqlite.mentions_through_date(run_date),
+            run_date,
+        )
+        connection_graph_path = self.services.summary_writer.write_connection_network_graph(
+            run_date,
+            cumulative_connections,
+            max_people=25,
+        )
+        connection_graph_html_path = self.services.summary_writer.write_connection_network_html(
+            run_date,
+            cumulative_connections,
+            max_people=25,
+        )
         summary_path, summary_graph_path = self.services.summary_writer.write_summary(
-            self.services.sqlite.cumulative_people_summary()
+            self.services.sqlite.cumulative_people_summary(),
+            connection_graph_name=Path(connection_graph_path).name,
+            connection_graph_html_name=Path(connection_graph_html_path).name,
         )
         return DailyRunResult(
             run_date=run_date,
@@ -112,6 +130,8 @@ class DailyRunService:
             discovery_path=discovery_path,
             summary_path=summary_path,
             summary_graph_path=summary_graph_path,
+            connection_graph_path=connection_graph_path,
+            connection_graph_html_path=connection_graph_html_path,
         )
 
     @staticmethod

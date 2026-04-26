@@ -59,6 +59,8 @@ class DailyRunResult:
     discovery_path: str
     summary_path: str
     summary_graph_path: str
+    connection_graph_path: str
+    connection_graph_html_path: str
 
 
 @dataclass(frozen=True)

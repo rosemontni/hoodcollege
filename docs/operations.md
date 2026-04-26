@@ -20,10 +20,19 @@ The current implementation has two primary workflows.
 
 `weekly-run` performs:
 
-1. loading article-scoped mentions from the prior 7 days
-2. building pairwise co-mention connections
-3. storing weekly connection rows
-4. writing a markdown weekly report
+1. loading article-scoped mentions observed up to the run date
+2. building pairwise cumulative co-mention connections
+3. storing a cumulative connection snapshot
+4. writing a markdown weekly network report
+
+### Pages workflow
+
+`build-pages` performs:
+
+1. validating the expected `data/summary/` artifacts exist
+2. copying those artifacts into a static-site output directory
+3. generating an `index.html` landing page with the interactive graph, discovery graph, and summary table
+4. writing `.nojekyll` and `404.html` support files for GitHub Pages hosting
 
 ## Source Registry
 
@@ -55,8 +64,11 @@ Default outputs:
 - weekly report: `data/connections/YYYY-MM-DD.md`
 - cumulative summary table: `data/summary/discovery-summary.md`
 - cumulative discovery graph: `data/summary/discovery-growth.svg`
+- daily connection network graph: `data/summary/connection-network.svg`
+- daily interactive connection network page: `data/summary/connection-network.html`
 
 Generated runtime data is intentionally ignored by Git.
+GitHub Actions force-adds the generated `data/` outputs when it commits scheduled pipeline updates back to `main`, and the Pages workflow reads from those committed summary artifacts.
 
 ## Database Tables
 
@@ -86,6 +98,7 @@ The repository now includes:
 - `ci.yml` for push and pull-request validation
 - `daily-pipeline.yml` for scheduled daily collection
 - `weekly-pipeline.yml` for scheduled weekly connection reporting
+- `pages.yml` for building and deploying the GitHub Pages site
 
 Current schedule details:
 
@@ -93,6 +106,7 @@ Current schedule details:
 - weekly connections run: 13:35 UTC every Sunday
 
 The scheduled workflows install dependencies, run the CLI, and commit generated `data/` outputs back to `main`.
+The Pages workflow builds `_site/` from `data/summary/` and deploys that artifact to the repository's GitHub Pages environment.
 
 ## Known Limitations
 
@@ -110,6 +124,7 @@ The next implementation priorities should be:
 3. add richer article metadata and source timestamps
 4. improve weekly connection scoring
 5. add scheduled automation through GitHub Actions
+6. refine the GitHub Pages site once the extraction quality stabilizes
 
 ## Debugging Tips
 

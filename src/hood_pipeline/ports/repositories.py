@@ -30,6 +30,9 @@ class ConnectionRepository(Protocol):
     def replace_weekly_connections(self, week_start: date, connections: list[WeeklyConnection]) -> None:
         ...
 
+    def mentions_through_date(self, run_date: date):
+        ...
+
 
 class SummaryRepository(Protocol):
     def cumulative_people_summary(self) -> list[SummaryPoint]:

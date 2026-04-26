@@ -99,12 +99,40 @@ class MarkdownConnectionWriter:
     ) -> str:
         self.connections_dir.mkdir(parents=True, exist_ok=True)
         path = self.connections_dir / f"{run_date.isoformat()}.md"
+        nodes = sorted({connection.left_name for connection in connections} | {connection.right_name for connection in connections})
+        hub_counts = Counter()
+        adjacency: dict[str, set[str]] = {}
+        for connection in connections:
+            hub_counts[connection.left_name] += 1
+            hub_counts[connection.right_name] += 1
+            adjacency.setdefault(connection.left_name, set()).add(connection.right_name)
+            adjacency.setdefault(connection.right_name, set()).add(connection.left_name)
+        components = self._components(adjacency)
         lines = [
-            f"# Hood College Weekly Connections for {run_date.isoformat()}",
+            f"# Hood College Cumulative Connections for {run_date.isoformat()}",
             "",
-            "## Strongest Co-Mentions",
+            (
+                f"As of {run_date.isoformat()}, the cumulative Hood College network links "
+                f"{len(nodes)} people through {len(connections)} evidence-backed co-mention connection(s)."
+                if connections
+                else f"As of {run_date.isoformat()}, the pipeline has not yet derived any cumulative people connections."
+            ),
+            "",
+            "## Network Snapshot",
             "",
         ]
+        if connections:
+            lines.extend(
+                [
+                    f"- People in network: {len(nodes)}",
+                    f"- Connections in network: {len(connections)}",
+                    f"- Connected groups: {len(components)}",
+                ]
+            )
+        else:
+            lines.append("- No cumulative connections are available yet.")
+
+        lines.extend(["", "## Strongest Co-Mentions", ""])
         if connections:
             for connection in connections:
                 lines.append(
@@ -112,6 +140,41 @@ class MarkdownConnectionWriter:
                     f"appeared together in {connection.supporting_article_count} article(s)."
                 )
         else:
-            lines.append("- No weekly connections were derived.")
+            lines.append("- No cumulative connections were derived.")
+
+        lines.extend(["", "## Network Hubs", ""])
+        if hub_counts:
+            for name, degree in hub_counts.most_common(10):
+                people_label = "person" if degree == 1 else "people"
+                lines.append(f"- **{name}** is directly connected to {degree} {people_label}.")
+        else:
+            lines.append("- No network hubs are available yet.")
+
+        lines.extend(["", "## Connected Groups", ""])
+        if components:
+            for index, component in enumerate(sorted(components, key=lambda item: (-len(item), item)), start=1):
+                preview = ", ".join(component[:10])
+                suffix = "" if len(component) <= 10 else ", ..."
+                lines.append(f"- Group {index} ({len(component)} people): {preview}{suffix}")
+        else:
+            lines.append("- No connected groups were derived.")
         path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         return str(path)
+
+    def _components(self, adjacency: dict[str, set[str]]) -> list[list[str]]:
+        visited: set[str] = set()
+        components: list[list[str]] = []
+        for start in sorted(adjacency):
+            if start in visited:
+                continue
+            stack = [start]
+            component: list[str] = []
+            while stack:
+                current = stack.pop()
+                if current in visited:
+                    continue
+                visited.add(current)
+                component.append(current)
+                stack.extend(sorted(adjacency.get(current, set()) - visited, reverse=True))
+            components.append(sorted(component))
+        return components
