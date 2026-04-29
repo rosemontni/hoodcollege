@@ -6,6 +6,7 @@ from pathlib import Path
 
 from hood_pipeline.application.build_pages import BuildPagesSiteService
 from hood_pipeline.application.daily_run import DailyRunService
+from hood_pipeline.application.monthly_run import MonthlyRunService
 from hood_pipeline.application.weekly_run import WeeklyRunService
 from hood_pipeline.bootstrap import build_services
 
@@ -19,6 +20,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     weekly = subcommands.add_parser("weekly-run", help="Build the weekly connections report.")
     weekly.add_argument("--date", dest="run_date", help="Week-ending date in YYYY-MM-DD.")
+
+    monthly = subcommands.add_parser("monthly-run", help="Build the prior-month report.")
+    monthly.add_argument("--date", dest="run_date", help="Publication date in YYYY-MM-DD.")
 
     pages = subcommands.add_parser("build-pages", help="Build the static GitHub Pages site.")
     pages.add_argument(
@@ -58,6 +62,11 @@ def main(argv: list[str] | None = None) -> int:
             f"summary {result.summary_path}, "
             f"network {result.connection_graph_path}, "
             f"interactive {result.connection_graph_html_path}"
+            + (
+                f", monthly {result.monthly_report_path}"
+                if result.monthly_report_path
+                else ""
+            )
         )
         return 0
 
@@ -67,6 +76,15 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"Weekly run complete for {result.run_date}: "
             f"{len(result.connections)} connections, report {result.report_path}"
+        )
+        return 0
+
+    if args.command == "monthly-run":
+        run_date = _parse_date(args.run_date) or services.clock.now().date()
+        result = MonthlyRunService(services).run(run_date)
+        print(
+            f"Monthly run complete for {result.run_date}: "
+            f"{len(result.articles)} articles, report {result.report_path}"
         )
         return 0
 

@@ -2,7 +2,7 @@
 
 ## Pipeline Overview
 
-The current implementation has two primary workflows.
+The current implementation has three primary workflows plus a Pages publishing workflow.
 
 ### Daily workflow
 
@@ -15,6 +15,7 @@ The current implementation has two primary workflows.
 5. person mention extraction
 6. SQLite persistence
 7. markdown discovery writing
+8. first-of-month prior-month report publishing
 
 ### Weekly workflow
 
@@ -25,13 +26,22 @@ The current implementation has two primary workflows.
 3. storing a cumulative connection snapshot
 4. writing a markdown weekly network report
 
+### Monthly workflow
+
+`monthly-run` performs:
+
+1. selecting the month that ended immediately before the supplied run date
+2. loading relevant articles by inferred story date, not by fetch date
+3. aggregating mentions across that monthly article set
+4. writing a markdown monthly report to `data/monthly`
+
 ### Pages workflow
 
 `build-pages` performs:
 
 1. validating the expected `data/summary/` artifacts exist
-2. copying those artifacts into a static-site output directory
-3. generating an `index.html` landing page with the interactive graph, discovery graph, and summary table
+2. copying summary and monthly-report artifacts into a static-site output directory
+3. generating an `index.html` landing page with the interactive graph, discovery graph, summary table, and latest monthly report
 4. writing `.nojekyll` and `404.html` support files for GitHub Pages hosting
 
 ## Source Registry
@@ -62,6 +72,7 @@ Default outputs:
 - database: `data/hood_people.db`
 - daily discovery: `data/discoveries/YYYY-MM-DD.md`
 - weekly report: `data/connections/YYYY-MM-DD.md`
+- monthly report: `data/monthly/YYYY-MM.md`
 - cumulative summary table: `data/summary/discovery-summary.md`
 - cumulative discovery graph: `data/summary/discovery-growth.svg`
 - daily connection network graph: `data/summary/connection-network.svg`
@@ -87,6 +98,7 @@ The current quality approach favors traceable plausibility over aggressive recal
 
 - prefer official sources
 - keep Hood disambiguation strict
+- infer article story dates from page-level structured signals before falling back to weaker clues
 - preserve article-scoped mention context
 - avoid strong connection claims beyond co-mentions
 - keep cumulative summary counts based on canonical `people.first_seen`
@@ -106,7 +118,8 @@ Current schedule details:
 - weekly connections run: 13:35 UTC every Sunday
 
 The scheduled workflows install dependencies, run the CLI, and commit generated `data/` outputs back to `main`.
-The Pages workflow builds `_site/` from `data/summary/` and deploys that artifact to the repository's GitHub Pages environment.
+The first calendar-day run each month also publishes the previous month’s report because `daily-run` now triggers that step automatically on day 1.
+The Pages workflow builds `_site/` from `data/summary/` and `data/monthly/` and deploys that artifact to the repository's GitHub Pages environment.
 
 ## Known Limitations
 

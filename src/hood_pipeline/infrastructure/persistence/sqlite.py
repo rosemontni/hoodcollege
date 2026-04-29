@@ -5,7 +5,13 @@ from contextlib import contextmanager
 from datetime import date, datetime
 from pathlib import Path
 
-from hood_pipeline.domain.models import FetchedArticle, PersonMention, SummaryPoint, WeeklyConnection
+from hood_pipeline.domain.models import (
+    FetchedArticle,
+    PersonMention,
+    StoredArticleMetadata,
+    SummaryPoint,
+    WeeklyConnection,
+)
 
 
 class SQLiteStore:
@@ -36,6 +42,7 @@ class SQLiteStore:
                     url TEXT NOT NULL UNIQUE,
                     title TEXT NOT NULL,
                     published_at TEXT,
+                    published_at_source TEXT NOT NULL DEFAULT 'unknown',
                     fetched_at TEXT NOT NULL,
                     body TEXT NOT NULL,
                     content_hash TEXT NOT NULL,
@@ -86,6 +93,12 @@ class SQLiteStore:
                 );
                 """
             )
+            self._ensure_column(
+                connection,
+                table_name="articles",
+                column_name="published_at_source",
+                definition="TEXT NOT NULL DEFAULT 'unknown'",
+            )
 
     def has_article(self, url: str, content_hash: str | None = None) -> bool:
         with self.session() as connection:
@@ -103,12 +116,13 @@ class SQLiteStore:
             connection.execute(
                 """
                 INSERT INTO articles (
-                    source_id, url, title, published_at, fetched_at, body, content_hash, is_relevant, relevance_reason
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    source_id, url, title, published_at, published_at_source, fetched_at, body, content_hash, is_relevant, relevance_reason
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(url) DO UPDATE SET
                     source_id=excluded.source_id,
                     title=excluded.title,
                     published_at=excluded.published_at,
+                    published_at_source=excluded.published_at_source,
                     fetched_at=excluded.fetched_at,
                     body=excluded.body,
                     content_hash=excluded.content_hash,
@@ -120,6 +134,7 @@ class SQLiteStore:
                     article.url,
                     article.title,
                     _iso(article.published_at),
+                    article.published_at_source,
                     _iso(article.fetched_at),
                     article.body,
                     article.content_hash,
@@ -131,6 +146,41 @@ class SQLiteStore:
             if row is None:
                 raise RuntimeError(f"Failed to look up article id for {article.url}")
             return int(row["id"])
+
+    def stored_article(self, url: str) -> StoredArticleMetadata | None:
+        with self.session() as connection:
+            row = connection.execute(
+                """
+                SELECT url, content_hash, published_at, published_at_source
+                FROM articles
+                WHERE url = ?
+                """,
+                (url,),
+            ).fetchone()
+        if row is None:
+            return None
+        return StoredArticleMetadata(
+            url=str(row["url"]),
+            content_hash=str(row["content_hash"]),
+            published_at=_parse_datetime(row["published_at"]),
+            published_at_source=str(row["published_at_source"] or "unknown"),
+        )
+
+    def update_article_story_date(
+        self,
+        url: str,
+        published_at: datetime | None,
+        published_at_source: str,
+    ) -> None:
+        with self.session() as connection:
+            connection.execute(
+                """
+                UPDATE articles
+                SET published_at = ?, published_at_source = ?
+                WHERE url = ?
+                """,
+                (_iso(published_at), published_at_source, url),
+            )
 
     def replace_article_mentions(self, article_id: int, mentions: list[PersonMention], seen_at: date) -> None:
         with self.session() as connection:
@@ -278,18 +328,53 @@ class SQLiteStore:
             rows = connection.execute(
                 """
                 SELECT source_id, url, title, published_at, fetched_at, body, content_hash, is_relevant, relevance_reason
+                       , published_at_source
                 FROM articles
                 WHERE DATE(fetched_at) = ? AND is_relevant = 1
                 ORDER BY title
                 """,
                 (run_date.isoformat(),),
             ).fetchall()
+        return self._rows_to_articles(rows)
+
+    def relevant_articles_for_seen_date(self, run_date: date) -> list[FetchedArticle]:
+        with self.session() as connection:
+            rows = connection.execute(
+                """
+                SELECT DISTINCT a.source_id, a.url, a.title, a.published_at, a.published_at_source,
+                       a.fetched_at, a.body, a.content_hash, a.is_relevant, a.relevance_reason
+                FROM articles a
+                JOIN article_people ap ON ap.article_id = a.id
+                WHERE ap.seen_date = ? AND a.is_relevant = 1
+                ORDER BY COALESCE(a.published_at, a.fetched_at) DESC, a.title
+                """,
+                (run_date.isoformat(),),
+            ).fetchall()
+        return self._rows_to_articles(rows)
+
+    def relevant_articles_published_between(self, start_date: date, end_date: date) -> list[FetchedArticle]:
+        with self.session() as connection:
+            rows = connection.execute(
+                """
+                SELECT source_id, url, title, published_at, published_at_source, fetched_at, body, content_hash, is_relevant, relevance_reason
+                FROM articles
+                WHERE is_relevant = 1
+                  AND published_at IS NOT NULL
+                  AND DATE(published_at) BETWEEN ? AND ?
+                ORDER BY published_at DESC, title
+                """,
+                (start_date.isoformat(), end_date.isoformat()),
+            ).fetchall()
+        return self._rows_to_articles(rows)
+
+    def _rows_to_articles(self, rows) -> list[FetchedArticle]:
         return [
             FetchedArticle(
                 source_id=row["source_id"],
                 url=row["url"],
                 title=row["title"],
                 published_at=_parse_datetime(row["published_at"]),
+                published_at_source=str(row["published_at_source"] or "unknown"),
                 fetched_at=_parse_datetime(row["fetched_at"]) or datetime.utcnow(),
                 body=row["body"],
                 content_hash=row["content_hash"],
@@ -298,6 +383,22 @@ class SQLiteStore:
             )
             for row in rows
         ]
+
+    def mentions_for_article_urls(self, article_urls: list[str]) -> list[PersonMention]:
+        if not article_urls:
+            return []
+        placeholders = ", ".join("?" for _ in article_urls)
+        with self.session() as connection:
+            rows = connection.execute(
+                f"""
+                SELECT article_url, name, role_category, role_text, context, confidence, inclusion_note
+                FROM article_people
+                WHERE article_url IN ({placeholders})
+                ORDER BY name, article_url
+                """,
+                article_urls,
+            ).fetchall()
+        return [PersonMention(**dict(row)) for row in rows]
 
     def cumulative_people_summary(self) -> list[SummaryPoint]:
         with self.session() as connection:
@@ -329,6 +430,21 @@ class SQLiteStore:
                 )
             )
         return points
+
+    def _ensure_column(
+        self,
+        connection: sqlite3.Connection,
+        table_name: str,
+        column_name: str,
+        definition: str,
+    ) -> None:
+        existing = {
+            str(row["name"])
+            for row in connection.execute(f"PRAGMA table_info({table_name})").fetchall()
+        }
+        if column_name in existing:
+            return
+        connection.execute(f"ALTER TABLE {table_name} ADD COLUMN {column_name} {definition}")
 
 
 def _iso(value: datetime | None) -> str | None:

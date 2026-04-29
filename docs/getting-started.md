@@ -55,6 +55,7 @@ The daily run:
 6. stores article and mention records in SQLite
 7. writes a daily markdown story
 8. updates the cumulative discovery summary table, discovery graph, top-25 connection network graph, and draggable connection-network HTML page
+9. if the run date is the first day of a month, publishes the prior-month report to `data/monthly`
 
 ## Run The Weekly Report
 
@@ -70,6 +71,14 @@ python -m hood_pipeline weekly-run --date 2026-03-20
 
 The weekly run currently writes a cumulative co-mention network snapshot using all stored mentions observed up to the run date.
 
+## Run The Monthly Report
+
+```powershell
+python -m hood_pipeline monthly-run --date 2026-05-01
+```
+
+This publishes a report for the month that just ended. It uses the best story date the pipeline can infer from source metadata, page metadata, JSON-LD, time tags, and URL patterns instead of relying on the retrieval date.
+
 ## Build The GitHub Pages Site
 
 ```powershell
@@ -82,6 +91,7 @@ This command packages the generated summary artifacts into a static site that Gi
 2. the draggable `connection-network.html` page
 3. the static SVG graphs
 4. the discovery summary markdown snapshot
+5. the monthly report archive
 
 ## Run Tests
 
@@ -112,6 +122,7 @@ Supported environment variables:
 - `HOOD_PIPELINE_DATABASE_PATH`
 - `HOOD_PIPELINE_DISCOVERIES_DIR`
 - `HOOD_PIPELINE_CONNECTIONS_DIR`
+- `HOOD_PIPELINE_MONTHLY_REPORTS_DIR`
 - `HOOD_PIPELINE_SUMMARY_DIR`
 - `HOOD_PIPELINE_SOURCES_PATH`
 - `HOOD_PIPELINE_USER_AGENT`
@@ -124,5 +135,6 @@ Supported environment variables:
 - Hood athletics uses an RSS feed reader
 - Reddit uses public Atom search feeds, filtered down to actual post URLs
 - Frederick-area media can be added through direct RSS/search feeds, with optional title-summary keyword gates before article fetch
+- article story dates are inferred from the best available structured signal before weaker fallbacks are used
 - article extraction is intentionally conservative and still heuristic
 - the database is the source of truth; markdown files are rendered outputs

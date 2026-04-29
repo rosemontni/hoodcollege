@@ -38,9 +38,11 @@ It must explicitly avoid false matches from similarly named institutions, places
 ## Outputs
 
 - article records with normalized body text and relevance decisions
+- best-effort inferred story dates, along with the source of each date inference
 - article-scoped person mention records
 - daily markdown discovery stories
 - weekly markdown cumulative connection reports
+- monthly markdown reports for the prior calendar month
 - cumulative summary table, discovery-growth graph, top-25 connection network graph, and a draggable HTML network view
 - a local SQLite database that preserves article-level evidence
 
@@ -51,6 +53,7 @@ python -m pip install -r requirements.txt -e .
 python -m hood_pipeline init-db
 python -m hood_pipeline daily-run
 python -m hood_pipeline weekly-run
+python -m hood_pipeline monthly-run --date 2026-05-01
 python -m hood_pipeline build-pages
 ```
 
@@ -62,6 +65,7 @@ The default source configuration lives in `sources/hood_sources.json`.
 python -m hood_pipeline init-db
 python -m hood_pipeline daily-run --date 2026-03-20
 python -m hood_pipeline weekly-run --date 2026-03-20
+python -m hood_pipeline monthly-run --date 2026-05-01
 python -m hood_pipeline build-pages --output-dir _site
 ```
 
@@ -70,6 +74,7 @@ Supported commands:
 - `init-db`: create the SQLite schema
 - `daily-run`: fetch sources, ingest articles, extract people, and write the daily discovery
 - `weekly-run`: build a cumulative co-mention network snapshot and write the weekly report
+- `monthly-run`: publish a report for the month that just ended, keyed to article story dates instead of fetch dates
 - `build-pages`: build a static GitHub Pages site from the generated summary artifacts
 
 The daily run also refreshes:
@@ -79,7 +84,11 @@ The daily run also refreshes:
 - `data/summary/connection-network.svg`
 - `data/summary/connection-network.html`
 
-The Pages build writes a publishable static site to `_site/` by default, wrapping the interactive network, discovery graph, and cumulative discovery table into one browser-friendly landing page.
+On the first day of each month, `daily-run` also publishes:
+
+- `data/monthly/YYYY-MM.md`
+
+The Pages build writes a publishable static site to `_site/` by default, wrapping the interactive network, discovery graph, cumulative discovery table, and latest monthly report into one browser-friendly landing page.
 
 ## CI/CD
 
@@ -107,6 +116,7 @@ By default the pipeline writes to:
 - `data/hood_people.db`
 - `data/discoveries/YYYY-MM-DD.md`
 - `data/connections/YYYY-MM-DD.md`
+- `data/monthly/YYYY-MM.md`
 
 These can be overridden with environment variables:
 
@@ -114,6 +124,7 @@ These can be overridden with environment variables:
 - `HOOD_PIPELINE_DATABASE_PATH`
 - `HOOD_PIPELINE_DISCOVERIES_DIR`
 - `HOOD_PIPELINE_CONNECTIONS_DIR`
+- `HOOD_PIPELINE_MONTHLY_REPORTS_DIR`
 - `HOOD_PIPELINE_SUMMARY_DIR`
 - `HOOD_PIPELINE_SOURCES_PATH`
 - `HOOD_PIPELINE_USER_AGENT`

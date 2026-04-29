@@ -10,7 +10,11 @@ from hood_pipeline.infrastructure.persistence.sqlite import SQLiteStore
 from hood_pipeline.infrastructure.runtime.local_clock import LocalClock
 from hood_pipeline.infrastructure.sources.hood_athletics import FeedReader
 from hood_pipeline.infrastructure.sources.hood_news import HoodSiteListingReader
-from hood_pipeline.infrastructure.writing.markdown import MarkdownConnectionWriter, MarkdownDiscoveryWriter
+from hood_pipeline.infrastructure.writing.markdown import (
+    MarkdownConnectionWriter,
+    MarkdownDiscoveryWriter,
+    MarkdownMonthlyWriter,
+)
 from hood_pipeline.infrastructure.writing.pages import GitHubPagesSiteWriter
 from hood_pipeline.infrastructure.writing.summary import SummaryArtifactsWriter
 
@@ -25,6 +29,7 @@ class Services:
     sqlite: SQLiteStore
     discovery_writer: MarkdownDiscoveryWriter
     connection_writer: MarkdownConnectionWriter
+    monthly_writer: MarkdownMonthlyWriter
     summary_writer: SummaryArtifactsWriter
     pages_writer: GitHubPagesSiteWriter
     source_readers: dict[str, object]
@@ -50,8 +55,13 @@ def build_services() -> Services:
         sqlite=sqlite,
         discovery_writer=MarkdownDiscoveryWriter(config.discoveries_dir),
         connection_writer=MarkdownConnectionWriter(config.connections_dir),
+        monthly_writer=MarkdownMonthlyWriter(config.monthly_reports_dir),
         summary_writer=SummaryArtifactsWriter(config.summary_dir),
-        pages_writer=GitHubPagesSiteWriter(config.repo_root.name, config.summary_dir),
+        pages_writer=GitHubPagesSiteWriter(
+            config.repo_root.name,
+            config.summary_dir,
+            config.monthly_reports_dir,
+        ),
         source_readers={
             "hood_news_html": hood_site_reader,
             "hood_site_listing": hood_site_reader,

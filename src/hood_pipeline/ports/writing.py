@@ -24,6 +24,18 @@ class ConnectionWriter(Protocol):
         run_date: date,
         connections: list[WeeklyConnection],
     ) -> str:
+        ...        
+
+
+class MonthlyWriter(Protocol):
+    def write_monthly_report(
+        self,
+        run_date: date,
+        period_start: date,
+        period_end: date,
+        articles: list[FetchedArticle],
+        mentions: list[PersonMention],
+    ) -> str:
         ...
 
 

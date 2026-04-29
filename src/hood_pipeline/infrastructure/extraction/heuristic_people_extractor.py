@@ -113,12 +113,55 @@ class HeuristicPeopleExtractor:
         "By Mason Cavalier",
         "Media Contact Mason",
         "Cavalier Media Manager",
+        "Business Administration",
         "Middle Atlantic Conference",
         "Play Video",
         "Related Stories",
+        "Computer Science",
+        "Graduate School",
+        "Graduate Student",
+        "Humanities Sociology",
+        "Interdisciplinary Studies",
         "Players Mentioned",
         "Print Friendly Version",
         "First Round",
+        "School Counseling",
+    )
+    ACADEMIC_PROGRAM_TOKENS = {
+        "Administration",
+        "Behavior",
+        "Business",
+        "Clinical",
+        "Computer",
+        "Counseling",
+        "Education",
+        "Graduate",
+        "Health",
+        "Human",
+        "Humanities",
+        "Interdisciplinary",
+        "Mental",
+        "Program",
+        "Programs",
+        "School",
+        "Science",
+        "Sociology",
+        "Staff",
+        "Student",
+        "Studies",
+        "Thanatology",
+    }
+    PROGRAM_CONTEXT_HINTS = (
+        "department",
+        "program",
+        "graduate school",
+        "graduate student",
+        "certificate",
+        "major",
+        "(m.s.)",
+        "(b.a.)",
+        "(b.s.)",
+        "concentration",
     )
 
     def extract(self, article) -> list[PersonMention]:
@@ -131,9 +174,9 @@ class HeuristicPeopleExtractor:
                 continue
             for match in self.NAME_PATTERN.finditer(clean_sentence):
                 name = match.group(1).strip()
-                if self._blocked(name):
-                    continue
                 local_context = clean_sentence[max(0, match.start() - 80) : match.end() + 80]
+                if self._blocked(name, local_context):
+                    continue
                 if not self._has_context_evidence(name, local_context, article.source_id):
                     continue
                 role_category, role_text = self._classify(name, local_context, article.source_id)
@@ -152,16 +195,28 @@ class HeuristicPeopleExtractor:
                     )
         return list(mentions.values())
 
-    def _blocked(self, name: str) -> bool:
+    def _blocked(self, name: str, context: str) -> bool:
         if any(phrase in name for phrase in self.BLOCKED_PHRASES):
             return True
         tokens = set(name.split())
         if any(token in self.BLOCKED_TOKENS for token in tokens):
             return True
+        if self._looks_like_academic_program(name, context):
+            return True
         if name.endswith(" College") or name.endswith(" County"):
             return True
         if len(name.split()) != 2:
             return True
+        return False
+
+    def _looks_like_academic_program(self, name: str, context: str) -> bool:
+        tokens = name.split()
+        if not tokens:
+            return False
+        if all(token in self.ACADEMIC_PROGRAM_TOKENS for token in tokens):
+            lowered_context = context.lower()
+            if any(hint in lowered_context for hint in self.PROGRAM_CONTEXT_HINTS):
+                return True
         return False
 
     def _has_context_evidence(self, name: str, context: str, source_id: str) -> bool:

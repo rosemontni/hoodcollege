@@ -1,4 +1,5 @@
 import unittest
+from datetime import datetime, timezone
 from unittest.mock import patch
 
 import requests
@@ -48,6 +49,40 @@ class RequestsArticleFetcherTest(unittest.TestCase):
 
         self.assertEqual(text, "ok")
         self.assertEqual(fetcher.session.calls, 2)
+
+    def test_fetch_article_infers_date_from_meta_tag(self) -> None:
+        fetcher = RequestsArticleFetcher("test-agent", 5)
+        fetcher.session = _FakeSession(
+            [
+                _FakeResponse(
+                    200,
+                    (
+                        '<html><head><meta property="article:published_time" '
+                        'content="2026-04-23T09:30:00-04:00"></head>'
+                        "<body><article>Story body</article></body></html>"
+                    ),
+                )
+            ]
+        )
+
+        body, published_at, source = fetcher.fetch_article("https://example.com/story")
+
+        self.assertEqual(body, "Story body")
+        self.assertEqual(published_at, datetime(2026, 4, 23, 13, 30, tzinfo=timezone.utc))
+        self.assertEqual(source, "meta")
+
+    def test_fetch_article_falls_back_to_source_item_date(self) -> None:
+        fetcher = RequestsArticleFetcher("test-agent", 5)
+        fetcher.session = _FakeSession([_FakeResponse(200, "<html><body><article>Story body</article></body></html>")])
+
+        body, published_at, source = fetcher.fetch_article(
+            "https://example.com/story",
+            fallback_published_at=datetime(2026, 4, 20, 8, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(body, "Story body")
+        self.assertEqual(published_at, datetime(2026, 4, 20, 8, 0, tzinfo=timezone.utc))
+        self.assertEqual(source, "source_item")
 
 
 if __name__ == "__main__":

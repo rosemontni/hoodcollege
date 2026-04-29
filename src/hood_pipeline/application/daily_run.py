@@ -6,7 +6,8 @@ from hashlib import sha256
 from pathlib import Path
 
 from hood_pipeline.application.connection_network import build_cumulative_connections
-from hood_pipeline.domain.models import DailyRunResult, FetchedArticle, PersonMention, SourceDefinition
+from hood_pipeline.application.monthly_run import MonthlyRunService
+from hood_pipeline.domain.models import DailyRunResult, FetchedArticle, SourceDefinition
 
 
 class DailyRunService:
@@ -44,37 +45,50 @@ class DailyRunService:
 
         seen = len(source_items)
         stored_articles: list[FetchedArticle] = []
+        monthly_report_path = None
 
         for source_item in source_items:
             definition = definitions_by_source_id.get(source_item.source_id)
             if definition is not None and not self._should_fetch_source_item(source_item, definition):
                 continue
             try:
-                body = self.services.fetcher.fetch_clean_article_text(source_item.url)
+                body, published_at, published_at_source = self.services.fetcher.fetch_article(
+                    source_item.url,
+                    fallback_published_at=source_item.published_at,
+                )
             except Exception as exc:
                 print(f"Skipping article '{source_item.url}' because fetch failed: {exc}", file=sys.stderr)
                 continue
             fetched_at = self.services.clock.now()
             content_hash = sha256(body.encode("utf-8")).hexdigest()
-            if self.services.sqlite.has_article(source_item.url, content_hash):
-                continue
             article = FetchedArticle(
                 source_id=source_item.source_id,
                 url=source_item.url,
                 title=source_item.title,
-                published_at=source_item.published_at,
+                published_at=published_at,
+                published_at_source=published_at_source,
                 fetched_at=fetched_at,
                 body=body,
                 content_hash=content_hash,
                 is_relevant=False,
                 relevance_reason="unclassified",
             )
+            existing = self.services.sqlite.stored_article(source_item.url)
+            if existing is not None and existing.content_hash == content_hash:
+                if self._should_backfill_story_date(existing, article):
+                    self.services.sqlite.update_article_story_date(
+                        source_item.url,
+                        article.published_at,
+                        article.published_at_source,
+                    )
+                continue
             is_relevant, reason = self.services.disambiguator.evaluate(article)
             article = FetchedArticle(
                 source_id=article.source_id,
                 url=article.url,
                 title=article.title,
                 published_at=article.published_at,
+                published_at_source=article.published_at_source,
                 fetched_at=article.fetched_at,
                 body=article.body,
                 content_hash=article.content_hash,
@@ -97,9 +111,10 @@ class DailyRunService:
             self.services.sqlite.replace_article_mentions(article_id, extracted, run_date)
             stored_articles.append(article)
 
+        daily_articles = self.services.sqlite.relevant_articles_for_seen_date(run_date)
         discovery_path = self.services.discovery_writer.write_daily_story(
             run_date,
-            stored_articles,
+            daily_articles,
             self.services.sqlite.mentions_for_date(run_date),
         )
         cumulative_connections = build_cumulative_connections(
@@ -121,17 +136,20 @@ class DailyRunService:
             connection_graph_name=Path(connection_graph_path).name,
             connection_graph_html_name=Path(connection_graph_html_path).name,
         )
+        if run_date.day == 1:
+            monthly_report_path = MonthlyRunService(self.services).run(run_date).report_path
         return DailyRunResult(
             run_date=run_date,
             articles_seen=seen,
             articles_stored=len(stored_articles),
-            relevant_articles=stored_articles,
+            relevant_articles=daily_articles,
             mentions=self.services.sqlite.mentions_for_date(run_date),
             discovery_path=discovery_path,
             summary_path=summary_path,
             summary_graph_path=summary_graph_path,
             connection_graph_path=connection_graph_path,
             connection_graph_html_path=connection_graph_html_path,
+            monthly_report_path=monthly_report_path,
         )
 
     @staticmethod
@@ -141,3 +159,26 @@ class DailyRunService:
             return True
         combined = f"{source_item.title}\n{source_item.summary}".lower()
         return any(str(keyword).lower() in combined for keyword in keywords)
+
+    @staticmethod
+    def _should_backfill_story_date(existing, article: FetchedArticle) -> bool:
+        if article.published_at is None:
+            return False
+        existing_priority = _date_source_priority(existing.published_at_source)
+        new_priority = _date_source_priority(article.published_at_source)
+        return existing.published_at is None or new_priority > existing_priority
+
+
+DATE_SOURCE_PRIORITY = {
+    "unknown": 0,
+    "url": 1,
+    "visible_text": 2,
+    "source_item": 3,
+    "time_tag": 4,
+    "json_ld": 5,
+    "meta": 6,
+}
+
+
+def _date_source_priority(source: str) -> int:
+    return DATE_SOURCE_PRIORITY.get(source, 0)

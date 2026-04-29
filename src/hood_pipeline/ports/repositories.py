@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Protocol
 
-from hood_pipeline.domain.models import FetchedArticle, PersonMention, WeeklyConnection
+from hood_pipeline.domain.models import FetchedArticle, PersonMention, StoredArticleMetadata, WeeklyConnection
 from hood_pipeline.domain.models import SummaryPoint
 
 
@@ -17,12 +17,32 @@ class ArticleRepository(Protocol):
     def relevant_articles_for_date(self, run_date: date) -> list[FetchedArticle]:
         ...
 
+    def relevant_articles_for_seen_date(self, run_date: date) -> list[FetchedArticle]:
+        ...
+
+    def relevant_articles_published_between(self, start_date: date, end_date: date) -> list[FetchedArticle]:
+        ...
+
+    def stored_article(self, url: str) -> StoredArticleMetadata | None:
+        ...
+
+    def update_article_story_date(
+        self,
+        url: str,
+        published_at,
+        published_at_source: str,
+    ) -> None:
+        ...
+
 
 class PersonRepository(Protocol):
     def replace_article_mentions(self, article_id: int, mentions: list[PersonMention], seen_at: date) -> None:
         ...
 
     def mentions_for_date(self, run_date: date) -> list[PersonMention]:
+        ...
+
+    def mentions_for_article_urls(self, article_urls: list[str]) -> list[PersonMention]:
         ...
 
 

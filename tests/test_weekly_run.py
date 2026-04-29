@@ -64,6 +64,7 @@ class WeeklyRunTest(unittest.TestCase):
                 url=url,
                 title=url,
                 published_at=None,
+                published_at_source="unknown",
                 fetched_at=fetched_at,
                 body="Body",
                 content_hash=url,

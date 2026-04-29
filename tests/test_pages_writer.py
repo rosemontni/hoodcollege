@@ -13,6 +13,7 @@ class PagesWriterTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmpdir:
             root = Path(tmpdir)
             summary_dir = root / "summary"
+            monthly_dir = root / "monthly"
             output_dir = root / "_site"
             summary_writer = SummaryArtifactsWriter(summary_dir)
             connections = [
@@ -42,20 +43,40 @@ class PagesWriterTest(unittest.TestCase):
                 connection_graph_name=Path(connection_graph_path).name,
                 connection_graph_html_name=Path(connection_graph_html_path).name,
             )
+            monthly_dir.mkdir(parents=True, exist_ok=True)
+            (monthly_dir / "2026-04.md").write_text(
+                "\n".join(
+                    [
+                        "# Hood College Monthly Report for April 2026",
+                        "",
+                        "Published on 2026-05-01, this report covers Hood College stories dated from 2026-04-01 through 2026-04-30.",
+                        "",
+                        "## Snapshot",
+                        "",
+                        "- Dated relevant stories: 5",
+                        "- Distinct people mentioned: 8",
+                    ]
+                )
+                + "\n",
+                encoding="utf-8",
+            )
 
-            index_path = GitHubPagesSiteWriter("hoodcollege", summary_dir).build_site(output_dir)
+            index_path = GitHubPagesSiteWriter("hoodcollege", summary_dir, monthly_dir).build_site(output_dir)
 
             self.assertTrue(Path(index_path).exists())
             index_text = Path(index_path).read_text(encoding="utf-8")
             self.assertIn("Interactive People Network for Hood College", index_text)
             self.assertIn('iframe src="connection-network.html"', index_text)
             self.assertIn("Cumulative Discovery Table", index_text)
+            self.assertIn("Monthly Report", index_text)
+            self.assertIn("Hood College Monthly Report for April 2026", index_text)
             self.assertIn("2026-04-26", index_text)
             self.assertIn("connection-network.svg", index_text)
             self.assertTrue((output_dir / ".nojekyll").exists())
             self.assertTrue((output_dir / "404.html").exists())
             self.assertTrue((output_dir / "connection-network.html").exists())
             self.assertTrue((output_dir / "discovery-growth.svg").exists())
+            self.assertTrue((output_dir / "monthly" / "2026-04.html").exists())
 
 
 if __name__ == "__main__":

@@ -17,6 +17,7 @@ class AppConfig:
     data_dir: Path
     discoveries_dir: Path
     connections_dir: Path
+    monthly_reports_dir: Path
     summary_dir: Path
     database_path: Path
     user_agent: str
@@ -28,6 +29,7 @@ class AppConfig:
         data_dir = repo_root / "data"
         discoveries_dir = data_dir / "discoveries"
         connections_dir = data_dir / "connections"
+        monthly_reports_dir = data_dir / "monthly"
         summary_dir = data_dir / "summary"
         database_path = data_dir / "hood_people.db"
         sources_path = repo_root / "sources" / "hood_sources.json"
@@ -42,6 +44,7 @@ class AppConfig:
             data_dir=Path(os.getenv("HOOD_PIPELINE_DATA_DIR", data_dir)),
             discoveries_dir=Path(os.getenv("HOOD_PIPELINE_DISCOVERIES_DIR", discoveries_dir)),
             connections_dir=Path(os.getenv("HOOD_PIPELINE_CONNECTIONS_DIR", connections_dir)),
+            monthly_reports_dir=Path(os.getenv("HOOD_PIPELINE_MONTHLY_REPORTS_DIR", monthly_reports_dir)),
             summary_dir=Path(os.getenv("HOOD_PIPELINE_SUMMARY_DIR", summary_dir)),
             database_path=Path(os.getenv("HOOD_PIPELINE_DATABASE_PATH", database_path)),
             user_agent=user_agent,
@@ -52,6 +55,7 @@ class AppConfig:
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.discoveries_dir.mkdir(parents=True, exist_ok=True)
         self.connections_dir.mkdir(parents=True, exist_ok=True)
+        self.monthly_reports_dir.mkdir(parents=True, exist_ok=True)
         self.summary_dir.mkdir(parents=True, exist_ok=True)
         self.database_path.parent.mkdir(parents=True, exist_ok=True)
 

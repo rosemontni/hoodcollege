@@ -21,7 +21,8 @@ class MarkdownWriterTest(unittest.TestCase):
                         source_id="hood_news",
                         url="https://www.hood.edu/news/example",
                         title="Example story",
-                        published_at=None,
+                        published_at=datetime(2026, 3, 18, 12, 0, 0),
+                        published_at_source="meta",
                         fetched_at=datetime.now(),
                         body="Body",
                         content_hash="hash",
@@ -33,7 +34,8 @@ class MarkdownWriterTest(unittest.TestCase):
                         source_id="hood_news",
                         url="https://www.hood.edu/news/example-2",
                         title="Example story 2",
-                        published_at=None,
+                        published_at=datetime(2026, 3, 19, 12, 0, 0),
+                        published_at_source="source_item",
                         fetched_at=datetime.now(),
                         body="Body",
                         content_hash="hash-2",
@@ -65,7 +67,8 @@ class MarkdownWriterTest(unittest.TestCase):
             text = Path(path).read_text(encoding="utf-8")
             self.assertEqual(text.count("**Debbie Ricker**"), 1)
             self.assertIn("(administrator, 2 articles)", text)
-            self.assertIn("Example story", text)
+            self.assertIn("2026-03-18 - [Example story]", text)
+            self.assertIn("stories dated 2026-03-18 to 2026-03-19", text)
 
     def test_weekly_writer_creates_file(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:

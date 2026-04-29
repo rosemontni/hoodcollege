@@ -52,10 +52,14 @@ class _FakeReader:
 
 
 class _FakeFetcher:
-    def fetch_clean_article_text(self, url: str) -> str:
+    def fetch_article(self, url: str, fallback_published_at=None):
         if url.endswith("/failing"):
             raise RuntimeError("boom")
-        return "Debbie Ricker, Ph.D., president of Hood College, said the partnership matters."
+        return (
+            "Debbie Ricker, Ph.D., president of Hood College, said the partnership matters.",
+            datetime(2026, 3, 18, 12, 0, 0),
+            "meta",
+        )
 
 
 class _FakeClock:
@@ -119,6 +123,17 @@ class _FakeSummaryWriter:
         return str(html_path)
 
 
+class _FakeMonthlyWriter:
+    def __init__(self, monthly_dir: Path) -> None:
+        self.monthly_dir = monthly_dir
+
+    def write_monthly_report(self, run_date, period_start, period_end, articles, mentions):
+        self.monthly_dir.mkdir(parents=True, exist_ok=True)
+        path = self.monthly_dir / f"{period_start.strftime('%Y-%m')}.md"
+        path.write_text("# monthly\n", encoding="utf-8")
+        return str(path)
+
+
 class _FakeServices:
     def __init__(self, db_path: Path, discoveries_dir: Path, metadata: dict | None = None) -> None:
         self.config = _FakeConfig(db_path, discoveries_dir, metadata=metadata)
@@ -130,6 +145,7 @@ class _FakeServices:
         self.sqlite.initialize()
         self.discovery_writer = _FakeWriter(discoveries_dir)
         self.summary_writer = _FakeSummaryWriter(discoveries_dir.parent / "summary")
+        self.monthly_writer = _FakeMonthlyWriter(discoveries_dir.parent / "monthly")
         self.source_readers = {"fake": _FakeReader()}
 
 
@@ -145,6 +161,7 @@ class DailyRunTest(unittest.TestCase):
             self.assertTrue(result.summary_path.endswith("discovery-summary.md"))
             self.assertTrue(result.connection_graph_path.endswith("connection-network.svg"))
             self.assertTrue(result.connection_graph_html_path.endswith("connection-network.html"))
+            self.assertIsNone(result.monthly_report_path)
 
     def test_daily_run_prefetch_keywords_skip_unmatched_items(self) -> None:
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -158,6 +175,13 @@ class DailyRunTest(unittest.TestCase):
             self.assertEqual(result.articles_seen, 2)
             self.assertEqual(result.articles_stored, 1)
             self.assertEqual(len(result.mentions), 1)
+
+    def test_daily_run_publishes_monthly_report_on_first_day(self) -> None:
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            services = _FakeServices(root / "test.db", root / "discoveries")
+            result = DailyRunService(services).run(date(2026, 4, 1))
+            self.assertTrue(result.monthly_report_path.endswith("2026-03.md"))
 
 
 if __name__ == "__main__":

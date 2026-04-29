@@ -8,6 +8,8 @@ from urllib.parse import urlparse
 import requests
 from bs4 import BeautifulSoup
 
+from hood_pipeline.infrastructure.fetching.article_dates import ArticleDateInferer
+
 
 class RequestsArticleFetcher:
     RETRYABLE_STATUS_CODES = {429, 500, 502, 503, 504}
@@ -16,6 +18,7 @@ class RequestsArticleFetcher:
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": user_agent})
         self.timeout_seconds = timeout_seconds
+        self.date_inferer = ArticleDateInferer()
 
     def fetch_text(self, url: str) -> str:
         delay_seconds = 1.0
@@ -31,15 +34,28 @@ class RequestsArticleFetcher:
         raise RuntimeError(f"Failed to fetch '{url}'.")
 
     def fetch_clean_article_text(self, url: str) -> str:
+        body, _, _ = self.fetch_article(url)
+        return body
+
+    def fetch_article(
+        self,
+        url: str,
+        fallback_published_at: datetime | None = None,
+    ) -> tuple[str, datetime | None, str]:
         html = self.fetch_text(url)
+        published_at, published_at_source = self.date_inferer.infer(url, html, fallback_published_at)
         parsed = urlparse(url)
         if parsed.netloc == "www.hood.edu":
-            return self._clean_hood_news(html)
+            body = self._clean_hood_news(html)
+            return body, published_at, published_at_source
         if parsed.netloc == "hoodathletics.com":
-            return self._clean_hood_athletics(html)
+            body = self._clean_hood_athletics(html)
+            return body, published_at, published_at_source
         if parsed.netloc in {"www.reddit.com", "reddit.com", "old.reddit.com"}:
-            return self._clean_reddit(html)
-        return self._clean_generic(html)
+            body = self._clean_reddit(html)
+            return body, published_at, published_at_source
+        body = self._clean_generic(html)
+        return body, published_at, published_at_source
 
     def _clean_generic(self, html: str) -> str:
         soup = BeautifulSoup(html, "html.parser")

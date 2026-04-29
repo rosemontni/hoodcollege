@@ -20,6 +20,7 @@ class SQLiteRolePrecedenceTest(unittest.TestCase):
                 url="https://www.hood.edu/news/example",
                 title="Example",
                 published_at=None,
+                published_at_source="unknown",
                 fetched_at=datetime(2026, 3, 20, 12, 0, 0),
                 body="Body",
                 content_hash="hash",

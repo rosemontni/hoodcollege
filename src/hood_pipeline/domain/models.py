@@ -31,6 +31,7 @@ class FetchedArticle:
     url: str
     title: str
     published_at: datetime | None
+    published_at_source: str
     fetched_at: datetime
     body: str
     content_hash: str
@@ -61,6 +62,7 @@ class DailyRunResult:
     summary_graph_path: str
     connection_graph_path: str
     connection_graph_html_path: str
+    monthly_report_path: str | None = None
 
 
 @dataclass(frozen=True)
@@ -80,7 +82,24 @@ class WeeklyRunResult:
 
 
 @dataclass(frozen=True)
+class MonthlyRunResult:
+    run_date: date
+    period_start: date
+    period_end: date
+    articles: list[FetchedArticle]
+    report_path: str
+
+
+@dataclass(frozen=True)
 class SummaryPoint:
     run_date: date
     counts_by_role: dict[str, int]
     total: int
+
+
+@dataclass(frozen=True)
+class StoredArticleMetadata:
+    url: str
+    content_hash: str
+    published_at: datetime | None
+    published_at_source: str
