@@ -51,6 +51,12 @@ class PagesWriterTest(unittest.TestCase):
                         "",
                         "Published on 2026-05-01, this report covers Hood College stories dated from 2026-04-01 through 2026-04-30.",
                         "",
+                        "## Narrative Essay",
+                        "",
+                        "In April, Hood College's public story was one of steady campus motion across academics, athletics, public events, and community-facing work.",
+                        "",
+                        "The month read like a compact local portrait of a campus balancing classroom work with public life in Frederick.",
+                        "",
                         "## Snapshot",
                         "",
                         "- Dated relevant stories: 5",
@@ -70,6 +76,7 @@ class PagesWriterTest(unittest.TestCase):
             self.assertIn("Cumulative Discovery Table", index_text)
             self.assertIn("Monthly Report", index_text)
             self.assertIn("Hood College Monthly Report for April 2026", index_text)
+            self.assertIn("steady campus motion", index_text)
             self.assertIn("2026-04-26", index_text)
             self.assertIn("connection-network.svg", index_text)
             self.assertTrue((output_dir / ".nojekyll").exists())

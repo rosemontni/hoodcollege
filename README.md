@@ -40,9 +40,10 @@ It must explicitly avoid false matches from similarly named institutions, places
 - article records with normalized body text and relevance decisions
 - best-effort inferred story dates, along with the source of each date inference
 - article-scoped person mention records
+- official faculty/staff directory records from `hood.edu/academics/faculty`, retained with active status and last-seen dates
 - daily markdown discovery stories
 - weekly markdown cumulative connection reports
-- monthly markdown reports for the prior calendar month
+- monthly markdown reports for the prior calendar month, including a newspaper-style essay about what happened at Hood
 - cumulative summary table, discovery-growth graph, top-25 connection network graph, and a draggable HTML network view
 - a local SQLite database that preserves article-level evidence
 
@@ -54,6 +55,7 @@ python -m hood_pipeline init-db
 python -m hood_pipeline daily-run
 python -m hood_pipeline weekly-run
 python -m hood_pipeline monthly-run --date 2026-05-01
+python -m hood_pipeline import-faculty-staff
 python -m hood_pipeline build-pages
 ```
 
@@ -66,6 +68,7 @@ python -m hood_pipeline init-db
 python -m hood_pipeline daily-run --date 2026-03-20
 python -m hood_pipeline weekly-run --date 2026-03-20
 python -m hood_pipeline monthly-run --date 2026-05-01
+python -m hood_pipeline import-faculty-staff --date 2026-04-29
 python -m hood_pipeline build-pages --output-dir _site
 ```
 
@@ -74,7 +77,8 @@ Supported commands:
 - `init-db`: create the SQLite schema
 - `daily-run`: fetch sources, ingest articles, extract people, and write the daily discovery
 - `weekly-run`: build a cumulative co-mention network snapshot and write the weekly report
-- `monthly-run`: publish a report for the month that just ended, keyed to article story dates instead of fetch dates
+- `monthly-run`: publish a newspaper-style monthly story for the month that just ended, keyed to article story dates instead of fetch dates
+- `import-faculty-staff`: import the official paginated Hood faculty directory into SQLite, mark current entries active, retain prior entries, and write a markdown directory report
 - `build-pages`: build a static GitHub Pages site from the generated summary artifacts
 
 The daily run also refreshes:
@@ -88,7 +92,7 @@ On the first day of each month, `daily-run` also publishes:
 
 - `data/monthly/YYYY-MM.md`
 
-The Pages build writes a publishable static site to `_site/` by default, wrapping the interactive network, discovery graph, cumulative discovery table, and latest monthly report into one browser-friendly landing page.
+The Pages build writes a publishable static site to `_site/` by default, wrapping the interactive network, discovery graph, cumulative discovery table, and latest monthly story into one browser-friendly landing page.
 
 ## CI/CD
 
@@ -116,6 +120,7 @@ By default the pipeline writes to:
 - `data/hood_people.db`
 - `data/discoveries/YYYY-MM-DD.md`
 - `data/connections/YYYY-MM-DD.md`
+- `data/directory/faculty-staff-directory.md`
 - `data/monthly/YYYY-MM.md`
 
 These can be overridden with environment variables:
@@ -124,6 +129,7 @@ These can be overridden with environment variables:
 - `HOOD_PIPELINE_DATABASE_PATH`
 - `HOOD_PIPELINE_DISCOVERIES_DIR`
 - `HOOD_PIPELINE_CONNECTIONS_DIR`
+- `HOOD_PIPELINE_DIRECTORY_DIR`
 - `HOOD_PIPELINE_MONTHLY_REPORTS_DIR`
 - `HOOD_PIPELINE_SUMMARY_DIR`
 - `HOOD_PIPELINE_SOURCES_PATH`

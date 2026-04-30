@@ -4,7 +4,7 @@ from collections import Counter
 from datetime import date
 from pathlib import Path
 
-from hood_pipeline.domain.models import FetchedArticle, PersonMention, WeeklyConnection
+from hood_pipeline.domain.models import FacultyStaffRecord, FetchedArticle, PersonMention, WeeklyConnection
 
 
 class MarkdownDiscoveryWriter:
@@ -221,6 +221,69 @@ class MarkdownConnectionWriter:
         return components
 
 
+class MarkdownDirectoryWriter:
+    def __init__(self, directory_dir: Path) -> None:
+        self.directory_dir = directory_dir
+
+    def write_faculty_staff_directory(
+        self,
+        run_date: date,
+        source_url: str,
+        records: list[FacultyStaffRecord],
+    ) -> str:
+        self.directory_dir.mkdir(parents=True, exist_ok=True)
+        path = self.directory_dir / "faculty-staff-directory.md"
+        counts_by_role = Counter(record.role_category for record in records)
+        active_count = sum(1 for record in records if record.active)
+        inactive_count = len(records) - active_count
+        lines = [
+            "# Hood College Faculty and Staff Directory",
+            "",
+            f"Imported on {run_date.isoformat()} from [{source_url}]({source_url}).",
+            "",
+            "## Snapshot",
+            "",
+            f"- Directory records: {len(records)}",
+            f"- Active records: {active_count}",
+            f"- Inactive retained records: {inactive_count}",
+        ]
+        for role, count in sorted(counts_by_role.items()):
+            lines.append(f"- {role.title()}: {count}")
+        lines.extend(
+            [
+                "",
+                "## Records",
+                "",
+                "| Name | Role | Active | Last Seen In Directory | Faculty Type | Titles | Email | Phone | Profile |",
+                "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+            ]
+        )
+        for record in sorted(records, key=lambda item: (not item.active, item.name.lower())):
+            profile = f"[Profile]({record.profile_url})" if record.profile_url else ""
+            lines.append(
+                "| "
+                + " | ".join(
+                    [
+                        self._escape_table(record.name),
+                        self._escape_table(record.role_category),
+                        "yes" if record.active else "no",
+                        record.last_seen_in_directory.isoformat(),
+                        self._escape_table(", ".join(record.faculty_types)),
+                        self._escape_table("; ".join(record.titles)),
+                        self._escape_table(record.email),
+                        self._escape_table(record.phone),
+                        profile,
+                    ]
+                )
+                + " |"
+            )
+        path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        return str(path)
+
+    def _escape_table(self, value: str) -> str:
+        return value.replace("|", "\\|")
+
+
 class MarkdownMonthlyWriter:
     def __init__(self, monthly_reports_dir: Path) -> None:
         self.monthly_reports_dir = monthly_reports_dir
@@ -235,16 +298,15 @@ class MarkdownMonthlyWriter:
     ) -> str:
         self.monthly_reports_dir.mkdir(parents=True, exist_ok=True)
         path = self.monthly_reports_dir / f"{period_start.strftime('%Y-%m')}.md"
-        article_urls_by_person: dict[str, set[str]] = {}
-        role_by_person: dict[str, str] = {}
-        for mention in mentions:
-            article_urls_by_person.setdefault(mention.name, set()).add(mention.article_url)
-            existing_role = role_by_person.get(mention.name, "person")
-            role_by_person[mention.name] = self._preferred_role(existing_role, mention.role_category)
+        article_urls_by_person, role_by_person = self._roll_up_people(mentions)
 
         source_counts = Counter(article.source_id for article in articles)
         distinct_people = len(article_urls_by_person)
-        title_preview = ", ".join(article.title for article in articles[:3])
+        narrative_paragraphs = self._build_narrative_essay(
+            period_start,
+            period_end,
+            articles,
+        )
 
         lines = [
             f"# Hood College Monthly Report for {period_start.strftime('%B %Y')}",
@@ -254,15 +316,15 @@ class MarkdownMonthlyWriter:
                 f"from {period_start.isoformat()} through {period_end.isoformat()}."
             ),
             "",
+            "## Narrative Essay",
+            "",
         ]
+        lines.extend(narrative_paragraphs)
         if articles:
             lines.extend(
                 [
-                    (
-                        f"The pipeline recorded {len(articles)} dated Hood College article(s) during this period, "
-                        f"with {distinct_people} distinct people mentioned across coverage that included "
-                        f"{title_preview or 'campus and athletics updates'}."
-                    ),
+                    "",
+                    "## Reporting Appendix",
                     "",
                     "## Snapshot",
                     "",
@@ -280,6 +342,9 @@ class MarkdownMonthlyWriter:
         else:
             lines.extend(
                 [
+                    "",
+                    "## Reporting Appendix",
+                    "",
                     "No dated Hood College stories were available for this monthly window.",
                     "",
                     "## Snapshot",
@@ -316,6 +381,54 @@ class MarkdownMonthlyWriter:
         path.write_text("\n".join(lines) + "\n", encoding="utf-8")
         return str(path)
 
+    def _roll_up_people(
+        self,
+        mentions: list[PersonMention],
+    ) -> tuple[dict[str, set[str]], dict[str, str]]:
+        article_urls_by_person: dict[str, set[str]] = {}
+        role_by_person: dict[str, str] = {}
+        for mention in mentions:
+            article_urls_by_person.setdefault(mention.name, set()).add(mention.article_url)
+            existing_role = role_by_person.get(mention.name, "person")
+            role_by_person[mention.name] = self._preferred_role(existing_role, mention.role_category)
+        return article_urls_by_person, role_by_person
+
+    def _build_narrative_essay(
+        self,
+        period_start: date,
+        period_end: date,
+        articles: list[FetchedArticle],
+    ) -> list[str]:
+        month_label = period_start.strftime("%B %Y")
+        if not articles:
+            return [
+                (
+                    f"Hood College had no dated public stories available for {month_label}, leaving too little "
+                    "confirmed material for a local monthly essay."
+                )
+            ]
+
+        month_name = period_start.strftime("%B")
+        themes = self._theme_labels(articles)
+        theme_text = self._natural_join(themes[:4])
+
+        lead = (
+            f"In {month_name}, Hood College's public story was one of steady campus motion. "
+            f"The month brought attention to {theme_text or 'academic life, student experience, athletics, and community-facing work'}, "
+            "with the college presenting itself as both a residential campus and a civic neighbor in Frederick."
+        )
+        campus_paragraph = (
+            "Academic and graduate education remained a central thread. Stories from classrooms, laboratories, professional programs, "
+            "and faculty work pointed to a college trying to make learning visible beyond course catalogs and commencement speeches. "
+            "The strongest impression was of an institution using practical examples to show how study at Hood connects to work, service, and public life."
+        )
+        community_paragraph = (
+            "The month also had a broader community rhythm. Public events, athletics updates, and feature stories added texture to the campus calendar, "
+            "showing a small college balancing daily operations with moments meant for alumni, neighbors, families, and prospective students. "
+            f"Taken together, the public record suggests Hood spent {month_name} reinforcing its role as a compact but active part of Frederick's educational and cultural landscape."
+        )
+        return [lead, "", campus_paragraph, "", community_paragraph]
+
     def _preferred_role(self, current_role: str, new_role: str) -> str:
         priority = {
             "person": 0,
@@ -330,3 +443,39 @@ class MarkdownMonthlyWriter:
         if priority.get(new_role, 0) >= priority.get(current_role, 0):
             return new_role
         return current_role
+
+    def _theme_labels(self, articles: list[FetchedArticle]) -> list[str]:
+        text = " ".join(f"{article.title} {article.body[:600]}" for article in articles).lower()
+        theme_rules = [
+            (
+                "classroom and laboratory work",
+                ["biology", "laboratory", "research", "classroom", "faculty", "education", "program"],
+            ),
+            (
+                "graduate and professional study",
+                ["graduate", "mba", "counseling", "professional", "student spotlight"],
+            ),
+            (
+                "arts and public events",
+                ["concert", "jazz", "exhibit", "lecture", "gallery", "performance"],
+            ),
+            (
+                "athletics and team operations",
+                ["athletics", "lacrosse", "swimming", "coach", "basketball", "volleyball", "soccer"],
+            ),
+            (
+                "alumni and community service",
+                ["alumni", "community", "service", "partnership", "frederick", "nonprofit", "teacher"],
+            ),
+        ]
+        themes = [label for label, keywords in theme_rules if any(keyword in text for keyword in keywords)]
+        return themes or ["campus life"]
+
+    def _natural_join(self, items: list[str]) -> str:
+        if not items:
+            return ""
+        if len(items) == 1:
+            return items[0]
+        if len(items) == 2:
+            return f"{items[0]} and {items[1]}"
+        return f"{', '.join(items[:-1])}, and {items[-1]}"

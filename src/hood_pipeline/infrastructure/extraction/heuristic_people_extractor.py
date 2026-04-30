@@ -126,6 +126,50 @@ class HeuristicPeopleExtractor:
         "Print Friendly Version",
         "First Round",
         "School Counseling",
+        "Work Search",
+        "Your Future",
+        "Teacher Collaboration",
+        "Student Research",
+        "Student Life",
+        "Student English",
+        "Save Living",
+        "Scholarships Undergraduate",
+        "School Biomedical",
+        "Residence Life",
+        "Publishes Research",
+        "On November",
+        "Memorial Hall",
+        "Marymount University",
+        "Monocacy Elementary",
+        "National Association",
+        "Navy Commander",
+        "Task Force",
+        "Towson University",
+        "Tri-State Association",
+        "Virgin Islands",
+        "Watershed Studies",
+        "Archaeology English",
+        "Army Reserve",
+        "Blazer Radio",
+        "Brodbeck Hall",
+        "Coffman Chapel",
+        "Colburn School",
+        "Creative Writing",
+        "Delaplaine School",
+        "Different Type",
+        "Enhance Pre",
+        "Fall Festival",
+        "Family Farmer",
+        "Following Move-In",
+        "Honors Partner",
+        "Integrating Art",
+        "Leading Colleges",
+        "Look Back",
+        "Ripley Person",
+        "Shrove Tuesday",
+        "Souder Named",
+        "Students Write",
+        "Wisteria Magazine",
     )
     ACADEMIC_PROGRAM_TOKENS = {
         "Administration",
@@ -239,6 +283,8 @@ class HeuristicPeopleExtractor:
         lowered_name = name.lower()
         if f"head coach {lowered_name}" in lowered or f"coach {lowered_name}" in lowered:
             return "coach", "Coach context found near the name."
+        if self._student_leadership_context(lowered, lowered_name):
+            return "student", "Student leadership context found near the name."
         if any(f"{title} {lowered_name}" in lowered for title in ("president", "dean", "vice president")):
             return "administrator", "Senior academic or administrative title found near the name."
         if any(f"{title} {lowered_name}" in lowered for title in ("professor", "lecturer", "chair")):
@@ -255,6 +301,18 @@ class HeuristicPeopleExtractor:
         if source_id.startswith("hood_athletics"):
             return "student-athlete", "Athletics source implies student-athlete context."
         return "person", "General person mention."
+
+    def _student_leadership_context(self, lowered_context: str, lowered_name: str) -> bool:
+        class_president_patterns = (
+            f"senior class president {lowered_name}",
+            f"class president {lowered_name}",
+            f"student government president {lowered_name}",
+            f"{lowered_name}, president of the class",
+            f"{lowered_name}, president of class",
+            f"{lowered_name}, senior class president",
+            f"{lowered_name}, class president",
+        )
+        return any(pattern in lowered_context for pattern in class_president_patterns)
 
     def _confidence(self, context: str, role_category: str) -> float:
         score = 0.52

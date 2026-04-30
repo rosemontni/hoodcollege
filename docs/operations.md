@@ -2,7 +2,7 @@
 
 ## Pipeline Overview
 
-The current implementation has three primary workflows plus a Pages publishing workflow.
+The current implementation has four primary workflows plus a Pages publishing workflow.
 
 ### Daily workflow
 
@@ -33,7 +33,17 @@ The current implementation has three primary workflows plus a Pages publishing w
 1. selecting the month that ended immediately before the supplied run date
 2. loading relevant articles by inferred story date, not by fetch date
 3. aggregating mentions across that monthly article set
-4. writing a markdown monthly report to `data/monthly`
+4. writing a markdown monthly report with a newspaper-style essay to `data/monthly`
+
+### Faculty/staff directory workflow
+
+`import-faculty-staff` performs:
+
+1. fetching the official paginated Hood faculty page at `https://www.hood.edu/academics/faculty`
+2. parsing faculty directory cards, profile URLs, faculty types, titles, phone numbers, and emails
+3. marking previously imported directory entries inactive before upserting entries seen in the current run
+4. preserving historical rows even after someone no longer appears in the live directory
+5. writing a markdown directory report to `data/directory/faculty-staff-directory.md`
 
 ### Pages workflow
 
@@ -41,7 +51,7 @@ The current implementation has three primary workflows plus a Pages publishing w
 
 1. validating the expected `data/summary/` artifacts exist
 2. copying summary and monthly-report artifacts into a static-site output directory
-3. generating an `index.html` landing page with the interactive graph, discovery graph, summary table, and latest monthly report
+3. generating an `index.html` landing page with the interactive graph, discovery graph, summary table, and latest monthly story
 4. writing `.nojekyll` and `404.html` support files for GitHub Pages hosting
 
 ## Source Registry
@@ -72,6 +82,7 @@ Default outputs:
 - database: `data/hood_people.db`
 - daily discovery: `data/discoveries/YYYY-MM-DD.md`
 - weekly report: `data/connections/YYYY-MM-DD.md`
+- faculty/staff directory report: `data/directory/faculty-staff-directory.md`
 - monthly report: `data/monthly/YYYY-MM.md`
 - cumulative summary table: `data/summary/discovery-summary.md`
 - cumulative discovery graph: `data/summary/discovery-growth.svg`
@@ -89,6 +100,9 @@ Current tables:
 - `people`
 - `article_people`
 - `weekly_connections`
+- `faculty_staff_directory`
+
+The `faculty_staff_directory` table stores each person by profile URL, preserving the first import date, updating `last_seen_in_directory` whenever the live directory still lists the person, and setting `active` to false when a later non-empty import no longer includes that profile.
 
 The implementation is intentionally simple for the first slice. See [data-model.md](data-model.md) for the fuller planned model.
 

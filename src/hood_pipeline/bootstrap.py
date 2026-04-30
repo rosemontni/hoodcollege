@@ -8,10 +8,12 @@ from hood_pipeline.infrastructure.extraction.hood_disambiguator import HoodDisam
 from hood_pipeline.infrastructure.fetching.http_fetcher import RequestsArticleFetcher
 from hood_pipeline.infrastructure.persistence.sqlite import SQLiteStore
 from hood_pipeline.infrastructure.runtime.local_clock import LocalClock
+from hood_pipeline.infrastructure.sources.faculty_directory import HoodFacultyDirectoryReader
 from hood_pipeline.infrastructure.sources.hood_athletics import FeedReader
 from hood_pipeline.infrastructure.sources.hood_news import HoodSiteListingReader
 from hood_pipeline.infrastructure.writing.markdown import (
     MarkdownConnectionWriter,
+    MarkdownDirectoryWriter,
     MarkdownDiscoveryWriter,
     MarkdownMonthlyWriter,
 )
@@ -29,9 +31,11 @@ class Services:
     sqlite: SQLiteStore
     discovery_writer: MarkdownDiscoveryWriter
     connection_writer: MarkdownConnectionWriter
+    directory_writer: MarkdownDirectoryWriter
     monthly_writer: MarkdownMonthlyWriter
     summary_writer: SummaryArtifactsWriter
     pages_writer: GitHubPagesSiteWriter
+    faculty_directory_reader: HoodFacultyDirectoryReader
     source_readers: dict[str, object]
 
 
@@ -46,6 +50,7 @@ def build_services() -> Services:
     )
     hood_site_reader = HoodSiteListingReader(fetcher)
     feed_reader = FeedReader(fetcher)
+    faculty_directory_reader = HoodFacultyDirectoryReader(fetcher)
     return Services(
         config=config,
         clock=LocalClock(),
@@ -55,6 +60,7 @@ def build_services() -> Services:
         sqlite=sqlite,
         discovery_writer=MarkdownDiscoveryWriter(config.discoveries_dir),
         connection_writer=MarkdownConnectionWriter(config.connections_dir),
+        directory_writer=MarkdownDirectoryWriter(config.directory_dir),
         monthly_writer=MarkdownMonthlyWriter(config.monthly_reports_dir),
         summary_writer=SummaryArtifactsWriter(config.summary_dir),
         pages_writer=GitHubPagesSiteWriter(
@@ -62,6 +68,7 @@ def build_services() -> Services:
             config.summary_dir,
             config.monthly_reports_dir,
         ),
+        faculty_directory_reader=faculty_directory_reader,
         source_readers={
             "hood_news_html": hood_site_reader,
             "hood_site_listing": hood_site_reader,

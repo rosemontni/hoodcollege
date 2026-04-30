@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import json
 import sqlite3
 from contextlib import contextmanager
 from datetime import date, datetime
 from pathlib import Path
 
 from hood_pipeline.domain.models import (
+    FacultyStaffRecord,
     FetchedArticle,
     PersonMention,
     StoredArticleMetadata,
@@ -91,6 +93,21 @@ class SQLiteStore:
                     supporting_article_count INTEGER NOT NULL,
                     shared_context TEXT NOT NULL
                 );
+
+                CREATE TABLE IF NOT EXISTS faculty_staff_directory (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT NOT NULL,
+                    role_category TEXT NOT NULL,
+                    faculty_types TEXT NOT NULL,
+                    titles TEXT NOT NULL,
+                    phone TEXT NOT NULL,
+                    email TEXT NOT NULL,
+                    profile_url TEXT NOT NULL UNIQUE,
+                    source_url TEXT NOT NULL,
+                    imported_at TEXT NOT NULL,
+                    last_seen_in_directory TEXT NOT NULL,
+                    active INTEGER NOT NULL
+                );
                 """
             )
             self._ensure_column(
@@ -99,6 +116,89 @@ class SQLiteStore:
                 column_name="published_at_source",
                 definition="TEXT NOT NULL DEFAULT 'unknown'",
             )
+            self._ensure_column(
+                connection,
+                table_name="faculty_staff_directory",
+                column_name="last_seen_in_directory",
+                definition="TEXT NOT NULL DEFAULT ''",
+            )
+            self._ensure_column(
+                connection,
+                table_name="faculty_staff_directory",
+                column_name="active",
+                definition="INTEGER NOT NULL DEFAULT 1",
+            )
+            connection.execute(
+                """
+                UPDATE faculty_staff_directory
+                SET last_seen_in_directory = imported_at
+                WHERE last_seen_in_directory = ''
+                """
+            )
+
+    def replace_faculty_staff_directory(self, records: list[FacultyStaffRecord]) -> None:
+        with self.session() as connection:
+            if records:
+                connection.execute("UPDATE faculty_staff_directory SET active = 0")
+            for record in records:
+                connection.execute(
+                    """
+                    INSERT INTO faculty_staff_directory (
+                        name, role_category, faculty_types, titles, phone, email, profile_url, source_url,
+                        imported_at, last_seen_in_directory, active
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ON CONFLICT(profile_url) DO UPDATE SET
+                        name=excluded.name,
+                        role_category=excluded.role_category,
+                        faculty_types=excluded.faculty_types,
+                        titles=excluded.titles,
+                        phone=excluded.phone,
+                        email=excluded.email,
+                        source_url=excluded.source_url,
+                        last_seen_in_directory=excluded.last_seen_in_directory,
+                        active=excluded.active
+                    """,
+                    (
+                        record.name,
+                        record.role_category,
+                        json.dumps(record.faculty_types, sort_keys=True),
+                        json.dumps(record.titles, sort_keys=True),
+                        record.phone,
+                        record.email,
+                        record.profile_url,
+                        record.source_url,
+                        record.imported_at.isoformat(),
+                        record.last_seen_in_directory.isoformat(),
+                        int(record.active),
+                    ),
+                )
+
+    def faculty_staff_directory(self) -> list[FacultyStaffRecord]:
+        with self.session() as connection:
+            rows = connection.execute(
+                """
+                SELECT name, role_category, faculty_types, titles, phone, email, profile_url, source_url,
+                       imported_at, last_seen_in_directory, active
+                FROM faculty_staff_directory
+                ORDER BY lower(name), name
+                """
+            ).fetchall()
+        return [
+            FacultyStaffRecord(
+                name=str(row["name"]),
+                role_category=str(row["role_category"]),
+                faculty_types=list(json.loads(row["faculty_types"])),
+                titles=list(json.loads(row["titles"])),
+                phone=str(row["phone"]),
+                email=str(row["email"]),
+                profile_url=str(row["profile_url"]),
+                source_url=str(row["source_url"]),
+                imported_at=date.fromisoformat(str(row["imported_at"])),
+                last_seen_in_directory=date.fromisoformat(str(row["last_seen_in_directory"])),
+                active=bool(row["active"]),
+            )
+            for row in rows
+        ]
 
     def has_article(self, url: str, content_hash: str | None = None) -> bool:
         with self.session() as connection:

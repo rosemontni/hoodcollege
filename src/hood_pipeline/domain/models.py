@@ -91,6 +91,29 @@ class MonthlyRunResult:
 
 
 @dataclass(frozen=True)
+class FacultyStaffRecord:
+    name: str
+    role_category: str
+    faculty_types: list[str]
+    titles: list[str]
+    phone: str
+    email: str
+    profile_url: str
+    source_url: str
+    imported_at: date
+    last_seen_in_directory: date
+    active: bool
+
+
+@dataclass(frozen=True)
+class FacultyStaffImportResult:
+    run_date: date
+    source_url: str
+    records: list[FacultyStaffRecord]
+    report_path: str
+
+
+@dataclass(frozen=True)
 class SummaryPoint:
     run_date: date
     counts_by_role: dict[str, int]

@@ -79,6 +79,15 @@ python -m hood_pipeline monthly-run --date 2026-05-01
 
 This publishes a report for the month that just ended. It uses the best story date the pipeline can infer from source metadata, page metadata, JSON-LD, time tags, and URL patterns instead of relying on the retrieval date.
 
+## Import The Faculty/Staff Directory
+
+```powershell
+python -m hood_pipeline import-faculty-staff --date 2026-04-29
+```
+
+This imports the official paginated Hood faculty directory from `https://www.hood.edu/academics/faculty`, stores the current snapshot in SQLite, and writes `data/directory/faculty-staff-directory.md`.
+Each imported profile is kept over time. Current profiles are marked `active` and receive a `last_seen_in_directory` date; profiles missing from a later successful import are retained and marked inactive instead of being deleted.
+
 ## Build The GitHub Pages Site
 
 ```powershell
@@ -122,6 +131,7 @@ Supported environment variables:
 - `HOOD_PIPELINE_DATABASE_PATH`
 - `HOOD_PIPELINE_DISCOVERIES_DIR`
 - `HOOD_PIPELINE_CONNECTIONS_DIR`
+- `HOOD_PIPELINE_DIRECTORY_DIR`
 - `HOOD_PIPELINE_MONTHLY_REPORTS_DIR`
 - `HOOD_PIPELINE_SUMMARY_DIR`
 - `HOOD_PIPELINE_SOURCES_PATH`

@@ -66,6 +66,24 @@ Stores derived weekly links:
 - confidence
 - week start date
 
+### `faculty_staff_directory`
+
+Stores official directory entries by Hood profile URL:
+
+- name
+- role category
+- faculty types
+- titles
+- phone
+- email
+- profile URL
+- source URL
+- first imported date
+- last seen in the live directory
+- active flag
+
+Directory records are retained historically. A later successful import marks missing profiles inactive rather than deleting them.
+
 ## Output Files
 
 ### Daily story

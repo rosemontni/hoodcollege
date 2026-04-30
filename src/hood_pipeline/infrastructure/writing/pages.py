@@ -18,6 +18,7 @@ class MonthlyReportEntry:
     markdown_name: str
     html_name: str
     intro: str
+    preview: str
     bullet_points: list[str]
 
 
@@ -407,21 +408,45 @@ class GitHubPagesSiteWriter:
         lines = [line.rstrip() for line in markdown_text.splitlines()]
         title = "Monthly Report"
         intro = ""
+        preview = ""
         bullet_points: list[str] = []
+        current_section = ""
+        current_paragraph: list[str] = []
+        essay_paragraphs: list[str] = []
         for line in lines:
+            stripped = line.strip()
             if line.startswith("# ") and title == "Monthly Report":
                 title = line[2:].strip()
                 continue
-            if not intro and line and not line.startswith("#") and not line.startswith("- "):
-                intro = line
+            if line.startswith("## "):
+                if current_section == "Narrative Essay" and current_paragraph:
+                    essay_paragraphs.append(" ".join(current_paragraph))
+                    current_paragraph.clear()
+                current_section = line[3:].strip()
                 continue
-            if line.startswith("- ") and len(bullet_points) < 3:
-                bullet_points.append(line[2:].strip())
+            if current_section == "Narrative Essay":
+                if not stripped:
+                    if current_paragraph:
+                        essay_paragraphs.append(" ".join(current_paragraph))
+                        current_paragraph.clear()
+                    continue
+                if not stripped.startswith("- "):
+                    current_paragraph.append(stripped)
+                continue
+            if not intro and stripped and not stripped.startswith("#") and not stripped.startswith("- "):
+                intro = stripped
+                continue
+            if current_section == "Snapshot" and stripped.startswith("- ") and len(bullet_points) < 3:
+                bullet_points.append(stripped[2:].strip())
+        if current_section == "Narrative Essay" and current_paragraph:
+            essay_paragraphs.append(" ".join(current_paragraph))
+        preview = essay_paragraphs[0] if essay_paragraphs else intro
         return MonthlyReportEntry(
             title=title,
             markdown_name=markdown_name,
             html_name=html_name,
             intro=intro,
+            preview=preview,
             bullet_points=bullet_points,
         )
 
@@ -431,7 +456,7 @@ class GitHubPagesSiteWriter:
         return (
             '<div class="report-item">'
             f'<h3><a href="monthly/{escape(report.html_name)}">{escape(report.title)}</a></h3>'
-            f"<p>{self._render_inline_markdown(report.intro)}</p>"
+            f"<p>{self._render_inline_markdown(report.preview)}</p>"
             f"{bullet_html}"
             f'<p><a href="monthly/{escape(report.markdown_name)}">Markdown</a></p>'
             "</div>"

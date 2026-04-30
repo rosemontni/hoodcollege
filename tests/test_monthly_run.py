@@ -44,6 +44,13 @@ class MonthlyRunTest(unittest.TestCase):
             self.assertEqual(result.period_end, date(2026, 4, 30))
             self.assertEqual([article.url for article in result.articles], ["https://example.com/april-story"])
             report_text = Path(result.report_path).read_text(encoding="utf-8")
+            narrative_text = report_text.split("## Narrative Essay", 1)[1].split("## Reporting Appendix", 1)[0]
+            self.assertIn("## Narrative Essay", report_text)
+            self.assertIn("Hood College's public story", narrative_text)
+            self.assertNotIn("Debbie Ricker", narrative_text)
+            self.assertNotIn("connection", narrative_text.lower())
+            self.assertNotIn("network", narrative_text.lower())
+            self.assertNotIn("pipeline", narrative_text.lower())
             self.assertIn("2026-04-28 - [https://example.com/april-story]", report_text)
             self.assertNotIn("https://example.com/march-story", report_text)
 

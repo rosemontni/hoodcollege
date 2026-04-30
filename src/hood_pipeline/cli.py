@@ -6,6 +6,7 @@ from pathlib import Path
 
 from hood_pipeline.application.build_pages import BuildPagesSiteService
 from hood_pipeline.application.daily_run import DailyRunService
+from hood_pipeline.application.faculty_staff_import import FacultyStaffImportService
 from hood_pipeline.application.monthly_run import MonthlyRunService
 from hood_pipeline.application.weekly_run import WeeklyRunService
 from hood_pipeline.bootstrap import build_services
@@ -23,6 +24,17 @@ def build_parser() -> argparse.ArgumentParser:
 
     monthly = subcommands.add_parser("monthly-run", help="Build the prior-month report.")
     monthly.add_argument("--date", dest="run_date", help="Publication date in YYYY-MM-DD.")
+
+    faculty_staff = subcommands.add_parser(
+        "import-faculty-staff",
+        help="Import the official Hood faculty and staff directory.",
+    )
+    faculty_staff.add_argument("--date", dest="run_date", help="Import date in YYYY-MM-DD.")
+    faculty_staff.add_argument(
+        "--source-url",
+        default=None,
+        help="Faculty directory URL. Defaults to the official Hood faculty page.",
+    )
 
     pages = subcommands.add_parser("build-pages", help="Build the static GitHub Pages site.")
     pages.add_argument(
@@ -85,6 +97,15 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"Monthly run complete for {result.run_date}: "
             f"{len(result.articles)} articles, report {result.report_path}"
+        )
+        return 0
+
+    if args.command == "import-faculty-staff":
+        run_date = _parse_date(args.run_date) or services.clock.now().date()
+        result = FacultyStaffImportService(services).run(run_date, args.source_url)
+        print(
+            f"Faculty/staff import complete for {result.run_date}: "
+            f"{len(result.records)} records from {result.source_url}, report {result.report_path}"
         )
         return 0
 
