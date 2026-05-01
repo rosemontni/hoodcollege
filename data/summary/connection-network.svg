@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="80" y="32" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">Connection Network</text>
-<text x="80" y="52" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">Top 25 people by cumulative connection degree through 2026-04-30</text>
+<text x="80" y="52" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">Top 25 people by cumulative connection degree through 2026-05-01</text>
 <rect x="65" y="105" width="1070" height="710" rx="24" fill="#f8fafc" stroke="#e5e7eb"/>
 <line x1="1085.0" y1="765.0" x2="1085.0" y2="660.2" stroke="#94a3b8" stroke-width="4.00" stroke-linecap="round" opacity="0.60"/>
 <line x1="213.4" y1="650.7" x2="185.2" y2="765.0" stroke="#94a3b8" stroke-width="2.13" stroke-linecap="round" opacity="0.35"/>
