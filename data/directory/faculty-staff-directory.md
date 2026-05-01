@@ -7,8 +7,8 @@ Imported on 2026-04-30 from [https://www.hood.edu/academics/faculty](https://www
 - Directory records: 158
 - Active records: 158
 - Inactive retained records: 0
-- Administrator: 3
-- Faculty: 155
+- Administrator: 4
+- Faculty: 154
 
 ## Records
 
@@ -58,7 +58,7 @@ Imported on 2026-04-30 from [https://www.hood.edu/academics/faculty](https://www
 | David Duree | faculty | yes | 2026-04-30 | Undergraduate Faculty | Applied Instructor, Clarinet; Applied Instructor, Saxophone | dureedt@gmail.com | 443-398-6185 | [Profile](https://www.hood.edu/academics/faculty/david-duree) |
 | David Gurzick | faculty | yes | 2026-04-30 | Undergraduate Faculty, Graduate Faculty | Professor of Management; Department Chair | gurzick@hood.edu | 301-696-3857 | [Profile](https://www.hood.edu/academics/faculty/david-gurzick) |
 | David Hixson | faculty | yes | 2026-04-30 | Undergraduate Faculty, Graduate Faculty | Visiting Assistant Professor of Art and Archaeology | hixson@hood.edu | 301-696-3866 | [Profile](https://www.hood.edu/academics/faculty/david-hixson) |
-| Debbie Ricker | faculty | yes | 2026-04-30 | Undergraduate Faculty | President; Professor of Biology | ricker@hood.edu | 301-696-3623 | [Profile](https://www.hood.edu/academics/faculty/debbie-ricker) |
+| Debbie Ricker | administrator | yes | 2026-04-30 | Undergraduate Faculty | President; Professor of Biology | ricker@hood.edu | 301-696-3623 | [Profile](https://www.hood.edu/academics/faculty/debbie-ricker) |
 | Dorian Elizabeth Knapp | faculty | yes | 2026-04-30 | Undergraduate Faculty, Graduate Faculty | Professor of English; Program Director, Creative Writing MFA | knapp@hood.edu | 301-696-3725 | [Profile](https://www.hood.edu/academics/faculty/dorian-elizabeth-knapp) |
 | Drew Ferrier | faculty | yes | 2026-04-30 | Undergraduate Faculty, Graduate Faculty | Professor of Biology; Co-Chair, Department of Biology; Director, Center for Coastal and Watershed Studies; Director, Sustainability Studies | dferrier@hood.edu | 301-696-3660 | [Profile](https://www.hood.edu/academics/faculty/drew-ferrier) |
 | Elizabeth Atwood | faculty | yes | 2026-04-30 | Undergraduate Faculty, Graduate Faculty | Associate Professor of Journalism | atwood@hood.edu | 301-696-3231 | [Profile](https://www.hood.edu/academics/faculty/elizabeth-atwood) |

@@ -149,6 +149,30 @@ class HeuristicPeopleExtractorTest(unittest.TestCase):
 
         self.assertEqual(names["Noah Turner"], "student")
 
+    def test_title_after_name_refines_faculty_staff_and_guest_roles(self) -> None:
+        article = FetchedArticle(
+            source_id="hood_news",
+            url="https://www.hood.edu/news/role-refinement",
+            title="Role refinement",
+            published_at=None,
+            published_at_source="unknown",
+            fetched_at=datetime.now(),
+            body=(
+                "Susan Ensel, Ph.D., professor of chemistry at Hood College praised the students. "
+                "Rachel Lamb, senior climate advisor for the Maryland Department of the Environment, joined the summit. "
+                "Matthew Gelhard, Assistant Director of Athletics for Communications, shared the update."
+            ),
+            content_hash="mno",
+            is_relevant=True,
+            relevance_reason="accepted",
+        )
+
+        names = {mention.name: mention.role_category for mention in self.extractor.extract(article)}
+
+        self.assertEqual(names["Susan Ensel"], "faculty")
+        self.assertEqual(names["Rachel Lamb"], "guest")
+        self.assertEqual(names["Matthew Gelhard"], "staff")
+
 
 if __name__ == "__main__":
     unittest.main()

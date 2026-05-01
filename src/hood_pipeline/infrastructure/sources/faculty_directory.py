@@ -152,7 +152,13 @@ class HoodFacultyDirectoryReader:
 
     def _role_category(self, faculty_types: list[str], titles: list[str]) -> str:
         joined_titles = " ".join(titles).lower()
-        if "dean" in joined_titles:
+        administrator_terms = (
+            "dean",
+            "president",
+            "provost",
+            "vice president",
+        )
+        if any(term in joined_titles for term in administrator_terms):
             return "administrator"
         if any("faculty" in faculty_type.lower() for faculty_type in faculty_types):
             return "faculty"

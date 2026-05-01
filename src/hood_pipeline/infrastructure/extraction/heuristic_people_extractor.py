@@ -283,6 +283,16 @@ class HeuristicPeopleExtractor:
         lowered_name = name.lower()
         if f"head coach {lowered_name}" in lowered or f"coach {lowered_name}" in lowered:
             return "coach", "Coach context found near the name."
+        if re.search(rf"{re.escape(lowered_name)}.{{0,100}}\b(assistant director of athletics|graduate assistant)\b", lowered):
+            return "staff", "Athletics staff title found near the name."
+        if re.search(rf"{re.escape(lowered_name)}.{{0,130}}\b(assistant professor|associate professor|visiting assistant professor|professor|instructor)\b", lowered):
+            return "faculty", "Academic title found near the name."
+        if re.search(rf"{re.escape(lowered_name)}.{{0,130}}\b(provost|dean|vice president|president of hood|hood'?s .* president)\b", lowered):
+            return "administrator", "Senior academic or administrative title found near the name."
+        if re.search(rf"\b(board chair|hood.?s own president|hood college president|dean|provost|vice president).{{0,80}}{re.escape(lowered_name)}\b", lowered):
+            return "administrator", "Senior academic or administrative title found near the name."
+        if re.search(rf"{re.escape(lowered_name)}.{{0,100}}\bsenior (climate )?advisor\b", lowered):
+            return "guest", "External advisor context found near the name."
         if self._student_leadership_context(lowered, lowered_name):
             return "student", "Student leadership context found near the name."
         if any(f"{title} {lowered_name}" in lowered for title in ("president", "dean", "vice president")):

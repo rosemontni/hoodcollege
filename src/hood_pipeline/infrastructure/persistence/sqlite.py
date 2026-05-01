@@ -561,13 +561,14 @@ def _parse_datetime(value: str | None) -> datetime | None:
 
 ROLE_PRIORITY = {
     "person": 0,
-    "student": 1,
-    "student-athlete": 2,
-    "alumni": 2,
-    "staff": 3,
-    "faculty": 4,
+    "guest": 1,
+    "student": 2,
+    "student-athlete": 3,
+    "alumni": 3,
+    "staff": 4,
     "coach": 4,
-    "administrator": 5,
+    "faculty": 5,
+    "administrator": 6,
 }
 
 

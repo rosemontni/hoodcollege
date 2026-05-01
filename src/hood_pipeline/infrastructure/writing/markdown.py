@@ -73,9 +73,10 @@ class MarkdownDiscoveryWriter:
         if merged_mentions:
             for name, item in merged_mentions.items():
                 article_label = "article" if item["article_count"] == 1 else "articles"
+                context_preview = str(item["context"])[:220].rstrip()
                 lines.append(
                     f"- **{name}** ({item['role_category']}, {item['article_count']} {article_label}) - "
-                    f"stories dated {item['story_dates_label']}; {item['context'][:220]}"
+                    f"stories dated {item['story_dates_label']}; {context_preview}"
                 )
         else:
             lines.append("- No people were extracted for this day.")
@@ -432,13 +433,14 @@ class MarkdownMonthlyWriter:
     def _preferred_role(self, current_role: str, new_role: str) -> str:
         priority = {
             "person": 0,
-            "student": 1,
-            "student-athlete": 2,
-            "alumni": 2,
-            "staff": 3,
-            "faculty": 4,
+            "guest": 1,
+            "student": 2,
+            "student-athlete": 3,
+            "alumni": 3,
+            "staff": 4,
             "coach": 4,
-            "administrator": 5,
+            "faculty": 5,
+            "administrator": 6,
         }
         if priority.get(new_role, 0) >= priority.get(current_role, 0):
             return new_role

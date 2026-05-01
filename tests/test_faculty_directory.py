@@ -33,6 +33,14 @@ class FacultyDirectoryReaderTest(unittest.TestCase):
             <p>Email</p><p>boulton@hood.edu</p>
           </div>
 
+          <div class="faculty__listing__member">
+            <h2><a href="/academics/faculty/debbie-ricker">Debbie Ricker</a></h2>
+            <ul><li>Undergraduate Faculty</li></ul>
+            <p>President</p>
+            <p>Professor of Biology</p>
+            <p>Email</p><p>ricker@hood.edu</p>
+          </div>
+
           <h2>Work at Hood</h2>
         </main>
         """
@@ -42,7 +50,7 @@ class FacultyDirectoryReaderTest(unittest.TestCase):
             date(2026, 4, 29),
         )
 
-        self.assertEqual([record.name for record in records], ["Aaron Angello", "April Boulton"])
+        self.assertEqual([record.name for record in records], ["Aaron Angello", "April Boulton", "Debbie Ricker"])
         self.assertEqual(records[0].role_category, "faculty")
         self.assertEqual(records[0].faculty_types, ["Undergraduate Faculty", "Graduate Faculty"])
         self.assertEqual(records[0].titles, ["Assistant Professor of English"])
@@ -53,6 +61,7 @@ class FacultyDirectoryReaderTest(unittest.TestCase):
         self.assertTrue(records[0].active)
         self.assertEqual(records[1].role_category, "administrator")
         self.assertIn("Dean of the Graduate School", records[1].titles)
+        self.assertEqual(records[2].role_category, "administrator")
 
 
 class FacultyDirectoryPersistenceTest(unittest.TestCase):

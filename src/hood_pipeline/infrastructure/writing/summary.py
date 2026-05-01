@@ -18,6 +18,7 @@ ROLE_LABELS = {
     "student": "Students",
     "student-athlete": "Student-Athletes",
     "coach": "Coaches",
+    "guest": "Guests / External Partners",
     "person": "Unclassified People",
 }
 
@@ -29,6 +30,7 @@ ROLE_ORDER = [
     "administrator",
     "alumni",
     "coach",
+    "guest",
     "person",
 ]
 
