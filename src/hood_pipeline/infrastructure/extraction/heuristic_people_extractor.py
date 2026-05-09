@@ -87,6 +87,7 @@ class HeuristicPeopleExtractor:
         "Set",
         "Speaker",
         "Spartans",
+        "Staff",
         "Stories",
         "Story",
         "Summary",
@@ -108,6 +109,7 @@ class HeuristicPeopleExtractor:
         "Blazers",
         "Brewers",
         "Hawks",
+        "Mid-Distance",
     }
     BLOCKED_PHRASES = (
         "By Mason Cavalier",
@@ -209,16 +211,14 @@ class HeuristicPeopleExtractor:
     )
 
     def extract(self, article) -> list[PersonMention]:
-        sentences = re.split(r"(?<=[.!?])\s+", article.body)
         mentions: "OrderedDict[str, PersonMention]" = OrderedDict()
 
-        for sentence in sentences:
-            clean_sentence = " ".join(sentence.split())
-            if len(clean_sentence) < 20:
+        for context_window in self._context_windows(article.body):
+            if len(context_window) < 20:
                 continue
-            for match in self.NAME_PATTERN.finditer(clean_sentence):
+            for match in self.NAME_PATTERN.finditer(context_window):
                 name = match.group(1).strip()
-                local_context = clean_sentence[max(0, match.start() - 80) : match.end() + 80]
+                local_context = context_window[max(0, match.start() - 80) : match.end() + 80]
                 if self._blocked(name, local_context):
                     continue
                 if not self._has_context_evidence(name, local_context, article.source_id):
@@ -233,17 +233,28 @@ class HeuristicPeopleExtractor:
                         name=name,
                         role_category=role_category,
                         role_text=role_text,
-                        context=clean_sentence[:500],
+                        context=context_window[:500],
                         confidence=confidence,
                         inclusion_note=f"Matched a plausible full name with nearby role context in {article.source_id}.",
                     )
         return list(mentions.values())
+
+    def _context_windows(self, body: str) -> list[str]:
+        windows: list[str] = []
+        for block in re.split(r"\n+", body):
+            for sentence in re.split(r"(?<=[.!?])\s+", block):
+                clean_sentence = " ".join(sentence.split())
+                if clean_sentence:
+                    windows.append(clean_sentence)
+        return windows
 
     def _blocked(self, name: str, context: str) -> bool:
         if any(phrase in name for phrase in self.BLOCKED_PHRASES):
             return True
         tokens = set(name.split())
         if any(token in self.BLOCKED_TOKENS for token in tokens):
+            return True
+        if self._looks_like_parenthetical_location_or_school(name, context):
             return True
         if self._looks_like_academic_program(name, context):
             return True
@@ -252,6 +263,10 @@ class HeuristicPeopleExtractor:
         if len(name.split()) != 2:
             return True
         return False
+
+    def _looks_like_parenthetical_location_or_school(self, name: str, context: str) -> bool:
+        escaped_name = re.escape(name)
+        return re.search(rf"\([^)()]*/\s*{escaped_name}\)", context) is not None
 
     def _looks_like_academic_program(self, name: str, context: str) -> bool:
         tokens = name.split()

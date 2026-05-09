@@ -96,6 +96,8 @@ class HeuristicPeopleExtractorTest(unittest.TestCase):
             "Ripley Person",
             "Shrove Tuesday",
             "Souder Named",
+            "Sappe Mid-Distance",
+            "Staff Are",
             "Students Write",
             "Wisteria Magazine",
         }
@@ -115,7 +117,8 @@ class HeuristicPeopleExtractorTest(unittest.TestCase):
                 "Watershed Studies, Archaeology English, Army Reserve, Blazer Radio, Brodbeck Hall, "
                 "Coffman Chapel, Colburn School, Creative Writing, Delaplaine School, Different Type, "
                 "Enhance Pre, Fall Festival, Family Farmer, Following Move-In, Honors Partner, Integrating Art, "
-                "Leading Colleges, Look Back, Ripley Person, Shrove Tuesday, Souder Named, Students Write, "
+                "Leading Colleges, Look Back, Ripley Person, Shrove Tuesday, Souder Named, Sappe Mid-Distance, "
+                "Staff Are, Students Write, "
                 "and Wisteria Magazine in the page text."
             ),
             content_hash="ghi",
@@ -172,6 +175,53 @@ class HeuristicPeopleExtractorTest(unittest.TestCase):
         self.assertEqual(names["Susan Ensel"], "faculty")
         self.assertEqual(names["Rachel Lamb"], "guest")
         self.assertEqual(names["Matthew Gelhard"], "staff")
+
+    def test_does_not_join_story_listing_titles_into_fake_names(self) -> None:
+        article = FetchedArticle(
+            source_id="hood_stories",
+            url="https://www.hood.edu/discover/stories",
+            title="Stories listing",
+            published_at=None,
+            published_at_source="unknown",
+            fetched_at=datetime.now(),
+            body=(
+                "Lucelia Justiniano ’08 | Local Law Advocacy and Mentorship\n"
+                "Worth the Work\n"
+                "Alumni\n"
+                "Graduate Student Spotlight | Collin Dunnam\n"
+                "Graduate School"
+            ),
+            content_hash="pqr",
+            is_relevant=True,
+            relevance_reason="accepted",
+        )
+
+        names = {mention.name for mention in self.extractor.extract(article)}
+
+        self.assertIn("Lucelia Justiniano", names)
+        self.assertNotIn("Mentorship Worth", names)
+
+    def test_blocks_athletics_parenthetical_school_as_name(self) -> None:
+        article = FetchedArticle(
+            source_id="hood_athletics_general",
+            url="https://hoodathletics.com/news/example",
+            title="Athletics awards",
+            published_at=None,
+            published_at_source="unknown",
+            fetched_at=datetime.now(),
+            body=(
+                "Catie Roberts (Elkton, Md./North East) - Soccer #12 Catie Roberts "
+                "5' 6\" Senior was honored by the department."
+            ),
+            content_hash="stu",
+            is_relevant=True,
+            relevance_reason="accepted",
+        )
+
+        names = {mention.name for mention in self.extractor.extract(article)}
+
+        self.assertIn("Catie Roberts", names)
+        self.assertNotIn("North East", names)
 
 
 if __name__ == "__main__":
