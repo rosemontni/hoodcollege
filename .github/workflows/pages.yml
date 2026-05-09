@@ -11,6 +11,14 @@ on:
       - "src/**"
       - "data/monthly/**"
       - "data/summary/**"
+  workflow_run:
+    workflows:
+      - Daily Hood Pipeline
+      - Weekly Hood Connections
+    types:
+      - completed
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -24,11 +32,14 @@ concurrency:
 
 jobs:
   build:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Set up Python
         uses: actions/setup-python@v5

@@ -133,7 +133,7 @@ Current schedule details:
 
 The scheduled workflows install dependencies, run the CLI, and commit generated `data/` outputs back to `main`.
 The first calendar-day run each month also publishes the previous month’s report because `daily-run` now triggers that step automatically on day 1.
-The Pages workflow builds `_site/` from `data/summary/` and `data/monthly/` and deploys that artifact to the repository's GitHub Pages environment.
+The Pages workflow builds `_site/` from `data/summary/` and `data/monthly/` and deploys that artifact to the repository's GitHub Pages environment. It deploys after direct pushes to relevant paths and after successful daily or weekly pipeline completions, which keeps the site fresh even when generated data was committed by GitHub Actions.
 
 ## Known Limitations
 

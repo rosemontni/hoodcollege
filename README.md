@@ -103,6 +103,8 @@ GitHub Actions workflows now live in `.github/workflows/`:
 - `weekly-pipeline.yml`: runs the weekly connections report on a schedule and commits generated `data/` outputs back to `main`
 - `pages.yml`: builds and deploys the GitHub Pages site from the current summary artifacts on `main`
 
+The Pages workflow runs after normal pushes to relevant code, docs, and generated summary paths. It also runs after successful scheduled daily or weekly pipeline runs, so GitHub Pages is refreshed from the latest committed `data/summary/` and `data/monthly/` artifacts even when the update was produced by GitHub Actions.
+
 Current schedules:
 
 - daily pipeline: `13:05 UTC` every day
