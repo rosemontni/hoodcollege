@@ -14,6 +14,20 @@ class _WeeklyServices:
         self.sqlite = SQLiteStore(root / "test.db")
         self.sqlite.initialize()
         self.connection_writer = MarkdownConnectionWriter(root / "connections")
+        self.social_network_writer = _FakeSocialNetworkWriter(root / "summary")
+
+
+class _FakeSocialNetworkWriter:
+    def __init__(self, summary_dir: Path) -> None:
+        self.summary_dir = summary_dir
+
+    def write_report(self, report):
+        self.summary_dir.mkdir(parents=True, exist_ok=True)
+        markdown_path = self.summary_dir / "social-network-analysis.md"
+        json_path = self.summary_dir / "social-network-analysis.json"
+        markdown_path.write_text("# sna\n", encoding="utf-8")
+        json_path.write_text("{}\n", encoding="utf-8")
+        return str(markdown_path), str(json_path)
 
 
 class WeeklyRunTest(unittest.TestCase):

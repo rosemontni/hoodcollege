@@ -18,6 +18,7 @@ from hood_pipeline.infrastructure.writing.markdown import (
     MarkdownMonthlyWriter,
 )
 from hood_pipeline.infrastructure.writing.pages import GitHubPagesSiteWriter
+from hood_pipeline.infrastructure.writing.social_network import SocialNetworkAnalysisWriter
 from hood_pipeline.infrastructure.writing.summary import SummaryArtifactsWriter
 
 
@@ -34,6 +35,7 @@ class Services:
     directory_writer: MarkdownDirectoryWriter
     monthly_writer: MarkdownMonthlyWriter
     summary_writer: SummaryArtifactsWriter
+    social_network_writer: SocialNetworkAnalysisWriter
     pages_writer: GitHubPagesSiteWriter
     faculty_directory_reader: HoodFacultyDirectoryReader
     source_readers: dict[str, object]
@@ -63,6 +65,7 @@ def build_services() -> Services:
         directory_writer=MarkdownDirectoryWriter(config.directory_dir),
         monthly_writer=MarkdownMonthlyWriter(config.monthly_reports_dir),
         summary_writer=SummaryArtifactsWriter(config.summary_dir),
+        social_network_writer=SocialNetworkAnalysisWriter(config.summary_dir),
         pages_writer=GitHubPagesSiteWriter(
             config.repo_root.name,
             config.summary_dir,

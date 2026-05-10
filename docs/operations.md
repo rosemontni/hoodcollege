@@ -15,7 +15,8 @@ The current implementation has four primary workflows plus a Pages publishing wo
 5. person mention extraction
 6. SQLite persistence
 7. markdown discovery writing
-8. first-of-month prior-month report publishing
+8. social network analysis refresh
+9. first-of-month prior-month report publishing
 
 ### Weekly workflow
 
@@ -25,6 +26,18 @@ The current implementation has four primary workflows plus a Pages publishing wo
 2. building pairwise cumulative co-mention connections
 3. storing a cumulative connection snapshot
 4. writing a markdown weekly network report
+5. refreshing the narrated social network analysis report
+
+### Social network analysis workflow
+
+`social-network-run` performs:
+
+1. loading all stored article-scoped people evidence observed up to the run date
+2. building a cumulative public co-mention graph
+3. computing strongest bonds, most connected people by role, faculty public visibility, faculty-administration connectors, brokerage, articulation people, local bridges, role mixing, emerging people, and connected communities
+4. writing a narrated markdown report plus JSON data to `data/summary`
+
+Every metric section includes a short explanation of why the measure is used and how to interpret it safely. The report treats graph edges as public co-mentions in stored sources, not private relationships.
 
 ### Monthly workflow
 
@@ -88,6 +101,8 @@ Default outputs:
 - cumulative discovery graph: `data/summary/discovery-growth.svg`
 - daily connection network graph: `data/summary/connection-network.svg`
 - daily interactive connection network page: `data/summary/connection-network.html`
+- social network analysis report: `data/summary/social-network-analysis.md`
+- social network analysis JSON: `data/summary/social-network-analysis.json`
 
 Generated runtime data is intentionally ignored by Git.
 GitHub Actions force-adds the generated `data/` outputs when it commits scheduled pipeline updates back to `main`, and the Pages workflow reads from those committed summary artifacts.
@@ -116,6 +131,7 @@ The current quality approach favors traceable plausibility over aggressive recal
 - preserve article-scoped mention context
 - avoid strong connection claims beyond co-mentions
 - keep cumulative summary counts based on canonical `people.first_seen`
+- label social network metrics as public co-mention signals, not private influence or personal relationship claims
 
 ## GitHub Actions
 
@@ -133,7 +149,7 @@ Current schedule details:
 
 The scheduled workflows install dependencies, run the CLI, and commit generated `data/` outputs back to `main`.
 The first calendar-day run each month also publishes the previous month’s report because `daily-run` now triggers that step automatically on day 1.
-The Pages workflow builds `_site/` from `data/summary/` and `data/monthly/` and deploys that artifact to the repository's GitHub Pages environment. It deploys after direct pushes to relevant paths and after successful daily or weekly pipeline completions, which keeps the site fresh even when generated data was committed by GitHub Actions.
+The Pages workflow builds `_site/` from `data/summary/` and `data/monthly/` and deploys that artifact to the repository's GitHub Pages environment. It includes the narrated social network analysis report when present. It deploys after direct pushes to relevant paths and after successful daily or weekly pipeline completions, which keeps the site fresh even when generated data was committed by GitHub Actions.
 
 ## Known Limitations
 

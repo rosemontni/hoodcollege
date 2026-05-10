@@ -377,6 +377,25 @@ class SQLiteStore:
                 (run_date.isoformat(),),
             ).fetchall()
 
+    def network_evidence_through_date(self, run_date: date) -> list[sqlite3.Row]:
+        with self.session() as connection:
+            return connection.execute(
+                """
+                SELECT ap.article_url,
+                       ap.name,
+                       COALESCE(p.role_category, ap.role_category) AS role_category,
+                       ap.seen_date,
+                       COALESCE(a.source_id, 'unknown') AS source_id,
+                       COALESCE(a.title, '') AS title
+                FROM article_people ap
+                LEFT JOIN people p ON p.name = ap.name
+                LEFT JOIN articles a ON a.id = ap.article_id
+                WHERE ap.seen_date <= ?
+                ORDER BY ap.article_url, lower(ap.name), ap.name
+                """,
+                (run_date.isoformat(),),
+            ).fetchall()
+
     def replace_weekly_connections(self, week_start: date, connections: list[WeeklyConnection]) -> None:
         with self.session() as connection:
             connection.execute(

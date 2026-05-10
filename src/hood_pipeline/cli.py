@@ -8,6 +8,7 @@ from hood_pipeline.application.build_pages import BuildPagesSiteService
 from hood_pipeline.application.daily_run import DailyRunService
 from hood_pipeline.application.faculty_staff_import import FacultyStaffImportService
 from hood_pipeline.application.monthly_run import MonthlyRunService
+from hood_pipeline.application.social_network_run import SocialNetworkRunService
 from hood_pipeline.application.weekly_run import WeeklyRunService
 from hood_pipeline.bootstrap import build_services
 
@@ -24,6 +25,12 @@ def build_parser() -> argparse.ArgumentParser:
 
     monthly = subcommands.add_parser("monthly-run", help="Build the prior-month report.")
     monthly.add_argument("--date", dest="run_date", help="Publication date in YYYY-MM-DD.")
+
+    social_network = subcommands.add_parser(
+        "social-network-run",
+        help="Build the cumulative social network analysis report.",
+    )
+    social_network.add_argument("--date", dest="run_date", help="Run date in YYYY-MM-DD.")
 
     faculty_staff = subcommands.add_parser(
         "import-faculty-staff",
@@ -97,6 +104,17 @@ def main(argv: list[str] | None = None) -> int:
         print(
             f"Monthly run complete for {result.run_date}: "
             f"{len(result.articles)} articles, report {result.report_path}"
+        )
+        return 0
+
+    if args.command == "social-network-run":
+        run_date = _parse_date(args.run_date) or services.clock.now().date()
+        result = SocialNetworkRunService(services).run(run_date)
+        print(
+            f"Social network analysis complete for {result.run_date}: "
+            f"{result.report.overview['people']} people, "
+            f"{result.report.overview['connections']} connections, "
+            f"report {result.markdown_path}, json {result.json_path}"
         )
         return 0
 

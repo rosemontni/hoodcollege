@@ -134,6 +134,19 @@ class _FakeMonthlyWriter:
         return str(path)
 
 
+class _FakeSocialNetworkWriter:
+    def __init__(self, summary_dir: Path) -> None:
+        self.summary_dir = summary_dir
+
+    def write_report(self, report):
+        self.summary_dir.mkdir(parents=True, exist_ok=True)
+        markdown_path = self.summary_dir / "social-network-analysis.md"
+        json_path = self.summary_dir / "social-network-analysis.json"
+        markdown_path.write_text("# sna\n", encoding="utf-8")
+        json_path.write_text("{}\n", encoding="utf-8")
+        return str(markdown_path), str(json_path)
+
+
 class _FakeServices:
     def __init__(self, db_path: Path, discoveries_dir: Path, metadata: dict | None = None) -> None:
         self.config = _FakeConfig(db_path, discoveries_dir, metadata=metadata)
@@ -146,6 +159,7 @@ class _FakeServices:
         self.discovery_writer = _FakeWriter(discoveries_dir)
         self.summary_writer = _FakeSummaryWriter(discoveries_dir.parent / "summary")
         self.monthly_writer = _FakeMonthlyWriter(discoveries_dir.parent / "monthly")
+        self.social_network_writer = _FakeSocialNetworkWriter(discoveries_dir.parent / "summary")
         self.source_readers = {"fake": _FakeReader()}
 
 

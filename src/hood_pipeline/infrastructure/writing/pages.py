@@ -36,6 +36,10 @@ class GitHubPagesSiteWriter:
             "discovery-growth.svg",
             "discovery-summary.md",
         ]
+        optional_artifact_names = [
+            "social-network-analysis.md",
+            "social-network-analysis.json",
+        ]
         source_paths = {name: self.summary_dir / name for name in artifact_names}
         missing = [name for name, path in source_paths.items() if not path.exists()]
         if missing:
@@ -46,12 +50,23 @@ class GitHubPagesSiteWriter:
 
         for name, source_path in source_paths.items():
             shutil.copyfile(source_path, output_dir / name)
+        optional_source_paths = {
+            name: self.summary_dir / name
+            for name in optional_artifact_names
+            if (self.summary_dir / name).exists()
+        }
+        for name, source_path in optional_source_paths.items():
+            shutil.copyfile(source_path, output_dir / name)
 
         summary_text = source_paths["discovery-summary.md"].read_text(encoding="utf-8")
+        social_network_text = ""
+        social_network_path = optional_source_paths.get("social-network-analysis.md")
+        if social_network_path is not None:
+            social_network_text = social_network_path.read_text(encoding="utf-8")
         table = self._parse_summary_table(summary_text)
         monthly_reports = self._build_monthly_reports(output_dir)
         index_path = output_dir / "index.html"
-        index_html = self._render_index(table, monthly_reports)
+        index_html = self._render_index(table, monthly_reports, social_network_text)
         index_path.write_text(index_html, encoding="utf-8")
         (output_dir / "404.html").write_text(index_html, encoding="utf-8")
         (output_dir / ".nojekyll").write_text("", encoding="utf-8")
@@ -74,12 +89,18 @@ class GitHubPagesSiteWriter:
     def _split_row(row: str) -> list[str]:
         return [cell.strip() for cell in row.strip().strip("|").split("|")]
 
-    def _render_index(self, table: SummaryTable, monthly_reports: list[MonthlyReportEntry]) -> str:
+    def _render_index(
+        self,
+        table: SummaryTable,
+        monthly_reports: list[MonthlyReportEntry],
+        social_network_text: str,
+    ) -> str:
         latest_date = table.rows[-1][0] if table.rows else "No data yet"
         latest_total = table.rows[-1][-1] if table.rows else "0"
         table_html = self._render_table(table)
         latest_monthly_html = self._render_latest_monthly(monthly_reports[0]) if monthly_reports else self._render_empty_monthly()
         archive_html = self._render_monthly_archive(monthly_reports)
+        social_network_html = self._render_social_network_card(social_network_text)
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -350,6 +371,8 @@ class GitHubPagesSiteWriter:
           </div>
         </section>
 
+        {social_network_html}
+
         <section class="card">
           <div class="card-body">
             <h2>Monthly Report</h2>
@@ -381,6 +404,40 @@ class GitHubPagesSiteWriter:
             f"<thead><tr>{header_html}</tr></thead>"
             f"<tbody>{''.join(row_html)}</tbody>"
             "</table>"
+        )
+
+    def _render_social_network_card(self, markdown_text: str) -> str:
+        if not markdown_text:
+            return (
+                '<section class="card">'
+                '<div class="card-body">'
+                '<h2>Social Network Analysis</h2>'
+                '<p>The social network report will appear after the next daily or weekly pipeline run.</p>'
+                '</div>'
+                '</section>'
+            )
+        title = "Social Network Analysis"
+        preview = ""
+        for line in markdown_text.splitlines():
+            stripped = line.strip()
+            if stripped.startswith("# "):
+                title = stripped[2:].strip()
+                continue
+            if stripped and not stripped.startswith("#") and not stripped.startswith("|") and not stripped.startswith("- "):
+                preview = stripped
+                break
+        return (
+            '<section class="card">'
+            '<div class="card-body">'
+            f'<h2>{escape(title)}</h2>'
+            f'<p>{self._render_inline_markdown(preview)}</p>'
+            '<div class="links">'
+            '<a href="social-network-analysis.md">Open narrated report</a>'
+            '<a href="social-network-analysis.json">Open JSON data</a>'
+            '</div>'
+            '<p class="footnote">The SNA layer is evidence-based: links mean public co-mentions in stored sources, not private relationships.</p>'
+            '</div>'
+            '</section>'
         )
 
     def _build_monthly_reports(self, output_dir: Path) -> list[MonthlyReportEntry]:

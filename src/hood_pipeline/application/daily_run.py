@@ -7,6 +7,7 @@ from pathlib import Path
 
 from hood_pipeline.application.connection_network import build_cumulative_connections
 from hood_pipeline.application.monthly_run import MonthlyRunService
+from hood_pipeline.application.social_network_run import SocialNetworkRunService
 from hood_pipeline.domain.models import DailyRunResult, FetchedArticle, SourceDefinition
 
 
@@ -136,6 +137,7 @@ class DailyRunService:
             connection_graph_name=Path(connection_graph_path).name,
             connection_graph_html_name=Path(connection_graph_html_path).name,
         )
+        SocialNetworkRunService(self.services).run(run_date)
         if run_date.day == 1:
             monthly_report_path = MonthlyRunService(self.services).run(run_date).report_path
         return DailyRunResult(

@@ -112,9 +112,31 @@ Suggested structure:
 3. notable clusters
 4. evidence notes
 
+### Social network analysis report
+
+Planned paths:
+
+- `data/summary/social-network-analysis.md`
+- `data/summary/social-network-analysis.json`
+
+Suggested structure:
+
+1. scope note explaining that links are public co-mentions, not private relationships
+2. network overview
+3. strongest public co-mention bonds
+4. most connected people by role
+5. faculty public visibility
+6. faculty-administration connectors
+7. brokerage and articulation people
+8. local bridge bonds
+9. role mixing
+10. emerging people in the last 30 days
+11. connected communities
+
 ## Record Quality Rules
 
 - every promoted person record must have at least one source article
 - every weekly connection must cite article support
+- every social network metric must be explainable from article-scoped evidence and include narration about safe interpretation
 - ambiguous matches should remain article-scoped until confidence improves
 - extraction revisions should be able to reprocess recent articles cleanly

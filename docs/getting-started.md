@@ -54,7 +54,7 @@ The daily run:
 5. extracts person mentions
 6. stores article and mention records in SQLite
 7. writes a daily markdown story
-8. updates the cumulative discovery summary table, discovery graph, top-25 connection network graph, and draggable connection-network HTML page
+8. updates the cumulative discovery summary table, discovery graph, top-25 connection network graph, draggable connection-network HTML page, and narrated social network analysis report
 9. if the run date is the first day of a month, publishes the prior-month report to `data/monthly`
 
 ## Run The Weekly Report
@@ -70,6 +70,15 @@ python -m hood_pipeline weekly-run --date 2026-03-20
 ```
 
 The weekly run currently writes a cumulative co-mention network snapshot using all stored mentions observed up to the run date.
+It also refreshes the social network analysis report so the strongest bonds, role leaders, faculty visibility, bridge people, role mixing, emerging people, and connected communities stay current.
+
+## Run The Social Network Analysis Report
+
+```powershell
+python -m hood_pipeline social-network-run --date 2026-05-09
+```
+
+This command rebuilds `data/summary/social-network-analysis.md` and `data/summary/social-network-analysis.json` from stored evidence without fetching new sources. The report explains each metric choice in plain language and treats links as public co-mentions rather than private relationships.
 
 ## Run The Monthly Report
 
@@ -100,7 +109,8 @@ This command packages the generated summary artifacts into a static site that Gi
 2. the draggable `connection-network.html` page
 3. the static SVG graphs
 4. the discovery summary markdown snapshot
-5. the monthly report archive
+5. the social network analysis markdown and JSON artifacts
+6. the monthly report archive
 
 ## Run Tests
 
