@@ -1591,8 +1591,8 @@
         "mention_count": 1,
         "name": "Andrea Chapdelaine",
         "pagerank": 0.006293,
-        "recent_degree": 3,
-        "recent_mentions": 1,
+        "recent_degree": 0,
+        "recent_mentions": 0,
         "role": "administrator",
         "role_label": "Administrators",
         "source_count": 1,
@@ -2646,7 +2646,7 @@
       "weighted_count": 5
     }
   ],
-  "run_date": "2026-05-09",
+  "run_date": "2026-05-10",
   "strongest_bonds": [
     {
       "jaccard": 1.0,

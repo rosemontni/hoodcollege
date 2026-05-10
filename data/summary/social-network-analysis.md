@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-05-09
+# Hood College Social Network Analysis for 2026-05-10
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
