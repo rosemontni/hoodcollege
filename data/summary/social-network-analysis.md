@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-05-13
+# Hood College Social Network Analysis for 2026-05-14
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -276,15 +276,15 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | 1 | Debbie Ricker | Administrators | 21 | 27 | 20 | 2 | 0.01998 | 0.029390 | 3 | 8 |
 | 2 | Derrick Harrigan | Alumni | 6 | 9 | 3 | 1 | 0.00009 | 0.009141 | 2 | 6 |
 | 3 | Nilah Magruder | Alumni | 6 | 9 | 3 | 1 | 0.00009 | 0.009141 | 2 | 6 |
-| 4 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.00869 | 0.006624 | 2 | 6 |
-| 5 | Laura Brown | Alumni | 2 | 2 | 2 | 1 | 0.00000 | 0.003232 | 2 | 2 |
-| 6 | Lucelia Justiniano | Unclassified People | 2 | 2 | 2 | 1 | 0.00000 | 0.003232 | 2 | 2 |
-| 7 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00274 | 0.010365 | 1 | 9 |
-| 8 | Aaron Heller | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
-| 9 | Adam Labows | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
-| 10 | Aylene Noy | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
-| 11 | Catie Roberts | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
-| 12 | Declan Sullivan | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
+| 4 | Laura Brown | Alumni | 2 | 2 | 2 | 1 | 0.00000 | 0.003232 | 2 | 2 |
+| 5 | Lucelia Justiniano | Unclassified People | 2 | 2 | 2 | 1 | 0.00000 | 0.003232 | 2 | 2 |
+| 6 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00274 | 0.010365 | 1 | 9 |
+| 7 | Aaron Heller | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
+| 8 | Adam Labows | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
+| 9 | Aylene Noy | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
+| 10 | Catie Roberts | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
+| 11 | Declan Sullivan | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
+| 12 | Josh Gall | Alumni | 9 | 9 | 1 | 1 | 0.00000 | 0.006220 | 1 | 9 |
 
 ## Connected Communities
 
