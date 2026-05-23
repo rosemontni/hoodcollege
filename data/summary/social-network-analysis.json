@@ -2261,8 +2261,8 @@
         "mention_count": 3,
         "name": "Matthew Gelhard",
         "pagerank": 0.00609,
-        "recent_degree": 1,
-        "recent_mentions": 1,
+        "recent_degree": 0,
+        "recent_mentions": 0,
         "role": "staff",
         "role_label": "Staff",
         "source_count": 1,
@@ -2728,7 +2728,7 @@
       "weighted_count": 5
     }
   ],
-  "run_date": "2026-05-22",
+  "run_date": "2026-05-23",
   "strongest_bonds": [
     {
       "jaccard": 1.0,
