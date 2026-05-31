@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-05-30
+# Hood College Social Network Analysis for 2026-05-31
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -277,18 +277,18 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 21 | 27 | 20 | 2 | 0.02068 | 0.029160 | 3 | 8 |
-| 2 | Derrick Harrigan | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.009016 | 2 | 6 |
-| 3 | Nilah Magruder | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.009016 | 2 | 6 |
-| 4 | Maimouna Diouf | Unclassified People | 3 | 3 | 2 | 1 | 0.00185 | 0.005302 | 2 | 3 |
-| 5 | Lucelia Justiniano | Unclassified People | 2 | 2 | 2 | 1 | 0.00000 | 0.003334 | 2 | 2 |
-| 6 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00259 | 0.010147 | 1 | 9 |
-| 7 | Aaron Heller | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
-| 8 | Adam Labows | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
-| 9 | Aylene Noy | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
-| 10 | Catie Roberts | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
-| 11 | Declan Sullivan | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
-| 12 | Josh Gall | Alumni | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 1 | Debbie Ricker | Administrators | 21 | 27 | 20 | 2 | 0.02068 | 0.029160 | 2 | 7 |
+| 2 | Maimouna Diouf | Unclassified People | 3 | 3 | 2 | 1 | 0.00185 | 0.005302 | 2 | 3 |
+| 3 | Lucelia Justiniano | Unclassified People | 2 | 2 | 2 | 1 | 0.00000 | 0.003334 | 2 | 2 |
+| 4 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00259 | 0.010147 | 1 | 9 |
+| 5 | Aaron Heller | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 6 | Adam Labows | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 7 | Aylene Noy | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 8 | Catie Roberts | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 9 | Declan Sullivan | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 10 | Josh Gall | Alumni | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 11 | Kara Heidlauf | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
+| 12 | Nino Rizzolino | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006089 | 1 | 9 |
 
 ## Connected Communities
 
