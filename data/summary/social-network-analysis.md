@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-06-05
+# Hood College Social Network Analysis for 2026-06-06
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -283,12 +283,12 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | 4 | Maimouna Diouf | Unclassified People | 4 | 4 | 2 | 1 | 0.00188 | 0.006162 | 2 | 4 |
 | 5 | Christoph Johnson | Alumni | 3 | 3 | 2 | 1 | 0.00000 | 0.004354 | 2 | 3 |
 | 6 | Lucelia Justiniano | Unclassified People | 3 | 3 | 2 | 1 | 0.00000 | 0.004354 | 2 | 3 |
-| 7 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00257 | 0.010086 | 1 | 9 |
-| 8 | Aaron Heller | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006053 | 1 | 9 |
-| 9 | Adam Labows | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006053 | 1 | 9 |
-| 10 | Aylene Noy | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.006053 | 1 | 9 |
-| 11 | Catie Roberts | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006053 | 1 | 9 |
-| 12 | Declan Sullivan | Students | 9 | 9 | 1 | 1 | 0.00000 | 0.006053 | 1 | 9 |
+| 7 | April Boulton | Administrators | 14 | 17 | 7 | 1 | 0.01027 | 0.018422 | 1 | 5 |
+| 8 | Angie Auldridge | Students | 5 | 5 | 2 | 2 | 0.00000 | 0.005318 | 1 | 5 |
+| 9 | Kate Weir | Students | 5 | 5 | 1 | 1 | 0.00000 | 0.005318 | 1 | 5 |
+| 10 | Paige Eager | Administrators | 8 | 10 | 5 | 1 | 0.00370 | 0.011069 | 1 | 3 |
+| 11 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00326 | 0.013086 | 1 | 2 |
+| 12 | Isabella Peroni | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.002788 | 1 | 2 |
 
 ## Connected Communities
 
