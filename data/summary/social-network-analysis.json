@@ -774,24 +774,6 @@
       "weighted_degree": 3
     },
     {
-      "administrator_neighbor_count": 1,
-      "betweenness": 0.0,
-      "degree": 3,
-      "faculty_admin_bridge_score": 0,
-      "faculty_neighbor_count": 0,
-      "first_seen": "2026-05-07",
-      "last_seen": "2026-06-02",
-      "mention_count": 2,
-      "name": "Lucelia Justiniano",
-      "pagerank": 0.004354,
-      "recent_degree": 3,
-      "recent_mentions": 2,
-      "role": "person",
-      "role_label": "Unclassified People",
-      "source_count": 1,
-      "weighted_degree": 3
-    },
-    {
       "administrator_neighbor_count": 3,
       "betweenness": 0.01027,
       "degree": 14,
@@ -862,6 +844,24 @@
       "role_label": "Administrators",
       "source_count": 1,
       "weighted_degree": 10
+    },
+    {
+      "administrator_neighbor_count": 1,
+      "betweenness": 0.0,
+      "degree": 3,
+      "faculty_admin_bridge_score": 0,
+      "faculty_neighbor_count": 0,
+      "first_seen": "2026-05-07",
+      "last_seen": "2026-06-02",
+      "mention_count": 2,
+      "name": "Lucelia Justiniano",
+      "pagerank": 0.004354,
+      "recent_degree": 3,
+      "recent_mentions": 1,
+      "role": "person",
+      "role_label": "Unclassified People",
+      "source_count": 1,
+      "weighted_degree": 3
     },
     {
       "administrator_neighbor_count": 0,
@@ -2170,7 +2170,7 @@
         "name": "Lucelia Justiniano",
         "pagerank": 0.004354,
         "recent_degree": 3,
-        "recent_mentions": 2,
+        "recent_mentions": 1,
         "role": "person",
         "role_label": "Unclassified People",
         "source_count": 1,
@@ -2728,7 +2728,7 @@
       "weighted_count": 5
     }
   ],
-  "run_date": "2026-06-06",
+  "run_date": "2026-06-07",
   "strongest_bonds": [
     {
       "jaccard": 1.0,
