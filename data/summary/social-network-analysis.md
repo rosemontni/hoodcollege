@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-06-14
+# Hood College Social Network Analysis for 2026-06-15
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -277,18 +277,18 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 22 | 28 | 20 | 2 | 0.02224 | 0.029731 | 3 | 9 |
-| 2 | Derrick Harrigan | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.008907 | 2 | 6 |
-| 3 | Nilah Magruder | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.008907 | 2 | 6 |
-| 4 | Maimouna Diouf | Unclassified People | 4 | 4 | 2 | 1 | 0.00188 | 0.006162 | 2 | 4 |
-| 5 | Christoph Johnson | Alumni | 3 | 3 | 2 | 1 | 0.00000 | 0.004354 | 2 | 3 |
-| 6 | April Boulton | Administrators | 14 | 17 | 7 | 1 | 0.01027 | 0.018422 | 1 | 5 |
-| 7 | Angie Auldridge | Students | 5 | 5 | 2 | 2 | 0.00000 | 0.005318 | 1 | 5 |
-| 8 | Kate Weir | Students | 5 | 5 | 1 | 1 | 0.00000 | 0.005318 | 1 | 5 |
-| 9 | Paige Eager | Administrators | 8 | 10 | 5 | 1 | 0.00370 | 0.011069 | 1 | 3 |
-| 10 | Lucelia Justiniano | Unclassified People | 3 | 3 | 2 | 1 | 0.00000 | 0.004354 | 1 | 3 |
-| 11 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00326 | 0.013086 | 1 | 2 |
-| 12 | Isabella Peroni | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.002788 | 1 | 2 |
+| 1 | Debbie Ricker | Administrators | 22 | 28 | 20 | 2 | 0.02224 | 0.029731 | 2 | 6 |
+| 2 | Maimouna Diouf | Unclassified People | 4 | 4 | 2 | 1 | 0.00188 | 0.006162 | 2 | 4 |
+| 3 | Christoph Johnson | Alumni | 3 | 3 | 2 | 1 | 0.00000 | 0.004354 | 2 | 3 |
+| 4 | Paige Eager | Administrators | 8 | 10 | 5 | 1 | 0.00370 | 0.011069 | 1 | 3 |
+| 5 | Derrick Harrigan | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.008907 | 1 | 3 |
+| 6 | Nilah Magruder | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.008907 | 1 | 3 |
+| 7 | Lucelia Justiniano | Unclassified People | 3 | 3 | 2 | 1 | 0.00000 | 0.004354 | 1 | 3 |
+| 8 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00326 | 0.013086 | 1 | 2 |
+| 9 | Isabella Peroni | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.002788 | 1 | 2 |
+| 10 | Nicole Abuhamada | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.002788 | 1 | 2 |
+| 11 | Maria Bernal | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.002218 | 1 | 1 |
+| 12 | Joseph Crown | Students | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
 
 ## Connected Communities
 
