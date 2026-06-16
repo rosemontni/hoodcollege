@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-06-15
+# Hood College Social Network Analysis for 2026-06-16
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -284,11 +284,9 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | 5 | Derrick Harrigan | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.008907 | 1 | 3 |
 | 6 | Nilah Magruder | Alumni | 6 | 9 | 3 | 1 | 0.00008 | 0.008907 | 1 | 3 |
 | 7 | Lucelia Justiniano | Unclassified People | 3 | 3 | 2 | 1 | 0.00000 | 0.004354 | 1 | 3 |
-| 8 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00326 | 0.013086 | 1 | 2 |
-| 9 | Isabella Peroni | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.002788 | 1 | 2 |
-| 10 | Nicole Abuhamada | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.002788 | 1 | 2 |
-| 11 | Maria Bernal | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.002218 | 1 | 1 |
-| 12 | Joseph Crown | Students | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
+| 8 | Maria Bernal | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.002218 | 1 | 1 |
+| 9 | Joseph Crown | Students | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
+| 10 | Ron Volpe | Administrators | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
 
 ## Connected Communities
 
