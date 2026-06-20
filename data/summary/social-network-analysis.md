@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-06-19
+# Hood College Social Network Analysis for 2026-06-20
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -284,8 +284,7 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | 5 | Paige Eager | Administrators | 6 | 8 | 5 | 1 | 0.00351 | 0.009859 | 1 | 1 |
 | 6 | Maria Bernal | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.002252 | 1 | 1 |
 | 7 | David Gurzick | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.003048 | 1 | 0 |
-| 8 | Joseph Crown | Students | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
-| 9 | Ron Volpe | Administrators | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
+| 8 | Ron Volpe | Administrators | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
 
 ## Connected Communities
 

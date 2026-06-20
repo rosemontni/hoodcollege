@@ -815,24 +815,6 @@
       "degree": 0,
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
-      "first_seen": "2026-05-20",
-      "last_seen": "2026-05-20",
-      "mention_count": 1,
-      "name": "Joseph Crown",
-      "pagerank": 0.000908,
-      "recent_degree": 0,
-      "recent_mentions": 1,
-      "role": "student",
-      "role_label": "Students",
-      "source_count": 1,
-      "weighted_degree": 0
-    },
-    {
-      "administrator_neighbor_count": 0,
-      "betweenness": 0.0,
-      "degree": 0,
-      "faculty_admin_bridge_score": 0,
-      "faculty_neighbor_count": 0,
       "first_seen": "2026-06-19",
       "last_seen": "2026-06-19",
       "mention_count": 1,
@@ -2674,7 +2656,7 @@
       "weighted_count": 5
     }
   ],
-  "run_date": "2026-06-19",
+  "run_date": "2026-06-20",
   "strongest_bonds": [
     {
       "jaccard": 0.1364,
