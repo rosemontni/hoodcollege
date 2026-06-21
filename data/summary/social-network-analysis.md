@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-06-20
+# Hood College Social Network Analysis for 2026-06-21
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -278,13 +278,12 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Debbie Ricker | Administrators | 22 | 26 | 20 | 2 | 0.02254 | 0.029396 | 2 | 4 |
-| 2 | Maimouna Diouf | Unclassified People | 4 | 4 | 2 | 1 | 0.00188 | 0.006323 | 2 | 4 |
-| 3 | Christoph Johnson | Alumni | 3 | 3 | 2 | 1 | 0.00000 | 0.004483 | 2 | 3 |
+| 2 | Christoph Johnson | Alumni | 3 | 3 | 2 | 1 | 0.00000 | 0.004483 | 2 | 3 |
+| 3 | Maimouna Diouf | Unclassified People | 4 | 4 | 2 | 1 | 0.00188 | 0.006323 | 1 | 3 |
 | 4 | Lucelia Justiniano | Unclassified People | 3 | 3 | 2 | 1 | 0.00000 | 0.004483 | 1 | 3 |
 | 5 | Paige Eager | Administrators | 6 | 8 | 5 | 1 | 0.00351 | 0.009859 | 1 | 1 |
-| 6 | Maria Bernal | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.002252 | 1 | 1 |
-| 7 | David Gurzick | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.003048 | 1 | 0 |
-| 8 | Ron Volpe | Administrators | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
+| 6 | David Gurzick | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.003048 | 1 | 0 |
+| 7 | Ron Volpe | Administrators | 0 | 0 | 1 | 1 | 0.00000 | 0.000908 | 1 | 0 |
 
 ## Connected Communities
 
