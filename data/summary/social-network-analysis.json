@@ -815,8 +815,8 @@
       "degree": 0,
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
-      "first_seen": "2026-06-21",
-      "last_seen": "2026-06-21",
+      "first_seen": "2026-06-28",
+      "last_seen": "2026-06-28",
       "mention_count": 1,
       "name": "Ron Volpe",
       "pagerank": 0.000907,
@@ -2656,7 +2656,7 @@
       "weighted_count": 5
     }
   ],
-  "run_date": "2026-06-27",
+  "run_date": "2026-06-28",
   "strongest_bonds": [
     {
       "jaccard": 0.1364,
