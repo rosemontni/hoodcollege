@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-07-02
+# Hood College Social Network Analysis for 2026-07-03
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -281,16 +281,16 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Debbie Ricker | Administrators | 21 | 24 | 20 | 2 | 0.02315 | 0.026820 | 2 | 2 |
-| 2 | Christoph Johnson | Alumni | 2 | 2 | 2 | 1 | 0.00000 | 0.003306 | 2 | 2 |
-| 3 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01558 | 0.010265 | 1 | 7 |
-| 4 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00399 | 0.008555 | 1 | 7 |
-| 5 | Emily Shreiner | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
-| 6 | Kylie Mohr | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
-| 7 | Madison Knight | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
-| 8 | Maggie Miller | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
-| 9 | On Friday | Students | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
-| 10 | Sierra Ortega | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
-| 11 | Maimouna Diouf | Unclassified People | 3 | 3 | 2 | 1 | 0.00203 | 0.005232 | 1 | 2 |
+| 2 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01558 | 0.010265 | 1 | 7 |
+| 3 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00399 | 0.008555 | 1 | 7 |
+| 4 | Emily Shreiner | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
+| 5 | Kylie Mohr | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
+| 6 | Madison Knight | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
+| 7 | Maggie Miller | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
+| 8 | On Friday | Students | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
+| 9 | Sierra Ortega | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.006132 | 1 | 7 |
+| 10 | Maimouna Diouf | Unclassified People | 3 | 3 | 2 | 1 | 0.00203 | 0.005232 | 1 | 2 |
+| 11 | Christoph Johnson | Alumni | 2 | 2 | 2 | 1 | 0.00000 | 0.003306 | 1 | 2 |
 | 12 | Robin Fleming | Guests / External Partners | 2 | 2 | 2 | 1 | 0.00004 | 0.008503 | 1 | 1 |
 
 ## Connected Communities

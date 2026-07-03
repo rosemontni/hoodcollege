@@ -702,24 +702,6 @@
       "weighted_degree": 24
     },
     {
-      "administrator_neighbor_count": 1,
-      "betweenness": 0.0,
-      "degree": 2,
-      "faculty_admin_bridge_score": 0,
-      "faculty_neighbor_count": 0,
-      "first_seen": "2026-06-02",
-      "last_seen": "2026-07-01",
-      "mention_count": 2,
-      "name": "Christoph Johnson",
-      "pagerank": 0.003306,
-      "recent_degree": 2,
-      "recent_mentions": 2,
-      "role": "alumni",
-      "role_label": "Alumni",
-      "source_count": 1,
-      "weighted_degree": 2
-    },
-    {
       "administrator_neighbor_count": 0,
       "betweenness": 0.01558,
       "degree": 12,
@@ -880,6 +862,24 @@
       "role_label": "Unclassified People",
       "source_count": 1,
       "weighted_degree": 3
+    },
+    {
+      "administrator_neighbor_count": 1,
+      "betweenness": 0.0,
+      "degree": 2,
+      "faculty_admin_bridge_score": 0,
+      "faculty_neighbor_count": 0,
+      "first_seen": "2026-06-02",
+      "last_seen": "2026-07-01",
+      "mention_count": 2,
+      "name": "Christoph Johnson",
+      "pagerank": 0.003306,
+      "recent_degree": 2,
+      "recent_mentions": 1,
+      "role": "alumni",
+      "role_label": "Alumni",
+      "source_count": 1,
+      "weighted_degree": 2
     },
     {
       "administrator_neighbor_count": 0,
@@ -2782,7 +2782,7 @@
       "weighted_count": 8
     }
   ],
-  "run_date": "2026-07-02",
+  "run_date": "2026-07-03",
   "strongest_bonds": [
     {
       "jaccard": 0.125,
