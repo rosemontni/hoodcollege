@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
 <rect width="100%" height="100%" fill="#ffffff"/>
 <text x="80" y="32" font-family="Segoe UI, Arial, sans-serif" font-size="24" font-weight="700" fill="#111827">Connection Network</text>
-<text x="80" y="52" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">Top 25 people by cumulative connection degree through 2026-07-06</text>
+<text x="80" y="52" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">Top 25 people by cumulative connection degree through 2026-07-07</text>
 <rect x="65" y="105" width="1070" height="710" rx="24" fill="#f8fafc" stroke="#e5e7eb"/>
 <line x1="1085.0" y1="765.0" x2="1085.0" y2="695.0" stroke="#94a3b8" stroke-width="4.00" stroke-linecap="round" opacity="0.60"/>
 <line x1="223.7" y1="765.0" x2="115.0" y2="765.0" stroke="#94a3b8" stroke-width="2.13" stroke-linecap="round" opacity="0.35"/>
@@ -87,54 +87,54 @@
 <line x1="115.0" y1="618.2" x2="247.9" y2="621.2" stroke="#94a3b8" stroke-width="2.13" stroke-linecap="round" opacity="0.35"/>
 <circle cx="1085.0" cy="695.0" r="26.0" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
 <text x="1051.0" y="699.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Debbie Ricker</text>
-<circle cx="223.7" cy="765.0" r="21.7" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
-<text x="253.5" y="769.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Aaron Angello</text>
-<circle cx="1085.0" cy="235.2" r="20.9" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
-<text x="1056.1" y="239.2" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Jevon Yarbrough</text>
-<circle cx="1085.0" cy="765.0" r="20.0" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
-<text x="1057.0" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">April Boulton</text>
-<circle cx="1046.4" cy="765.0" r="19.1" fill="#7c3aed" stroke="#ffffff" stroke-width="2"/>
-<text x="1019.3" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Daehwan Kim</text>
-<circle cx="975.3" cy="765.0" r="18.3" fill="#059669" stroke="#ffffff" stroke-width="2"/>
-<text x="949.0" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Garrett Hitchens</text>
-<circle cx="878.9" cy="765.0" r="18.3" fill="#db2777" stroke="#ffffff" stroke-width="2"/>
-<text x="852.7" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Morgan Hackett</text>
-<circle cx="115.0" cy="765.0" r="16.6" fill="#4b5563" stroke="#ffffff" stroke-width="2"/>
-<text x="139.6" y="769.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Alicia Bishop</text>
-<circle cx="161.2" cy="765.0" r="16.6" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
-<text x="185.7" y="769.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Calleigh Hoffman</text>
-<circle cx="115.0" cy="720.2" r="16.6" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
-<text x="139.6" y="724.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Cass Byers</text>
-<circle cx="182.1" cy="573.8" r="16.6" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
-<text x="206.6" y="577.8" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Eyob Jigsa</text>
-<circle cx="265.5" cy="707.9" r="16.6" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
-<text x="290.0" y="711.9" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Julia Leclair</text>
-<circle cx="188.4" cy="675.6" r="16.6" fill="#7c3aed" stroke="#ffffff" stroke-width="2"/>
-<text x="213.0" y="679.6" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Justin Hilty</text>
-<circle cx="115.0" cy="565.2" r="16.6" fill="#059669" stroke="#ffffff" stroke-width="2"/>
-<text x="139.6" y="569.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Kadem Hodge</text>
-<circle cx="115.0" cy="669.0" r="16.6" fill="#db2777" stroke="#ffffff" stroke-width="2"/>
-<text x="139.6" y="673.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Rook Bartlett</text>
-<circle cx="115.0" cy="618.2" r="16.6" fill="#4b5563" stroke="#ffffff" stroke-width="2"/>
-<text x="139.6" y="622.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Shirley Gonzalez</text>
-<circle cx="247.9" cy="621.2" r="16.6" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
-<text x="272.5" y="625.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Wylie Beland</text>
-<circle cx="1007.3" cy="265.7" r="15.7" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
-<text x="983.6" y="269.7" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Aaron Heller</text>
-<circle cx="892.4" cy="155.0" r="15.7" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
-<text x="868.7" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Adam Labows</text>
-<circle cx="948.4" cy="155.0" r="15.7" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
-<text x="924.6" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Aylene Noy</text>
-<circle cx="313.9" cy="155.0" r="15.7" fill="#7c3aed" stroke="#ffffff" stroke-width="2"/>
-<text x="337.6" y="159.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Brandon Green</text>
-<circle cx="1055.1" cy="155.0" r="15.7" fill="#059669" stroke="#ffffff" stroke-width="2"/>
-<text x="1031.3" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Catie Roberts</text>
-<circle cx="1003.8" cy="155.0" r="15.7" fill="#db2777" stroke="#ffffff" stroke-width="2"/>
-<text x="980.1" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Declan Sullivan</text>
-<circle cx="1085.0" cy="596.2" r="15.7" fill="#4b5563" stroke="#ffffff" stroke-width="2"/>
-<text x="1061.3" y="600.2" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Hannah Poole</text>
-<circle cx="1085.0" cy="155.0" r="15.7" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
-<text x="1061.3" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Josh Gall</text>
+<circle cx="223.7" cy="765.0" r="22.4" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="254.1" y="769.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Aaron Angello</text>
+<circle cx="1085.0" cy="235.2" r="21.5" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+<text x="1055.5" y="239.2" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Jevon Yarbrough</text>
+<circle cx="1085.0" cy="765.0" r="20.6" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+<text x="1056.4" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">April Boulton</text>
+<circle cx="1046.4" cy="765.0" r="19.7" fill="#7c3aed" stroke="#ffffff" stroke-width="2"/>
+<text x="1018.7" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Daehwan Kim</text>
+<circle cx="975.3" cy="765.0" r="18.8" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+<text x="948.5" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Garrett Hitchens</text>
+<circle cx="878.9" cy="765.0" r="18.8" fill="#db2777" stroke="#ffffff" stroke-width="2"/>
+<text x="852.1" y="769.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Morgan Hackett</text>
+<circle cx="115.0" cy="765.0" r="17.0" fill="#4b5563" stroke="#ffffff" stroke-width="2"/>
+<text x="140.0" y="769.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Alicia Bishop</text>
+<circle cx="161.2" cy="765.0" r="17.0" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
+<text x="186.2" y="769.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Calleigh Hoffman</text>
+<circle cx="115.0" cy="720.2" r="17.0" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="140.0" y="724.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Cass Byers</text>
+<circle cx="182.1" cy="573.8" r="17.0" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+<text x="207.1" y="577.8" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Eyob Jigsa</text>
+<circle cx="265.5" cy="707.9" r="17.0" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+<text x="290.5" y="711.9" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Julia Leclair</text>
+<circle cx="188.4" cy="675.6" r="17.0" fill="#7c3aed" stroke="#ffffff" stroke-width="2"/>
+<text x="213.4" y="679.6" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Justin Hilty</text>
+<circle cx="115.0" cy="565.2" r="17.0" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+<text x="140.0" y="569.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Kadem Hodge</text>
+<circle cx="115.0" cy="669.0" r="17.0" fill="#db2777" stroke="#ffffff" stroke-width="2"/>
+<text x="140.0" y="673.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Rook Bartlett</text>
+<circle cx="115.0" cy="618.2" r="17.0" fill="#4b5563" stroke="#ffffff" stroke-width="2"/>
+<text x="140.0" y="622.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Shirley Gonzalez</text>
+<circle cx="247.9" cy="621.2" r="17.0" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
+<text x="272.9" y="625.2" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Wylie Beland</text>
+<circle cx="1007.3" cy="265.7" r="16.1" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+<text x="983.2" y="269.7" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Aaron Heller</text>
+<circle cx="892.4" cy="155.0" r="16.1" fill="#dc2626" stroke="#ffffff" stroke-width="2"/>
+<text x="868.3" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Adam Labows</text>
+<circle cx="948.4" cy="155.0" r="16.1" fill="#d97706" stroke="#ffffff" stroke-width="2"/>
+<text x="924.2" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Aylene Noy</text>
+<circle cx="313.9" cy="155.0" r="16.1" fill="#7c3aed" stroke="#ffffff" stroke-width="2"/>
+<text x="338.0" y="159.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Brandon Green</text>
+<circle cx="1055.1" cy="155.0" r="16.1" fill="#059669" stroke="#ffffff" stroke-width="2"/>
+<text x="1031.0" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Catie Roberts</text>
+<circle cx="1003.8" cy="155.0" r="16.1" fill="#db2777" stroke="#ffffff" stroke-width="2"/>
+<text x="979.7" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Declan Sullivan</text>
+<circle cx="1085.0" cy="596.2" r="16.1" fill="#4b5563" stroke="#ffffff" stroke-width="2"/>
+<text x="1060.9" y="600.2" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Hannah Poole</text>
+<circle cx="1085.0" cy="155.0" r="16.1" fill="#0f766e" stroke="#ffffff" stroke-width="2"/>
+<text x="1060.9" y="159.0" text-anchor="end" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#111827">Josh Gall</text>
 <text x="900" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="14" font-weight="700" fill="#111827">Legend</text>
 <text x="900" y="144" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">Node size = cumulative degree</text>
 <text x="900" y="162" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#6b7280">Edge width = shared-article count</text>
