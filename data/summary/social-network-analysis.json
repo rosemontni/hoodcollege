@@ -1275,7 +1275,7 @@
       "name": "David Gurzick",
       "pagerank": 0.002849,
       "recent_degree": 0,
-      "recent_mentions": 1,
+      "recent_mentions": 0,
       "role": "faculty",
       "role_label": "Faculty",
       "source_count": 1,
@@ -2800,7 +2800,7 @@
       "weighted_count": 8
     }
   ],
-  "run_date": "2026-07-18",
+  "run_date": "2026-07-19",
   "strongest_bonds": [
     {
       "jaccard": 0.125,
