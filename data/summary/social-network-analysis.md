@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-07-29
+# Hood College Social Network Analysis for 2026-07-30
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -8,7 +8,7 @@ The overview gives the size and shape of the evidence graph. Density and connect
 
 - People in graph: 237
 - Co-mention connections: 414
-- Source articles/items: 157
+- Source articles/items: 156
 - Source families represented: 4
 - Density: 0.0148
 - Connected groups: 96
@@ -29,13 +29,13 @@ Strongest bonds are ranked by repeated shared articles. The Jaccard score is inc
 
 | Rank | People | Roles | Shared Articles | Jaccard | Sources |
 | --- | --- | --- | --- | --- | --- |
-| 1 | April Boulton and Debbie Ricker | Administrators / Administrators | 3 | 0.125 | hood_news |
+| 1 | April Boulton and Debbie Ricker | Administrators / Administrators | 3 | 0.130 | hood_news |
 | 2 | Derrick Harrigan and Nilah Magruder | Alumni / Alumni | 2 | 1.000 | hood_news |
 | 3 | Joel White and Jude Huseby | Staff / Student-Athletes | 2 | 1.000 | hood_athletics_general |
 | 4 | Joel White and Kullen Robinson | Staff / Student-Athletes | 2 | 1.000 | hood_athletics_general |
 | 5 | Jude Huseby and Kullen Robinson | Student-Athletes / Student-Athletes | 2 | 1.000 | hood_athletics_general |
 | 6 | April Boulton and Marcy Taylor | Administrators / Alumni | 2 | 0.286 | hood_news |
-| 7 | Debbie Ricker and Paige Eager | Administrators / Administrators | 2 | 0.091 | hood_news |
+| 7 | Debbie Ricker and Paige Eager | Administrators / Administrators | 2 | 0.095 | hood_news |
 | 8 | Aaron Heller and Adam Labows | Student-Athletes / Student-Athletes | 1 | 1.000 | hood_athletics_general |
 | 9 | Aaron Heller and Aylene Noy | Student-Athletes / Student-Athletes | 1 | 1.000 | hood_athletics_general |
 | 10 | Aaron Heller and Catie Roberts | Student-Athletes / Students | 1 | 1.000 | hood_athletics_general |
@@ -66,7 +66,7 @@ Most connected people by role are ranked by weighted degree first, then ordinary
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 20 | 23 | 20 | 2 | 0.01843 | 0.024593 |
+| 1 | Debbie Ricker | Administrators | 20 | 23 | 19 | 2 | 0.01843 | 0.024593 |
 | 2 | April Boulton | Administrators | 14 | 17 | 7 | 1 | 0.01102 | 0.018261 |
 | 3 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00316 | 0.008449 |
 | 4 | Sue Kolb | Administrators | 4 | 4 | 1 | 1 | 0.00000 | 0.005661 |
@@ -182,7 +182,7 @@ Faculty-administration connectors are people adjacent to both faculty and admini
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Faculty Neighbors | Administrator Neighbors | Bridge Score |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 20 | 23 | 20 | 2 | 0.01843 | 0.024593 | 7 | 3 | 28 |
+| 1 | Debbie Ricker | Administrators | 20 | 23 | 19 | 2 | 0.01843 | 0.024593 | 7 | 3 | 28 |
 | 2 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00436 | 0.007649 | 2 | 3 | 9 |
 | 3 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00316 | 0.008449 | 3 | 2 | 9 |
 | 4 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01499 | 0.009790 | 4 | 2 | 8 |
@@ -203,7 +203,7 @@ Brokerage uses betweenness centrality, which rewards people who lie on many shor
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.02056 | 0.006936 |
 | 2 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01969 | 0.005439 |
-| 3 | Debbie Ricker | Administrators | 20 | 23 | 20 | 2 | 0.01843 | 0.024593 |
+| 3 | Debbie Ricker | Administrators | 20 | 23 | 19 | 2 | 0.01843 | 0.024593 |
 | 4 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01499 | 0.009790 |
 | 5 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01428 | 0.009973 |
 | 6 | April Boulton | Administrators | 14 | 17 | 7 | 1 | 0.01102 | 0.018261 |
@@ -222,7 +222,7 @@ Articulation people are cut points: removing them would split at least one conne
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.02056 | 0.006936 |
 | 2 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01969 | 0.005439 |
-| 3 | Debbie Ricker | Administrators | 20 | 23 | 20 | 2 | 0.01843 | 0.024593 |
+| 3 | Debbie Ricker | Administrators | 20 | 23 | 19 | 2 | 0.01843 | 0.024593 |
 | 4 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01428 | 0.009973 |
 | 5 | April Boulton | Administrators | 14 | 17 | 7 | 1 | 0.01102 | 0.018261 |
 | 6 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00368 | 0.008312 |
@@ -283,16 +283,16 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00288 | 0.012237 | 2 | 12 |
 | 2 | Sofia Montoya-Deck | Students | 7 | 7 | 2 | 1 | 0.00000 | 0.005998 | 2 | 7 |
-| 3 | Debbie Ricker | Administrators | 20 | 23 | 20 | 2 | 0.01843 | 0.024593 | 2 | 1 |
-| 4 | Alicia Bishop | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 5 | Calleigh Hoffman | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 6 | Cass Byers | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 7 | Eyob Jigsa | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 8 | Julia Leclair | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 9 | Justin Hilty | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 10 | Kadem Hodge | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 11 | Rook Bartlett | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
-| 12 | Shirley Gonzalez | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 3 | Alicia Bishop | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 4 | Calleigh Hoffman | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 5 | Cass Byers | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 6 | Eyob Jigsa | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 7 | Julia Leclair | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 8 | Justin Hilty | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 9 | Kadem Hodge | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 10 | Rook Bartlett | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 11 | Shirley Gonzalez | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
+| 12 | Wylie Beland | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006380 | 1 | 10 |
 
 ## Connected Communities
 
