@@ -43,7 +43,7 @@
       "faculty_admin_bridge_score": 28,
       "faculty_neighbor_count": 7,
       "first_seen": "2026-03-20",
-      "last_seen": "2026-07-29",
+      "last_seen": "2026-08-04",
       "mention_count": 19,
       "name": "Debbie Ricker",
       "pagerank": 0.024593,
@@ -261,7 +261,7 @@
       "faculty_admin_bridge_score": 28,
       "faculty_neighbor_count": 7,
       "first_seen": "2026-03-20",
-      "last_seen": "2026-07-29",
+      "last_seen": "2026-08-04",
       "mention_count": 19,
       "name": "Debbie Ricker",
       "pagerank": 0.024593,
@@ -908,7 +908,7 @@
       "faculty_admin_bridge_score": 28,
       "faculty_neighbor_count": 7,
       "first_seen": "2026-03-20",
-      "last_seen": "2026-07-29",
+      "last_seen": "2026-08-04",
       "mention_count": 19,
       "name": "Debbie Ricker",
       "pagerank": 0.024593,
@@ -1525,7 +1525,7 @@
         "faculty_admin_bridge_score": 28,
         "faculty_neighbor_count": 7,
         "first_seen": "2026-03-20",
-        "last_seen": "2026-07-29",
+        "last_seen": "2026-08-04",
         "mention_count": 19,
         "name": "Debbie Ricker",
         "pagerank": 0.024593,
@@ -2800,7 +2800,7 @@
       "weighted_count": 8
     }
   ],
-  "run_date": "2026-08-03",
+  "run_date": "2026-08-04",
   "strongest_bonds": [
     {
       "jaccard": 0.1304,
