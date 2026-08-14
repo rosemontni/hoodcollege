@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-08-13
+# Hood College Social Network Analysis for 2026-08-14
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -8,7 +8,7 @@ The overview gives the size and shape of the evidence graph. Density and connect
 
 - People in graph: 241
 - Co-mention connections: 423
-- Source articles/items: 159
+- Source articles/items: 160
 - Source families represented: 4
 - Density: 0.0146
 - Connected groups: 97
@@ -281,11 +281,11 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00279 | 0.012023 | 2 | 12 |
-| 2 | Sofia Montoya-Deck | Students | 7 | 7 | 2 | 1 | 0.00000 | 0.005893 | 2 | 7 |
-| 3 | Foreign Study | Students | 4 | 5 | 2 | 1 | 0.00000 | 0.005438 | 2 | 4 |
-| 4 | Scott Pincikowski | Faculty | 4 | 5 | 2 | 1 | 0.00000 | 0.005438 | 2 | 4 |
-| 5 | Luther Jett | Alumni | 4 | 4 | 2 | 1 | 0.00000 | 0.004485 | 2 | 4 |
+| 1 | Luther Jett | Alumni | 4 | 4 | 3 | 1 | 0.00000 | 0.004485 | 3 | 4 |
+| 2 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00279 | 0.012023 | 2 | 12 |
+| 3 | Sofia Montoya-Deck | Students | 7 | 7 | 2 | 1 | 0.00000 | 0.005893 | 2 | 7 |
+| 4 | Foreign Study | Students | 4 | 5 | 2 | 1 | 0.00000 | 0.005438 | 2 | 4 |
+| 5 | Scott Pincikowski | Faculty | 4 | 5 | 2 | 1 | 0.00000 | 0.005438 | 2 | 4 |
 | 6 | Noora Emara | Unclassified People | 4 | 4 | 2 | 1 | 0.00000 | 0.004485 | 2 | 4 |
 | 7 | Alicia Bishop | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006268 | 1 | 10 |
 | 8 | Calleigh Hoffman | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.006268 | 1 | 10 |
