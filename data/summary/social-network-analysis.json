@@ -1857,8 +1857,8 @@
         "mention_count": 1,
         "name": "Brad Barber",
         "pagerank": 0.005381,
-        "recent_degree": 2,
-        "recent_mentions": 1,
+        "recent_degree": 0,
+        "recent_mentions": 0,
         "role": "coach",
         "role_label": "Coaches",
         "source_count": 1,
@@ -2333,8 +2333,8 @@
         "mention_count": 4,
         "name": "Matthew Gelhard",
         "pagerank": 0.008025,
-        "recent_degree": 2,
-        "recent_mentions": 1,
+        "recent_degree": 0,
+        "recent_mentions": 0,
         "role": "staff",
         "role_label": "Staff",
         "source_count": 1,
@@ -2800,7 +2800,7 @@
       "weighted_count": 8
     }
   ],
-  "run_date": "2026-08-15",
+  "run_date": "2026-08-16",
   "strongest_bonds": [
     {
       "jaccard": 0.1304,
