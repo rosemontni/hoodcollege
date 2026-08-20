@@ -79,7 +79,7 @@
       "faculty_admin_bridge_score": 12,
       "faculty_neighbor_count": 3,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "mention_count": 9,
       "name": "April Boulton",
       "pagerank": 0.020874,
@@ -315,7 +315,7 @@
       "faculty_admin_bridge_score": 12,
       "faculty_neighbor_count": 3,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "mention_count": 9,
       "name": "April Boulton",
       "pagerank": 0.020874,
@@ -762,7 +762,7 @@
       "faculty_admin_bridge_score": 12,
       "faculty_neighbor_count": 3,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "mention_count": 9,
       "name": "April Boulton",
       "pagerank": 0.020874,
@@ -926,7 +926,7 @@
       "faculty_admin_bridge_score": 12,
       "faculty_neighbor_count": 3,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-08-19",
+      "last_seen": "2026-08-20",
       "mention_count": 9,
       "name": "April Boulton",
       "pagerank": 0.020874,
@@ -1543,7 +1543,7 @@
         "faculty_admin_bridge_score": 12,
         "faculty_neighbor_count": 3,
         "first_seen": "2026-04-04",
-        "last_seen": "2026-08-19",
+        "last_seen": "2026-08-20",
         "mention_count": 9,
         "name": "April Boulton",
         "pagerank": 0.020874,
@@ -2800,7 +2800,7 @@
       "weighted_count": 8
     }
   ],
-  "run_date": "2026-08-19",
+  "run_date": "2026-08-20",
   "strongest_bonds": [
     {
       "jaccard": 0.1667,
