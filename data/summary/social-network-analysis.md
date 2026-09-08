@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-09-07
+# Hood College Social Network Analysis for 2026-09-08
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -8,7 +8,7 @@ The overview gives the size and shape of the evidence graph. Density and connect
 
 - People in graph: 246
 - Co-mention connections: 438
-- Source articles/items: 166
+- Source articles/items: 167
 - Source families represented: 4
 - Density: 0.0145
 - Connected groups: 97
@@ -172,9 +172,9 @@ Faculty public visibility combines mention count, source diversity, connection s
 | 7 | Evelyn Nieves | Faculty | 5 | 5 | 2 | 1 | 0.00054 | 0.005565 |
 | 8 | Janak Joshi | Faculty | 5 | 5 | 2 | 1 | 0.00000 | 0.004744 |
 | 9 | Marisel Torres-Crespo | Faculty | 4 | 4 | 2 | 1 | 0.00197 | 0.005306 |
-| 10 | David Gurzick | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.002595 |
-| 11 | Karen White | Faculty | 1 | 1 | 2 | 1 | 0.00000 | 0.005411 |
-| 12 | Craig Laufer | Faculty | 8 | 8 | 1 | 1 | 0.00000 | 0.005784 |
+| 10 | Kristine Calo | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.002812 |
+| 11 | David Gurzick | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.002595 |
+| 12 | Karen White | Faculty | 1 | 1 | 2 | 1 | 0.00000 | 0.005411 |
 
 ## Faculty-Administration Connectors
 

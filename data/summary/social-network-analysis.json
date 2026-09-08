@@ -798,7 +798,7 @@
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-08-27",
+      "last_seen": "2026-09-08",
       "mention_count": 3,
       "name": "Shannon Kundey",
       "pagerank": 0.003612,
@@ -1288,6 +1288,24 @@
       "faculty_admin_bridge_score": 1,
       "faculty_neighbor_count": 0,
       "first_seen": "2026-04-04",
+      "last_seen": "2026-09-08",
+      "mention_count": 2,
+      "name": "Kristine Calo",
+      "pagerank": 0.002812,
+      "recent_degree": 0,
+      "recent_mentions": 1,
+      "role": "faculty",
+      "role_label": "Faculty",
+      "source_count": 1,
+      "weighted_degree": 2
+    },
+    {
+      "administrator_neighbor_count": 1,
+      "betweenness": 0.0,
+      "degree": 2,
+      "faculty_admin_bridge_score": 1,
+      "faculty_neighbor_count": 0,
+      "first_seen": "2026-04-04",
       "last_seen": "2026-06-18",
       "mention_count": 2,
       "name": "David Gurzick",
@@ -1316,24 +1334,6 @@
       "role_label": "Faculty",
       "source_count": 1,
       "weighted_degree": 1
-    },
-    {
-      "administrator_neighbor_count": 0,
-      "betweenness": 0.0,
-      "degree": 8,
-      "faculty_admin_bridge_score": 0,
-      "faculty_neighbor_count": 2,
-      "first_seen": "2026-04-04",
-      "last_seen": "2026-04-04",
-      "mention_count": 1,
-      "name": "Craig Laufer",
-      "pagerank": 0.005784,
-      "recent_degree": 0,
-      "recent_mentions": 0,
-      "role": "faculty",
-      "role_label": "Faculty",
-      "source_count": 1,
-      "weighted_degree": 8
     }
   ],
   "local_bridges": [
@@ -1461,7 +1461,7 @@
     "strongest_bonds": "Strongest bonds are ranked by repeated shared articles. The Jaccard score is included because it balances raw shared coverage against each person's total coverage, making smaller but consistently paired relationships visible alongside high-volume public figures."
   },
   "overview": {
-    "articles": 166,
+    "articles": 167,
     "connected_groups": 97,
     "connections": 438,
     "density": 0.0145,
@@ -1615,7 +1615,7 @@
         "faculty_admin_bridge_score": 0,
         "faculty_neighbor_count": 0,
         "first_seen": "2026-04-04",
-        "last_seen": "2026-08-27",
+        "last_seen": "2026-09-08",
         "mention_count": 3,
         "name": "Shannon Kundey",
         "pagerank": 0.003612,
@@ -2800,7 +2800,7 @@
       "weighted_count": 9
     }
   ],
-  "run_date": "2026-09-07",
+  "run_date": "2026-09-08",
   "strongest_bonds": [
     {
       "jaccard": 0.16,
