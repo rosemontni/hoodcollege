@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-09-08
+# Hood College Social Network Analysis for 2026-09-09
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -8,7 +8,7 @@ The overview gives the size and shape of the evidence graph. Density and connect
 
 - People in graph: 246
 - Co-mention connections: 438
-- Source articles/items: 167
+- Source articles/items: 168
 - Source families represented: 4
 - Density: 0.0145
 - Connected groups: 97
@@ -106,7 +106,7 @@ Most connected people by role are ranked by weighted degree first, then ordinary
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Joel White | Staff | 7 | 9 | 2 | 1 | 0.00014 | 0.006250 |
-| 2 | Matthew Gelhard | Staff | 3 | 3 | 4 | 1 | 0.00007 | 0.007938 |
+| 2 | Matthew Gelhard | Staff | 3 | 3 | 5 | 1 | 0.00007 | 0.007938 |
 | 3 | Amanda Dymek | Staff | 1 | 1 | 1 | 1 | 0.00000 | 0.005411 |
 | 4 | Sonia Bowie | Staff | 1 | 1 | 1 | 1 | 0.00000 | 0.004168 |
 
