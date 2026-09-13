@@ -702,24 +702,6 @@
       "weighted_degree": 7
     },
     {
-      "administrator_neighbor_count": 2,
-      "betweenness": 0.0,
-      "degree": 6,
-      "faculty_admin_bridge_score": 2,
-      "faculty_neighbor_count": 1,
-      "first_seen": "2026-08-13",
-      "last_seen": "2026-09-01",
-      "mention_count": 3,
-      "name": "Luther Jett",
-      "pagerank": 0.005676,
-      "recent_degree": 6,
-      "recent_mentions": 3,
-      "role": "alumni",
-      "role_label": "Alumni",
-      "source_count": 1,
-      "weighted_degree": 6
-    },
-    {
       "administrator_neighbor_count": 4,
       "betweenness": 0.02579,
       "degree": 25,
@@ -770,6 +752,24 @@
       "recent_mentions": 2,
       "role": "person",
       "role_label": "Unclassified People",
+      "source_count": 1,
+      "weighted_degree": 6
+    },
+    {
+      "administrator_neighbor_count": 2,
+      "betweenness": 0.0,
+      "degree": 6,
+      "faculty_admin_bridge_score": 2,
+      "faculty_neighbor_count": 1,
+      "first_seen": "2026-08-13",
+      "last_seen": "2026-09-01",
+      "mention_count": 3,
+      "name": "Luther Jett",
+      "pagerank": 0.005676,
+      "recent_degree": 6,
+      "recent_mentions": 2,
+      "role": "alumni",
+      "role_label": "Alumni",
       "source_count": 1,
       "weighted_degree": 6
     },
@@ -1766,7 +1766,7 @@
         "name": "Luther Jett",
         "pagerank": 0.005676,
         "recent_degree": 6,
-        "recent_mentions": 3,
+        "recent_mentions": 2,
         "role": "alumni",
         "role_label": "Alumni",
         "source_count": 1,
@@ -2800,7 +2800,7 @@
       "weighted_count": 9
     }
   ],
-  "run_date": "2026-09-12",
+  "run_date": "2026-09-13",
   "strongest_bonds": [
     {
       "jaccard": 0.16,
