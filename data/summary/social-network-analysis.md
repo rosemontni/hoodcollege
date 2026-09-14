@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-09-13
+# Hood College Social Network Analysis for 2026-09-14
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -8,7 +8,7 @@ The overview gives the size and shape of the evidence graph. Density and connect
 
 - People in graph: 246
 - Co-mention connections: 438
-- Source articles/items: 168
+- Source articles/items: 169
 - Source families represented: 4
 - Density: 0.0145
 - Connected groups: 97
@@ -29,13 +29,13 @@ Strongest bonds are ranked by repeated shared articles. The Jaccard score is inc
 
 | Rank | People | Roles | Shared Articles | Jaccard | Sources |
 | --- | --- | --- | --- | --- | --- |
-| 1 | April Boulton and Debbie Ricker | Administrators / Administrators | 4 | 0.160 | hood_news, hood_stories |
+| 1 | April Boulton and Debbie Ricker | Administrators / Administrators | 4 | 0.154 | hood_news, hood_stories |
 | 2 | Derrick Harrigan and Nilah Magruder | Alumni / Alumni | 2 | 1.000 | hood_news |
 | 3 | Joel White and Jude Huseby | Staff / Student-Athletes | 2 | 1.000 | hood_athletics_general |
 | 4 | Joel White and Kullen Robinson | Staff / Student-Athletes | 2 | 1.000 | hood_athletics_general |
 | 5 | Jude Huseby and Kullen Robinson | Student-Athletes / Student-Athletes | 2 | 1.000 | hood_athletics_general |
 | 6 | April Boulton and Marcy Taylor | Administrators / Alumni | 2 | 0.222 | hood_news |
-| 7 | Debbie Ricker and Paige Eager | Administrators / Administrators | 2 | 0.091 | hood_news |
+| 7 | Debbie Ricker and Paige Eager | Administrators / Administrators | 2 | 0.087 | hood_news |
 | 8 | Aaron Heller and Adam Labows | Student-Athletes / Student-Athletes | 1 | 1.000 | hood_athletics_general |
 | 9 | Aaron Heller and Aylene Noy | Student-Athletes / Student-Athletes | 1 | 1.000 | hood_athletics_general |
 | 10 | Aaron Heller and Catie Roberts | Student-Athletes / Students | 1 | 1.000 | hood_athletics_general |
@@ -66,7 +66,7 @@ Most connected people by role are ranked by weighted degree first, then ordinary
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 29 | 20 | 2 | 0.02579 | 0.027476 |
+| 1 | Debbie Ricker | Administrators | 25 | 29 | 21 | 2 | 0.02579 | 0.027476 |
 | 2 | April Boulton | Administrators | 19 | 23 | 9 | 2 | 0.01407 | 0.021426 |
 | 3 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00351 | 0.007737 |
 | 4 | Sue Kolb | Administrators | 4 | 4 | 1 | 1 | 0.00000 | 0.005411 |
@@ -182,7 +182,7 @@ Faculty-administration connectors are people adjacent to both faculty and admini
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Faculty Neighbors | Administrator Neighbors | Bridge Score |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 29 | 20 | 2 | 0.02579 | 0.027476 | 8 | 4 | 40 |
+| 1 | Debbie Ricker | Administrators | 25 | 29 | 21 | 2 | 0.02579 | 0.027476 | 8 | 4 | 40 |
 | 2 | April Boulton | Administrators | 19 | 23 | 9 | 2 | 0.01407 | 0.021426 | 3 | 3 | 12 |
 | 3 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00439 | 0.007001 | 2 | 3 | 9 |
 | 4 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00351 | 0.007737 | 3 | 2 | 9 |
@@ -201,7 +201,7 @@ Brokerage uses betweenness centrality, which rewards people who lie on many shor
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 29 | 20 | 2 | 0.02579 | 0.027476 |
+| 1 | Debbie Ricker | Administrators | 25 | 29 | 21 | 2 | 0.02579 | 0.027476 |
 | 2 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.02258 | 0.006517 |
 | 3 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.02155 | 0.005184 |
 | 4 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01722 | 0.009034 |
@@ -220,7 +220,7 @@ Articulation people are cut points: removing them would split at least one conne
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 29 | 20 | 2 | 0.02579 | 0.027476 |
+| 1 | Debbie Ricker | Administrators | 25 | 29 | 21 | 2 | 0.02579 | 0.027476 |
 | 2 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.02258 | 0.006517 |
 | 3 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.02155 | 0.005184 |
 | 4 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01536 | 0.009526 |
@@ -281,9 +281,9 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Scott Pincikowski | Faculty | 7 | 7 | 3 | 1 | 0.00197 | 0.007042 | 3 | 7 |
-| 2 | Debbie Ricker | Administrators | 25 | 29 | 20 | 2 | 0.02579 | 0.027476 | 2 | 7 |
-| 3 | April Boulton | Administrators | 19 | 23 | 9 | 2 | 0.01407 | 0.021426 | 2 | 6 |
+| 1 | Debbie Ricker | Administrators | 25 | 29 | 21 | 2 | 0.02579 | 0.027476 | 3 | 7 |
+| 2 | April Boulton | Administrators | 19 | 23 | 9 | 2 | 0.01407 | 0.021426 | 2 | 6 |
+| 3 | Scott Pincikowski | Faculty | 7 | 7 | 3 | 1 | 0.00197 | 0.007042 | 2 | 6 |
 | 4 | Cameron Rogers | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005676 | 2 | 6 |
 | 5 | Luther Jett | Alumni | 6 | 6 | 3 | 1 | 0.00000 | 0.005676 | 2 | 6 |
 | 6 | Noora Emara | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005676 | 2 | 6 |
