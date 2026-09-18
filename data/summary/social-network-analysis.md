@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-09-17
+# Hood College Social Network Analysis for 2026-09-18
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -283,12 +283,12 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Debbie Ricker | Administrators | 27 | 31 | 22 | 2 | 0.02933 | 0.029932 | 4 | 9 |
 | 2 | April Boulton | Administrators | 19 | 23 | 9 | 2 | 0.01418 | 0.021480 | 2 | 6 |
-| 3 | Scott Pincikowski | Faculty | 7 | 7 | 3 | 1 | 0.00201 | 0.007055 | 2 | 6 |
-| 4 | Cameron Rogers | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005694 | 2 | 6 |
-| 5 | Luther Jett | Alumni | 6 | 6 | 3 | 1 | 0.00000 | 0.005694 | 2 | 6 |
-| 6 | Noora Emara | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005694 | 2 | 6 |
-| 7 | Shannon Kundey | Administrators | 2 | 2 | 3 | 1 | 0.00201 | 0.003611 | 2 | 1 |
-| 8 | Graduate Admission | Alumni | 6 | 6 | 1 | 1 | 0.00000 | 0.005694 | 1 | 6 |
+| 3 | Cameron Rogers | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005694 | 2 | 6 |
+| 4 | Shannon Kundey | Administrators | 2 | 2 | 3 | 1 | 0.00201 | 0.003611 | 2 | 1 |
+| 5 | Scott Pincikowski | Faculty | 7 | 7 | 3 | 1 | 0.00201 | 0.007055 | 1 | 6 |
+| 6 | Graduate Admission | Alumni | 6 | 6 | 1 | 1 | 0.00000 | 0.005694 | 1 | 6 |
+| 7 | Luther Jett | Alumni | 6 | 6 | 3 | 1 | 0.00000 | 0.005694 | 1 | 6 |
+| 8 | Noora Emara | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005694 | 1 | 6 |
 | 9 | Communication Arts | Students | 2 | 2 | 1 | 1 | 0.00000 | 0.002824 | 1 | 2 |
 | 10 | Grossnickle Young | Alumni | 2 | 2 | 1 | 1 | 0.00000 | 0.002824 | 1 | 2 |
 | 11 | Derrick Kuhn | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.005353 | 1 | 1 |
