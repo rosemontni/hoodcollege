@@ -84,7 +84,7 @@
       "name": "April Boulton",
       "pagerank": 0.021197,
       "recent_degree": 6,
-      "recent_mentions": 2,
+      "recent_mentions": 1,
       "role": "administrator",
       "role_label": "Administrators",
       "source_count": 2,
@@ -320,7 +320,7 @@
       "name": "April Boulton",
       "pagerank": 0.021197,
       "recent_degree": 6,
-      "recent_mentions": 2,
+      "recent_mentions": 1,
       "role": "administrator",
       "role_label": "Administrators",
       "source_count": 2,
@@ -702,24 +702,6 @@
       "weighted_degree": 31
     },
     {
-      "administrator_neighbor_count": 3,
-      "betweenness": 0.014,
-      "degree": 19,
-      "faculty_admin_bridge_score": 12,
-      "faculty_neighbor_count": 3,
-      "first_seen": "2026-04-04",
-      "last_seen": "2026-09-23",
-      "mention_count": 9,
-      "name": "April Boulton",
-      "pagerank": 0.021197,
-      "recent_degree": 6,
-      "recent_mentions": 2,
-      "role": "administrator",
-      "role_label": "Administrators",
-      "source_count": 2,
-      "weighted_degree": 23
-    },
-    {
       "administrator_neighbor_count": 2,
       "betweenness": 0.0,
       "degree": 6,
@@ -772,6 +754,24 @@
       "role_label": "Students",
       "source_count": 1,
       "weighted_degree": 1
+    },
+    {
+      "administrator_neighbor_count": 3,
+      "betweenness": 0.014,
+      "degree": 19,
+      "faculty_admin_bridge_score": 12,
+      "faculty_neighbor_count": 3,
+      "first_seen": "2026-04-04",
+      "last_seen": "2026-09-23",
+      "mention_count": 9,
+      "name": "April Boulton",
+      "pagerank": 0.021197,
+      "recent_degree": 6,
+      "recent_mentions": 1,
+      "role": "administrator",
+      "role_label": "Administrators",
+      "source_count": 2,
+      "weighted_degree": 23
     },
     {
       "administrator_neighbor_count": 2,
@@ -931,7 +931,7 @@
       "name": "April Boulton",
       "pagerank": 0.021197,
       "recent_degree": 6,
-      "recent_mentions": 2,
+      "recent_mentions": 1,
       "role": "administrator",
       "role_label": "Administrators",
       "source_count": 2,
@@ -1548,7 +1548,7 @@
         "name": "April Boulton",
         "pagerank": 0.021197,
         "recent_degree": 6,
-        "recent_mentions": 2,
+        "recent_mentions": 1,
         "role": "administrator",
         "role_label": "Administrators",
         "source_count": 2,
@@ -2800,7 +2800,7 @@
       "weighted_count": 9
     }
   ],
-  "run_date": "2026-09-25",
+  "run_date": "2026-09-26",
   "strongest_bonds": [
     {
       "jaccard": 0.1481,

@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-09-25
+# Hood College Social Network Analysis for 2026-09-26
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -282,10 +282,10 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Debbie Ricker | Administrators | 27 | 31 | 22 | 2 | 0.03055 | 0.029632 | 4 | 9 |
-| 2 | April Boulton | Administrators | 19 | 23 | 9 | 2 | 0.01400 | 0.021197 | 2 | 6 |
-| 3 | Cameron Rogers | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005620 | 2 | 6 |
-| 4 | Shannon Kundey | Administrators | 3 | 3 | 3 | 1 | 0.00395 | 0.005684 | 2 | 2 |
-| 5 | Undergraduate Teaching | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.002401 | 2 | 1 |
+| 2 | Cameron Rogers | Unclassified People | 6 | 6 | 2 | 1 | 0.00000 | 0.005620 | 2 | 6 |
+| 3 | Shannon Kundey | Administrators | 3 | 3 | 3 | 1 | 0.00395 | 0.005684 | 2 | 2 |
+| 4 | Undergraduate Teaching | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.002401 | 2 | 1 |
+| 5 | April Boulton | Administrators | 19 | 23 | 9 | 2 | 0.01400 | 0.021197 | 1 | 6 |
 | 6 | Scott Pincikowski | Faculty | 7 | 7 | 3 | 1 | 0.00199 | 0.006961 | 1 | 6 |
 | 7 | Graduate Admission | Alumni | 6 | 6 | 1 | 1 | 0.00000 | 0.005620 | 1 | 6 |
 | 8 | Luther Jett | Alumni | 6 | 6 | 3 | 1 | 0.00000 | 0.005620 | 1 | 6 |
