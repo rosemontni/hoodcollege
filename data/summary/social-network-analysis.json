@@ -97,7 +97,7 @@
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-30",
       "mention_count": 3,
       "name": "Shannon Kundey",
       "pagerank": 0.005684,
@@ -369,7 +369,7 @@
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-30",
       "mention_count": 3,
       "name": "Shannon Kundey",
       "pagerank": 0.005684,
@@ -708,7 +708,7 @@
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
       "first_seen": "2026-09-23",
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-30",
       "mention_count": 2,
       "name": "Undergraduate Teaching",
       "pagerank": 0.002401,
@@ -870,7 +870,7 @@
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
       "first_seen": "2026-04-04",
-      "last_seen": "2026-09-23",
+      "last_seen": "2026-09-30",
       "mention_count": 3,
       "name": "Shannon Kundey",
       "pagerank": 0.005684,
@@ -1597,7 +1597,7 @@
         "faculty_admin_bridge_score": 0,
         "faculty_neighbor_count": 0,
         "first_seen": "2026-04-04",
-        "last_seen": "2026-09-23",
+        "last_seen": "2026-09-30",
         "mention_count": 3,
         "name": "Shannon Kundey",
         "pagerank": 0.005684,
@@ -2800,7 +2800,7 @@
       "weighted_count": 9
     }
   ],
-  "run_date": "2026-09-29",
+  "run_date": "2026-09-30",
   "strongest_bonds": [
     {
       "jaccard": 0.1481,
