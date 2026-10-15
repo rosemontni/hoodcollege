@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-10-14
+# Hood College Social Network Analysis for 2026-10-15
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -281,8 +281,8 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 26 | 30 | 22 | 2 | 0.02773 | 0.029508 | 3 | 7 |
-| 2 | Elisha Kabongo | Students | 7 | 7 | 3 | 1 | 0.00377 | 0.008077 | 3 | 7 |
+| 1 | Elisha Kabongo | Students | 7 | 7 | 3 | 1 | 0.00377 | 0.008077 | 3 | 7 |
+| 2 | Debbie Ricker | Administrators | 26 | 30 | 22 | 2 | 0.02773 | 0.029508 | 2 | 7 |
 | 3 | Randy Johnson | Unclassified People | 5 | 5 | 2 | 1 | 0.00000 | 0.005177 | 2 | 5 |
 | 4 | Undergraduate Teaching | Students | 0 | 0 | 2 | 1 | 0.00000 | 0.000784 | 2 | 0 |
 | 5 | April Boulton | Administrators | 18 | 22 | 9 | 2 | 0.01340 | 0.021116 | 1 | 5 |
