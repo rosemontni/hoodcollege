@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-11-04
+# Hood College Social Network Analysis for 2026-11-05
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -282,17 +282,17 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Debbie Ricker | Administrators | 24 | 27 | 23 | 2 | 0.02293 | 0.028290 | 2 | 2 |
-| 2 | Elisha Kabongo | Students | 2 | 2 | 2 | 1 | 0.00003 | 0.007388 | 2 | 2 |
-| 3 | Strengthen Support | Students | 2 | 2 | 2 | 1 | 0.00003 | 0.007388 | 2 | 2 |
-| 4 | Randy Johnson | Unclassified People | 1 | 1 | 2 | 1 | 0.00000 | 0.001650 | 2 | 1 |
-| 5 | Restorative Practices | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005062 | 2 | 1 |
-| 6 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001650 | 1 | 1 |
-| 7 | Blazer Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.003899 | 1 | 1 |
-| 8 | Erica Corell | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.003899 | 1 | 1 |
-| 9 | Erica Correll | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.003899 | 1 | 1 |
-| 10 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005062 | 1 | 1 |
-| 11 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005062 | 1 | 1 |
-| 12 | Undergraduate Teaching | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.003899 | 1 | 1 |
+| 2 | Strengthen Support | Students | 2 | 2 | 2 | 1 | 0.00003 | 0.007388 | 2 | 2 |
+| 3 | Randy Johnson | Unclassified People | 1 | 1 | 2 | 1 | 0.00000 | 0.001650 | 2 | 1 |
+| 4 | Restorative Practices | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005062 | 2 | 1 |
+| 5 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001650 | 1 | 1 |
+| 6 | Blazer Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.003899 | 1 | 1 |
+| 7 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005062 | 1 | 1 |
+| 8 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005062 | 1 | 1 |
+| 9 | Undergraduate Teaching | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.003899 | 1 | 1 |
+| 10 | Veterans Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005062 | 1 | 1 |
+| 11 | Matthew Gelhard | Staff | 3 | 3 | 6 | 1 | 0.00006 | 0.007426 | 1 | 0 |
+| 12 | Dean Boulton | Students | 0 | 0 | 1 | 1 | 0.00000 | 0.000759 | 1 | 0 |
 
 ## Connected Communities
 
