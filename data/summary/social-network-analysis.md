@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-11-06
+# Hood College Social Network Analysis for 2026-11-07
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -283,11 +283,11 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Debbie Ricker | Administrators | 24 | 27 | 23 | 2 | 0.02276 | 0.028268 | 2 | 2 |
 | 2 | Strengthen Support | Students | 2 | 2 | 2 | 1 | 0.00003 | 0.007382 | 2 | 2 |
-| 3 | Randy Johnson | Unclassified People | 1 | 1 | 2 | 1 | 0.00000 | 0.001649 | 2 | 1 |
-| 4 | Restorative Practices | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005058 | 2 | 1 |
-| 5 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001649 | 1 | 1 |
-| 6 | Blazer Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.003896 | 1 | 1 |
-| 7 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005058 | 1 | 1 |
+| 3 | Restorative Practices | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005058 | 2 | 1 |
+| 4 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001649 | 1 | 1 |
+| 5 | Blazer Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.003896 | 1 | 1 |
+| 6 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005058 | 1 | 1 |
+| 7 | Randy Johnson | Unclassified People | 1 | 1 | 2 | 1 | 0.00000 | 0.001649 | 1 | 1 |
 | 8 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005058 | 1 | 1 |
 | 9 | Undergraduate Teaching | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.003896 | 1 | 1 |
 | 10 | Veterans Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005058 | 1 | 1 |
