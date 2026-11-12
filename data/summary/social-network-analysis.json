@@ -726,7 +726,7 @@
       "faculty_admin_bridge_score": 0,
       "faculty_neighbor_count": 0,
       "first_seen": "2026-10-22",
-      "last_seen": "2026-11-10",
+      "last_seen": "2026-11-12",
       "mention_count": 2,
       "name": "Strengthen Support",
       "pagerank": 0.005054,
@@ -2800,7 +2800,7 @@
       "weighted_count": 8
     }
   ],
-  "run_date": "2026-11-11",
+  "run_date": "2026-11-12",
   "strongest_bonds": [
     {
       "jaccard": 0.1034,
