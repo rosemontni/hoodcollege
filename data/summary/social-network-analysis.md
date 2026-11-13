@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-11-12
+# Hood College Social Network Analysis for 2026-11-13
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -7,12 +7,12 @@ This report analyzes public co-mentions, not private relationships. A connection
 The overview gives the size and shape of the evidence graph. Density and connected groups help show whether coverage is still fragmented or beginning to form a single interpretable campus network.
 
 - People in graph: 265
-- Co-mention connections: 430
+- Co-mention connections: 429
 - Source articles/items: 186
 - Source families represented: 4
 - Density: 0.0123
-- Connected groups: 110
-- Largest connected group: 60 people
+- Connected groups: 111
+- Largest connected group: 59 people
 - Faculty: 37
 - Administrators: 14
 - Students: 97
@@ -53,109 +53,109 @@ Most connected people by role are ranked by weighted degree first, then ordinary
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010926 |
-| 2 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00917 | 0.009834 |
-| 3 | Craig Laufer | Faculty | 8 | 8 | 1 | 1 | 0.00000 | 0.005637 |
-| 4 | Drew Ferrier | Faculty | 8 | 8 | 1 | 1 | 0.00000 | 0.005637 |
-| 5 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00328 | 0.007180 |
-| 6 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00374 | 0.007145 |
-| 7 | Elizabeth Atwood | Faculty | 7 | 7 | 1 | 1 | 0.00000 | 0.005356 |
-| 8 | Carol Jim | Faculty | 5 | 5 | 2 | 2 | 0.00000 | 0.004823 |
+| 1 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010973 |
+| 2 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00885 | 0.009797 |
+| 3 | Craig Laufer | Faculty | 8 | 8 | 1 | 1 | 0.00000 | 0.005633 |
+| 4 | Drew Ferrier | Faculty | 8 | 8 | 1 | 1 | 0.00000 | 0.005633 |
+| 5 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00323 | 0.007148 |
+| 6 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00370 | 0.007110 |
+| 7 | Elizabeth Atwood | Faculty | 7 | 7 | 1 | 1 | 0.00000 | 0.005379 |
+| 8 | Carol Jim | Faculty | 5 | 5 | 2 | 2 | 0.00000 | 0.004792 |
 
 ### Administrators
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 28 | 24 | 2 | 0.02425 | 0.029973 |
-| 2 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00967 | 0.017131 |
-| 3 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00295 | 0.007922 |
-| 4 | Sue Kolb | Administrators | 4 | 4 | 1 | 1 | 0.00000 | 0.005054 |
-| 5 | Andrea Chapdelaine | Administrators | 3 | 3 | 1 | 1 | 0.00000 | 0.005054 |
-| 6 | Shannon Kundey | Administrators | 2 | 2 | 2 | 1 | 0.00167 | 0.003620 |
-| 7 | Rana Khan | Administrators | 1 | 1 | 2 | 1 | 0.00000 | 0.001615 |
-| 8 | Mark Reinhardt | Administrators | 1 | 1 | 1 | 1 | 0.00000 | 0.001668 |
+| 1 | Debbie Ricker | Administrators | 24 | 27 | 24 | 2 | 0.02258 | 0.028369 |
+| 2 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00952 | 0.017031 |
+| 3 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00288 | 0.007876 |
+| 4 | Sue Kolb | Administrators | 4 | 4 | 1 | 1 | 0.00000 | 0.005076 |
+| 5 | Andrea Chapdelaine | Administrators | 3 | 3 | 1 | 1 | 0.00000 | 0.005076 |
+| 6 | Shannon Kundey | Administrators | 2 | 2 | 2 | 1 | 0.00164 | 0.003603 |
+| 7 | Rana Khan | Administrators | 1 | 1 | 2 | 1 | 0.00000 | 0.001613 |
+| 8 | Mark Reinhardt | Administrators | 1 | 1 | 1 | 1 | 0.00000 | 0.001655 |
 
 ### Students
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01387 | 0.009084 |
-| 2 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01296 | 0.008913 |
-| 3 | Alicia Bishop | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005696 |
-| 4 | Calleigh Hoffman | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005696 |
-| 5 | Cass Byers | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005696 |
-| 6 | Eyob Jigsa | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005696 |
-| 7 | Julia Leclair | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005696 |
-| 8 | Justin Hilty | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005696 |
+| 1 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01356 | 0.009051 |
+| 2 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01270 | 0.008950 |
+| 3 | Alicia Bishop | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005721 |
+| 4 | Calleigh Hoffman | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005721 |
+| 5 | Cass Byers | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005721 |
+| 6 | Eyob Jigsa | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005721 |
+| 7 | Julia Leclair | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005721 |
+| 8 | Justin Hilty | Students | 10 | 10 | 1 | 1 | 0.00000 | 0.005721 |
 
 ### Student-Athletes
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00181 | 0.008421 |
-| 2 | Aaron Heller | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005054 |
-| 3 | Adam Labows | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005054 |
-| 4 | Aylene Noy | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005054 |
-| 5 | Nino Rizzolino | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005054 |
-| 6 | Jude Huseby | Student-Athletes | 7 | 9 | 2 | 1 | 0.00012 | 0.005837 |
-| 7 | Kullen Robinson | Student-Athletes | 7 | 9 | 2 | 1 | 0.00012 | 0.005837 |
-| 8 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01815 | 0.004874 |
+| 1 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00181 | 0.008457 |
+| 2 | Aaron Heller | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005076 |
+| 3 | Adam Labows | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005076 |
+| 4 | Aylene Noy | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005076 |
+| 5 | Nino Rizzolino | Student-Athletes | 9 | 9 | 1 | 1 | 0.00000 | 0.005076 |
+| 6 | Jude Huseby | Student-Athletes | 7 | 9 | 2 | 1 | 0.00012 | 0.005863 |
+| 7 | Kullen Robinson | Student-Athletes | 7 | 9 | 2 | 1 | 0.00012 | 0.005863 |
+| 8 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01774 | 0.004891 |
 
 ### Staff
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Joel White | Staff | 7 | 9 | 2 | 1 | 0.00012 | 0.005837 |
-| 2 | Matthew Gelhard | Staff | 3 | 3 | 6 | 1 | 0.00006 | 0.007414 |
-| 3 | Amanda Dymek | Staff | 1 | 1 | 1 | 1 | 0.00000 | 0.005054 |
-| 4 | Sonia Bowie | Staff | 1 | 1 | 1 | 1 | 0.00000 | 0.003893 |
+| 1 | Joel White | Staff | 7 | 9 | 2 | 1 | 0.00012 | 0.005863 |
+| 2 | Matthew Gelhard | Staff | 3 | 3 | 6 | 1 | 0.00006 | 0.007446 |
+| 3 | Amanda Dymek | Staff | 1 | 1 | 1 | 1 | 0.00000 | 0.005076 |
+| 4 | Sonia Bowie | Staff | 1 | 1 | 1 | 1 | 0.00000 | 0.003910 |
 
 ### Alumni
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00328 | 0.007424 |
-| 2 | Josh Gall | Alumni | 9 | 9 | 1 | 1 | 0.00000 | 0.005054 |
-| 3 | Brandon Green | Alumni | 8 | 8 | 2 | 1 | 0.00020 | 0.006546 |
-| 4 | Katie Misuraca | Alumni | 7 | 7 | 1 | 1 | 0.00000 | 0.005356 |
-| 5 | Rona Mensah | Alumni | 7 | 7 | 1 | 1 | 0.00000 | 0.005356 |
-| 6 | Derrick Harrigan | Alumni | 5 | 6 | 2 | 1 | 0.00000 | 0.005925 |
-| 7 | Nilah Magruder | Alumni | 5 | 6 | 2 | 1 | 0.00000 | 0.005925 |
-| 8 | Betsy Moore | Alumni | 5 | 5 | 1 | 1 | 0.00000 | 0.005054 |
+| 1 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00323 | 0.007456 |
+| 2 | Josh Gall | Alumni | 9 | 9 | 1 | 1 | 0.00000 | 0.005076 |
+| 3 | Brandon Green | Alumni | 8 | 8 | 2 | 1 | 0.00020 | 0.006574 |
+| 4 | Katie Misuraca | Alumni | 7 | 7 | 1 | 1 | 0.00000 | 0.005379 |
+| 5 | Rona Mensah | Alumni | 7 | 7 | 1 | 1 | 0.00000 | 0.005379 |
+| 6 | Derrick Harrigan | Alumni | 5 | 6 | 2 | 1 | 0.00000 | 0.005882 |
+| 7 | Nilah Magruder | Alumni | 5 | 6 | 2 | 1 | 0.00000 | 0.005882 |
+| 8 | Betsy Moore | Alumni | 5 | 5 | 1 | 1 | 0.00000 | 0.005076 |
 
 ### Coaches
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Ryan Mee | Coaches | 6 | 6 | 1 | 1 | 0.00000 | 0.004032 |
-| 2 | Jared Wagner | Coaches | 3 | 3 | 1 | 1 | 0.00000 | 0.002412 |
-| 3 | Brad Barber | Coaches | 2 | 2 | 1 | 1 | 0.00000 | 0.004972 |
+| 1 | Ryan Mee | Coaches | 6 | 6 | 1 | 1 | 0.00000 | 0.004049 |
+| 2 | Jared Wagner | Coaches | 3 | 3 | 1 | 1 | 0.00000 | 0.002423 |
+| 3 | Brad Barber | Coaches | 2 | 2 | 1 | 1 | 0.00000 | 0.004993 |
 
 ### Guests / External Partners
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Gayon Sampson | Guests / External Partners | 6 | 6 | 1 | 1 | 0.00000 | 0.005054 |
-| 2 | Yemi Fagbohun | Guests / External Partners | 6 | 6 | 1 | 1 | 0.00000 | 0.005054 |
-| 3 | Torsten Heggman | Guests / External Partners | 3 | 3 | 1 | 1 | 0.00000 | 0.005054 |
-| 4 | Mary Carrington | Guests / External Partners | 2 | 2 | 2 | 1 | 0.00003 | 0.007377 |
-| 5 | Robin Fleming | Guests / External Partners | 2 | 2 | 2 | 1 | 0.00003 | 0.007377 |
-| 6 | Michele Corr | Guests / External Partners | 2 | 2 | 1 | 1 | 0.00000 | 0.002901 |
-| 7 | Ethan Dmitrovsky | Guests / External Partners | 1 | 1 | 2 | 1 | 0.00000 | 0.003893 |
-| 8 | Karen Cannon | Guests / External Partners | 1 | 1 | 1 | 1 | 0.00000 | 0.005054 |
+| 1 | Gayon Sampson | Guests / External Partners | 6 | 6 | 1 | 1 | 0.00000 | 0.005076 |
+| 2 | Yemi Fagbohun | Guests / External Partners | 6 | 6 | 1 | 1 | 0.00000 | 0.005076 |
+| 3 | Torsten Heggman | Guests / External Partners | 3 | 3 | 1 | 1 | 0.00000 | 0.005076 |
+| 4 | Mary Carrington | Guests / External Partners | 2 | 2 | 2 | 1 | 0.00003 | 0.007408 |
+| 5 | Robin Fleming | Guests / External Partners | 2 | 2 | 2 | 1 | 0.00003 | 0.007408 |
+| 6 | Michele Corr | Guests / External Partners | 2 | 2 | 1 | 1 | 0.00000 | 0.002877 |
+| 7 | Ethan Dmitrovsky | Guests / External Partners | 1 | 1 | 2 | 1 | 0.00000 | 0.003910 |
+| 8 | Karen Cannon | Guests / External Partners | 1 | 1 | 1 | 1 | 0.00000 | 0.005076 |
 
 ### Unclassified People
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Emily Shreiner | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005322 |
-| 2 | Kylie Mohr | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005322 |
-| 3 | Madison Knight | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005322 |
-| 4 | Maggie Miller | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005322 |
-| 5 | Sierra Ortega | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005322 |
-| 6 | Dana Meeker | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.005054 |
-| 7 | Doug Pittsnogle | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.005054 |
-| 8 | Elaine Hubert | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.005054 |
+| 1 | Emily Shreiner | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005344 |
+| 2 | Kylie Mohr | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005344 |
+| 3 | Madison Knight | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005344 |
+| 4 | Maggie Miller | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005344 |
+| 5 | Sierra Ortega | Unclassified People | 7 | 7 | 1 | 1 | 0.00000 | 0.005344 |
+| 6 | Dana Meeker | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.005076 |
+| 7 | Doug Pittsnogle | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.005076 |
+| 8 | Elaine Hubert | Unclassified People | 2 | 2 | 1 | 1 | 0.00000 | 0.005076 |
 
 ## Faculty Public Visibility
 
@@ -163,18 +163,18 @@ Faculty public visibility combines mention count, source diversity, connection s
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00328 | 0.007180 |
-| 2 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010926 |
-| 3 | Carol Jim | Faculty | 5 | 5 | 2 | 2 | 0.00000 | 0.004823 |
-| 4 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00917 | 0.009834 |
-| 5 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00374 | 0.007145 |
-| 6 | Evelyn Nieves | Faculty | 5 | 5 | 2 | 1 | 0.00046 | 0.005198 |
-| 7 | Janak Joshi | Faculty | 5 | 5 | 2 | 1 | 0.00000 | 0.004823 |
-| 8 | Marisel Torres-Crespo | Faculty | 4 | 4 | 2 | 1 | 0.00167 | 0.005223 |
-| 9 | Kristine Calo | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.002901 |
-| 10 | David Gurzick | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.002632 |
-| 11 | Karen White | Faculty | 1 | 1 | 2 | 1 | 0.00000 | 0.005054 |
-| 12 | Scott Pincikowski | Faculty | 1 | 1 | 2 | 1 | 0.00000 | 0.005054 |
+| 1 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00323 | 0.007148 |
+| 2 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010973 |
+| 3 | Carol Jim | Faculty | 5 | 5 | 2 | 2 | 0.00000 | 0.004792 |
+| 4 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00885 | 0.009797 |
+| 5 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00370 | 0.007110 |
+| 6 | Evelyn Nieves | Faculty | 5 | 5 | 2 | 1 | 0.00046 | 0.005220 |
+| 7 | Janak Joshi | Faculty | 5 | 5 | 2 | 1 | 0.00000 | 0.004792 |
+| 8 | Marisel Torres-Crespo | Faculty | 4 | 4 | 2 | 1 | 0.00164 | 0.005216 |
+| 9 | Kristine Calo | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.002877 |
+| 10 | David Gurzick | Faculty | 2 | 2 | 2 | 1 | 0.00000 | 0.002628 |
+| 11 | Karen White | Faculty | 1 | 1 | 2 | 1 | 0.00000 | 0.005076 |
+| 12 | Scott Pincikowski | Faculty | 1 | 1 | 2 | 1 | 0.00000 | 0.005076 |
 
 ## Faculty-Administration Connectors
 
@@ -182,18 +182,18 @@ Faculty-administration connectors are people adjacent to both faculty and admini
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Faculty Neighbors | Administrator Neighbors | Bridge Score |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 28 | 24 | 2 | 0.02425 | 0.029973 | 7 | 4 | 35 |
-| 2 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00374 | 0.007145 | 2 | 3 | 9 |
-| 3 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00295 | 0.007922 | 3 | 2 | 9 |
-| 4 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01387 | 0.009084 | 4 | 2 | 8 |
-| 5 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00967 | 0.017131 | 2 | 3 | 8 |
-| 6 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00917 | 0.009834 | 6 | 1 | 7 |
-| 7 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00328 | 0.007180 | 4 | 1 | 5 |
-| 8 | Carol Jim | Faculty | 5 | 5 | 2 | 2 | 0.00000 | 0.004823 | 4 | 1 | 5 |
-| 9 | Janak Joshi | Faculty | 5 | 5 | 2 | 1 | 0.00000 | 0.004823 | 4 | 1 | 5 |
-| 10 | Molly Moreland | Faculty | 5 | 5 | 1 | 1 | 0.00000 | 0.004823 | 4 | 1 | 5 |
-| 11 | Marisel Torres-Crespo | Faculty | 4 | 4 | 2 | 1 | 0.00167 | 0.005223 | 3 | 1 | 4 |
-| 12 | Andrew Campbell | Faculty | 4 | 4 | 1 | 1 | 0.00000 | 0.005054 | 2 | 1 | 3 |
+| 1 | Debbie Ricker | Administrators | 24 | 27 | 24 | 2 | 0.02258 | 0.028369 | 7 | 4 | 35 |
+| 2 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00370 | 0.007110 | 2 | 3 | 9 |
+| 3 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00288 | 0.007876 | 3 | 2 | 9 |
+| 4 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01356 | 0.009051 | 4 | 2 | 8 |
+| 5 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00952 | 0.017031 | 2 | 3 | 8 |
+| 6 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00885 | 0.009797 | 6 | 1 | 7 |
+| 7 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00323 | 0.007148 | 4 | 1 | 5 |
+| 8 | Carol Jim | Faculty | 5 | 5 | 2 | 2 | 0.00000 | 0.004792 | 4 | 1 | 5 |
+| 9 | Janak Joshi | Faculty | 5 | 5 | 2 | 1 | 0.00000 | 0.004792 | 4 | 1 | 5 |
+| 10 | Molly Moreland | Faculty | 5 | 5 | 1 | 1 | 0.00000 | 0.004792 | 4 | 1 | 5 |
+| 11 | Marisel Torres-Crespo | Faculty | 4 | 4 | 2 | 1 | 0.00164 | 0.005216 | 3 | 1 | 4 |
+| 12 | Andrew Campbell | Faculty | 4 | 4 | 1 | 1 | 0.00000 | 0.005076 | 2 | 1 | 3 |
 
 ## Brokerage And Critical Persons
 
@@ -201,18 +201,18 @@ Brokerage uses betweenness centrality, which rewards people who lie on many shor
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 28 | 24 | 2 | 0.02425 | 0.029973 |
-| 2 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.01901 | 0.006329 |
-| 3 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01815 | 0.004874 |
-| 4 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01387 | 0.009084 |
-| 5 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01296 | 0.008913 |
-| 6 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00967 | 0.017131 |
-| 7 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00917 | 0.009834 |
-| 8 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00374 | 0.007145 |
-| 9 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00328 | 0.007424 |
-| 10 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00328 | 0.007180 |
-| 11 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00295 | 0.007922 |
-| 12 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010926 |
+| 1 | Debbie Ricker | Administrators | 24 | 27 | 24 | 2 | 0.02258 | 0.028369 |
+| 2 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.01858 | 0.006327 |
+| 3 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01774 | 0.004891 |
+| 4 | Garrett Hitchens | Students | 12 | 12 | 2 | 1 | 0.01356 | 0.009051 |
+| 5 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01270 | 0.008950 |
+| 6 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00952 | 0.017031 |
+| 7 | Daehwan Kim | Faculty | 13 | 13 | 2 | 1 | 0.00885 | 0.009797 |
+| 8 | Tamelyn Tucker-Worgs | Faculty | 7 | 7 | 2 | 1 | 0.00370 | 0.007110 |
+| 9 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00323 | 0.007456 |
+| 10 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00323 | 0.007148 |
+| 11 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00288 | 0.007876 |
+| 12 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010973 |
 
 ## Articulation People
 
@@ -220,18 +220,18 @@ Articulation people are cut points: removing them would split at least one conne
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 28 | 24 | 2 | 0.02425 | 0.029973 |
-| 2 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.01901 | 0.006329 |
-| 3 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01815 | 0.004874 |
-| 4 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01296 | 0.008913 |
-| 5 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00967 | 0.017131 |
-| 6 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00328 | 0.007424 |
-| 7 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00328 | 0.007180 |
-| 8 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00295 | 0.007922 |
-| 9 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010926 |
-| 10 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00181 | 0.008421 |
-| 11 | Marisel Torres-Crespo | Faculty | 4 | 4 | 2 | 1 | 0.00167 | 0.005223 |
-| 12 | Shannon Kundey | Administrators | 2 | 2 | 2 | 1 | 0.00167 | 0.003620 |
+| 1 | Debbie Ricker | Administrators | 24 | 27 | 24 | 2 | 0.02258 | 0.028369 |
+| 2 | Riana Caldwell | Students | 9 | 9 | 3 | 2 | 0.01858 | 0.006327 |
+| 3 | Sidney Brinkman | Student-Athletes | 6 | 6 | 2 | 2 | 0.01774 | 0.004891 |
+| 4 | Morgan Hackett | Students | 12 | 12 | 2 | 2 | 0.01270 | 0.008950 |
+| 5 | April Boulton | Administrators | 14 | 17 | 8 | 2 | 0.00952 | 0.017031 |
+| 6 | Hannah Poole | Alumni | 9 | 9 | 2 | 1 | 0.00323 | 0.007456 |
+| 7 | Elizabeth Knapp | Faculty | 7 | 7 | 5 | 2 | 0.00323 | 0.007148 |
+| 8 | Paige Eager | Administrators | 6 | 7 | 4 | 1 | 0.00288 | 0.007876 |
+| 9 | Aaron Angello | Faculty | 16 | 16 | 4 | 2 | 0.00230 | 0.010973 |
+| 10 | Jevon Yarbrough | Student-Athletes | 15 | 15 | 2 | 1 | 0.00181 | 0.008457 |
+| 11 | Marisel Torres-Crespo | Faculty | 4 | 4 | 2 | 1 | 0.00164 | 0.005216 |
+| 12 | Shannon Kundey | Administrators | 2 | 2 | 2 | 1 | 0.00164 | 0.003603 |
 
 ## Local Bridge Bonds
 
@@ -239,18 +239,18 @@ Local bridges are co-mention edges whose endpoints do not share any other neighb
 
 | Rank | People | Roles | Shared Articles | Endpoint Degrees |
 | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker and Shannon Kundey | Administrators / Administrators | 1 | 25 / 2 |
-| 2 | Associate Dean and Debbie Ricker | Students / Administrators | 1 | 1 / 25 |
-| 3 | Debbie Ricker and Kelly Schulz | Administrators / Alumni | 1 | 25 / 1 |
-| 4 | Debbie Ricker and Logan Bennett | Administrators / Unclassified People | 1 | 25 / 1 |
-| 5 | Debbie Ricker and Mark Reinhardt | Administrators / Administrators | 1 | 25 / 1 |
-| 6 | Debbie Ricker and Melissa Muntz | Administrators / Alumni | 1 | 25 / 1 |
-| 7 | Debbie Ricker and Randy Johnson | Administrators / Unclassified People | 1 | 25 / 1 |
-| 8 | April Boulton and Rana Khan | Administrators / Administrators | 1 | 14 / 1 |
-| 9 | Riana Caldwell and Sidney Brinkman | Students / Student-Athletes | 1 | 9 / 6 |
-| 10 | Alan Goldenbach and Brandon Green | Faculty / Alumni | 1 | 1 / 8 |
-| 11 | Paige Eager and Robert Putnam | Administrators / Guests / External Partners | 1 | 6 / 1 |
-| 12 | Evelyn Nieves and Hollis Caswell | Faculty / Faculty | 1 | 5 / 1 |
+| 1 | Debbie Ricker and Shannon Kundey | Administrators / Administrators | 1 | 24 / 2 |
+| 2 | Associate Dean and Debbie Ricker | Students / Administrators | 1 | 1 / 24 |
+| 3 | Debbie Ricker and Kelly Schulz | Administrators / Alumni | 1 | 24 / 1 |
+| 4 | Debbie Ricker and Logan Bennett | Administrators / Unclassified People | 1 | 24 / 1 |
+| 5 | Debbie Ricker and Mark Reinhardt | Administrators / Administrators | 1 | 24 / 1 |
+| 6 | Debbie Ricker and Melissa Muntz | Administrators / Alumni | 1 | 24 / 1 |
+| 7 | April Boulton and Rana Khan | Administrators / Administrators | 1 | 14 / 1 |
+| 8 | Riana Caldwell and Sidney Brinkman | Students / Student-Athletes | 1 | 9 / 6 |
+| 9 | Alan Goldenbach and Brandon Green | Faculty / Alumni | 1 | 1 / 8 |
+| 10 | Paige Eager and Robert Putnam | Administrators / Guests / External Partners | 1 | 6 / 1 |
+| 11 | Evelyn Nieves and Hollis Caswell | Faculty / Faculty | 1 | 5 / 1 |
+| 12 | Jennifer Cuddapah and Marisel Torres-Crespo | Faculty / Faculty | 1 | 1 / 4 |
 
 ## Role Mixing
 
@@ -281,18 +281,18 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 
 | Rank | Name | Role | Degree | Weighted Degree | Mentions | Sources | Betweenness | PageRank | Recent Mentions | Recent Degree |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | Debbie Ricker | Administrators | 25 | 28 | 24 | 2 | 0.02425 | 0.029973 | 3 | 3 |
-| 2 | Restorative Practices | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005054 | 2 | 1 |
-| 3 | Strengthen Support | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005054 | 2 | 1 |
-| 4 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001668 | 1 | 1 |
-| 5 | Blazer Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005054 | 1 | 1 |
-| 6 | Logan Bennett | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.001668 | 1 | 1 |
-| 7 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005054 | 1 | 1 |
-| 8 | Randy Johnson | Unclassified People | 1 | 1 | 2 | 1 | 0.00000 | 0.001668 | 1 | 1 |
-| 9 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005054 | 1 | 1 |
-| 10 | Veterans Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005054 | 1 | 1 |
-| 11 | Matthew Gelhard | Staff | 3 | 3 | 6 | 1 | 0.00006 | 0.007414 | 1 | 0 |
-| 12 | Carin Robinson | Unclassified People | 0 | 0 | 1 | 1 | 0.00000 | 0.000758 | 1 | 0 |
+| 1 | Debbie Ricker | Administrators | 24 | 27 | 24 | 2 | 0.02258 | 0.028369 | 3 | 2 |
+| 2 | Restorative Practices | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005076 | 2 | 1 |
+| 3 | Strengthen Support | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005076 | 2 | 1 |
+| 4 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001655 | 1 | 1 |
+| 5 | Blazer Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005076 | 1 | 1 |
+| 6 | Logan Bennett | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.001655 | 1 | 1 |
+| 7 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005076 | 1 | 1 |
+| 8 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005076 | 1 | 1 |
+| 9 | Veterans Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005076 | 1 | 1 |
+| 10 | Matthew Gelhard | Staff | 3 | 3 | 6 | 1 | 0.00006 | 0.007446 | 1 | 0 |
+| 11 | Carin Robinson | Unclassified People | 0 | 0 | 1 | 1 | 0.00000 | 0.000761 | 1 | 0 |
+| 12 | Dean Boulton | Students | 0 | 0 | 1 | 1 | 0.00000 | 0.000761 | 1 | 0 |
 
 ## Connected Communities
 
@@ -300,7 +300,7 @@ Communities are reported here as connected groups in the current evidence graph.
 
 | Group | Size | Dominant Roles | Top People |
 | --- | --- | --- | --- |
-| 1 | 60 | Students (21), Faculty (13), Alumni (8), Unclassified People (7) | Debbie Ricker, April Boulton, Daehwan Kim, Garrett Hitchens, Morgan Hackett, Riana Caldwell, Hannah Poole, Amanda Ambrose |
+| 1 | 59 | Students (21), Faculty (13), Alumni (8), Administrators (6) | Debbie Ricker, April Boulton, Daehwan Kim, Garrett Hitchens, Morgan Hackett, Riana Caldwell, Hannah Poole, Amanda Ambrose |
 | 2 | 18 | Students (10), Faculty (6), Unclassified People (2) | Aaron Angello, Alicia Bishop, Calleigh Hoffman, Cass Byers, Eyob Jigsa, Julia Leclair, Justin Hilty, Kadem Hodge |
 | 3 | 17 | Student-Athletes (9), Students (4), Coaches (2), Alumni (1) | Jevon Yarbrough, Joel White, Jude Huseby, Kullen Robinson, Aaron Heller, Adam Labows, Aylene Noy, Catie Roberts |
 | 4 | 9 | Students (4), Alumni (3), Faculty (2) | Brandon Green, Sofia Montoya-Deck, Amrit Brown, Elizabeth Atwood, Ellie Cooper, Katie Misuraca, Rachel Kucharski, Rona Mensah |
