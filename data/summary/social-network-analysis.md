@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-11-21
+# Hood College Social Network Analysis for 2026-11-22
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -283,16 +283,16 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | 1 | Debbie Ricker | Administrators | 24 | 27 | 24 | 2 | 0.02241 | 0.028105 | 3 | 2 |
 | 2 | Restorative Practices | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005029 | 2 | 1 |
-| 3 | Strengthen Support | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005029 | 2 | 1 |
-| 4 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001639 | 1 | 1 |
-| 5 | Blazer Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005029 | 1 | 1 |
-| 6 | Dominic Bechtel | Alumni | 1 | 1 | 2 | 2 | 0.00000 | 0.005029 | 1 | 1 |
-| 7 | Eva Attota | Alumni | 1 | 1 | 1 | 1 | 0.00000 | 0.005029 | 1 | 1 |
-| 8 | Logan Bennett | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.001639 | 1 | 1 |
-| 9 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005029 | 1 | 1 |
-| 10 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005029 | 1 | 1 |
-| 11 | Veterans Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005029 | 1 | 1 |
-| 12 | Matthew Gelhard | Staff | 3 | 3 | 6 | 1 | 0.00006 | 0.007377 | 1 | 0 |
+| 3 | Associate Dean | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.001639 | 1 | 1 |
+| 4 | Dominic Bechtel | Alumni | 1 | 1 | 2 | 2 | 0.00000 | 0.005029 | 1 | 1 |
+| 5 | Eva Attota | Alumni | 1 | 1 | 1 | 1 | 0.00000 | 0.005029 | 1 | 1 |
+| 6 | Logan Bennett | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.001639 | 1 | 1 |
+| 7 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005029 | 1 | 1 |
+| 8 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005029 | 1 | 1 |
+| 9 | Veterans Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005029 | 1 | 1 |
+| 10 | Strengthen Support | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005029 | 1 | 0 |
+| 11 | Carin Robinson | Unclassified People | 0 | 0 | 1 | 1 | 0.00000 | 0.000754 | 1 | 0 |
+| 12 | Haroun Hallack | Unclassified People | 0 | 0 | 1 | 1 | 0.00000 | 0.000754 | 1 | 0 |
 
 ## Connected Communities
 
