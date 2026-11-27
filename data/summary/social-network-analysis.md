@@ -1,4 +1,4 @@
-# Hood College Social Network Analysis for 2026-11-26
+# Hood College Social Network Analysis for 2026-11-27
 
 This report analyzes public co-mentions, not private relationships. A connection means two people appeared in the same stored Hood College source item. The measures are useful for discovering public visibility, repeated co-appearance, and possible brokerage patterns, but they should not be read as friendship, endorsement, authority, or institutional reporting lines.
 
@@ -289,10 +289,10 @@ Emerging people are ranked by recent mentions and recent degree over the last 30
 | 6 | Eva Attota | Alumni | 1 | 1 | 1 | 1 | 0.00000 | 0.005004 | 1 | 1 |
 | 7 | Logan Bennett | Unclassified People | 1 | 1 | 1 | 1 | 0.00000 | 0.001651 | 1 | 1 |
 | 8 | Luisa Sieverding | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005004 | 1 | 1 |
-| 9 | Student Veterans | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005004 | 1 | 1 |
-| 10 | Veterans Club | Students | 1 | 1 | 1 | 1 | 0.00000 | 0.005004 | 1 | 1 |
-| 11 | Strengthen Support | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005004 | 1 | 0 |
-| 12 | Carin Robinson | Unclassified People | 0 | 0 | 1 | 1 | 0.00000 | 0.000751 | 1 | 0 |
+| 9 | Strengthen Support | Students | 1 | 1 | 2 | 1 | 0.00000 | 0.005004 | 1 | 0 |
+| 10 | Carin Robinson | Unclassified People | 0 | 0 | 1 | 1 | 0.00000 | 0.000751 | 1 | 0 |
+| 11 | Ron Volpe | Administrators | 0 | 0 | 1 | 1 | 0.00000 | 0.000751 | 1 | 0 |
+| 12 | Xavier Smalls | Students | 0 | 0 | 1 | 1 | 0.00000 | 0.000751 | 1 | 0 |
 
 ## Connected Communities
 
